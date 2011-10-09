@@ -582,14 +582,29 @@ AC_DEFUN([LIBCLOUDLESS_CHECK_LANG_VISIBILITY], [{
 }])
 
 dnl ################################################################################
-dnl # PKGCONFIG([action-if-found], [action-if-not-found])                          #
+dnl # LIBCLOUDLESS_PKGCONFIG([action-if-found], [action-if-not-found])             #
 dnl # Provide an option to set pkgconfig dir                                       #
 dnl ################################################################################
-AC_DEFUN([PKGCONFIG],[
+AC_DEFUN([LIBCLOUDLESS_PKGCONFIG],[
 AC_ARG_WITH(
   [pkgconfigdir],
   [AC_HELP_STRING([--with-pkgconfigdir=DIR],[location of pkgconfig dir (default is libdir/pkgcofnig)])],
   [pkgconfigdir=${withval}],
   [pkgconfigdir='${libdir}/pkgconfig'])
 AC_SUBST([pkgconfigdir])
+])
+
+dnl ################################################################################
+dnl # STATIS_LIB([action-if-found], [action-if-not-found])                         #
+dnl # Define MACRO if we are on MinGW and are only building static library.        #
+dnl ################################################################################
+AC_DEFUN([STATIC_LIB],
+[
+if test x$enable_shared = xno; then
+  case $host_os in
+    mingw*)
+      AC_DEFINE([$1], [1], [$2])
+      ;;
+  esac
+fi
 ])
