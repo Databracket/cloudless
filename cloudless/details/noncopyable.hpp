@@ -18,15 +18,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <cloudless/common.hpp>
-#include <cloudless/zsocket.hpp>
+#ifndef __CLOUDLESS_DETAILS_NONCOPYABLE_HPP
+#define __CLOUDLESS_DETAILS_NONCOPYABLE_HPP
 
 namespace cloudless
 {
 
-namespace io
+namespace details
 {
 
-} // namespace io
+    class noncopyable
+    {
+    protected:
+        noncopyable() {}
+        ~noncopyable() {}
+
+    private:
+        noncopyable(const noncopyable&);
+        const noncopyable& operator=(const noncopyable&);
+    };
+
+} // namespace details
 
 } // namespace cloudless
+
+#endif // __CLOUDLESS_DETAILS_NONCOPYABLE_HPP

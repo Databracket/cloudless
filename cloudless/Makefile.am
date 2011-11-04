@@ -1,15 +1,21 @@
 lib_LTLIBRARIES = libcloudless.la
 
-pkgconfigdir = @pkgconfigdir@
-pkgconfig_DATA = libcloudless.pc
-
 include_HEADERS = $(top_srcdir)/include/cloudless.h
 
 cloudlessincludedir = $(includedir)/cloudless
-nobase_cloudlessinclude_HEADERS = zsocket.hpp common.hpp
-nobase_nodist_cloudlessinclude_HEADERS = platform.hpp
+nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/export.hpp \
+								  details/exception.hpp details/shared_ptr.hpp \
+								  details/singleton.hpp details/zeromq/zcontext.hpp \
+								  details/zeromq/zeromq.hpp details/zeromq/zmessage.hpp \
+								  details/zeromq/zsocket_base.hpp socket.hpp \
+								  address.hpp context.hpp element.hpp exceptions.hpp \
+								  messages.hpp poller.hpp pollitem.hpp
+nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
 
-libcloudless_la_SOURCES = zsocket.cpp
+libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cpp \
+						  details/zeromq/zsocket_base.cpp socket.cpp \
+						  address.cpp context.cpp element.cpp exceptions.cpp \
+						  messages.cpp pollitem.cpp poller.cpp
 
 if ON_MINGW
 libcloudless_la_LDFLAGS = -no-undefined -avoid-version -version-info @LTVER@ @LIBCLOUDLESS_EXTRA_LDFLAGS@
@@ -20,5 +26,4 @@ endif
 libcloudless_la_CXXFLAGS = -I'$(top_srcdir)' -I'$(top_builddir)' @LIBCLOUDLESS_EXTRA_CXXFLAGS@
 
 dist-hook:
-	-rm $(distdir)/platform.hpp
-
+	-rm $(distdir)/details/platform.hpp

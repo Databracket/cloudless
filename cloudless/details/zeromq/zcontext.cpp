@@ -18,17 +18,37 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define __CLOUDLESS_ZSOCKET_HPP
-#ifndef __CLOUDLESS_ZSOCKET_HPP
+#include <cassert>
+
+#include <cloudless/details/zeromq/zeromq.hpp>
+#include <cloudless/details/zeromq/zcontext.hpp>
+#include <cloudless/exceptions.hpp>
 
 namespace cloudless
 {
 
-namespace io
+namespace details
 {
 
-} // namespace io
+    zcontext::zcontext(int io_threads_)
+    {
+        _M_ptr = zmq_init(io_threads_);
+
+        if (_M_ptr == NULL)
+            throw null_pointer();
+    }
+
+    zcontext::~zcontext()
+    {
+        int rc = zmq_term(_M_ptr);
+        assert(rc == 0);
+    }
+
+    zcontext::operator void*() const throw()
+    {
+        return _M_ptr;
+    }
+
+} // namespace details
 
 } // namespace cloudless
-
-#endif // __CLOUDLESS_ZSOCKET_HPP

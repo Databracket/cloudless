@@ -18,22 +18,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define __CLOUDLESS_COMMON_HPP
-#ifndef __CLOUDLESS_COMMON_HPP
+#ifndef __CLOUDLESS_CONTEXT_HPP
+#define __CLOUDLESS_CONTEXT_HPP
+
+#include <cloudless/details/export.hpp>
+#include <cloudless/details/zeromq/zcontext.hpp>
 
 namespace cloudless
 {
 
-    class noncopyable {
-    protected:
-        noncopyable() {}
-        ~noncopyable() {}
-
-    private:
-        noncopyable(const noncopyable&);
-        const noncopyable& operator=(const noncopyable&);
+    struct LIBCLOUDLESS_EXPORT context : details::zcontext
+    {
+        context(int io_threads_ = 4);
     };
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_COMMON_HPP
+#endif // __CLOUDLESS_CONTEXT_HPP

@@ -10,7 +10,7 @@ AC_INIT([cloudless],[m4_esyscmd([./version.sh])],[dev@cloudless.io])
 
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR(config)
-AM_CONFIG_HEADER(cloudless/platform.hpp)
+AM_CONFIG_HEADER(cloudless/details/platform.hpp)
 AM_INIT_AUTOMAKE(tar-ustar dist-zip dist-bzip2 subdir-objects nostdinc foreign)
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
@@ -48,7 +48,7 @@ LIBCLOUDLESS_CONFIG_LIBTOOL
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-# Check whether to build a with debug symbols
+# Check whether to build with debug symbols
 LIBCLOUDLESS_CHECK_ENABLE_DEBUG
 
 # Check wheter to enable code coverage
@@ -58,7 +58,10 @@ LIBCLOUDLESS_WITH_GCOV
 AC_CHECK_LIB([pthread], [pthread_create])
 
 # Set pkgconfig dir
-PKGCONFIG
+LIBCLOUDLESS_PKGCONFIG
+
+# Define LIBCLOUDLESS_STATIC_LIB if we are building static library on certain platforms
+STATIC_LIB([LIBCLOUDLESS_STATIC_LIB], [Static library interface.])
 
 # Set pedantic
 libcloudless_pedantic="yes"
@@ -71,9 +74,6 @@ libcloudless_dso_visibility="yes"
 
 # Whether we are on mingw or not.
 libcloudless_on_mingw32="no"
-
-# Set some default features required by Cloudless code.
-CPPFLAGS="-D_REENTRANT -D_THREAD_SAFE $CPPFLAGS"
 
 # For host type checks
 AC_CANONICAL_HOST
@@ -89,9 +89,7 @@ case "${host_os}" in
         ;;
     *solaris*)
         # Define on Solaris to enable all library features
-        CPPFLAGS="-D_PTHREADS $CPPFLAGS"
         AC_DEFINE(CLOUDLESS_HAVE_SOLARIS, 1, [Have Solaris OS])
-        AC_DEFINE(CLOUDLESS_FORCE_MUTEXES, 1, [Force to use mutexes])
         ;;
     *freebsd*)
         # Define on FreeBSD to enable all library features
@@ -233,6 +231,8 @@ AC_SUBST(LIBCLOUDLESS_EXTRA_CFLAGS)
 AC_SUBST(LIBCLOUDLESS_EXTRA_CXXFLAGS)
 AC_SUBST(LIBCLOUDLESS_EXTRA_LDFLAGS)
 
-AC_CONFIG_FILES([Makefile cloudless/Makefile \
-    cloudless/libcloudless.pc])
+AC_CONFIG_FILES([
+		libcloudless.pc \
+		Makefile \
+		cloudless/Makefile])
 AC_OUTPUT
