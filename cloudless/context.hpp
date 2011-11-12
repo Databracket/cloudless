@@ -29,7 +29,7 @@ namespace cloudless
 
     struct LIBCLOUDLESS_EXPORT context : details::zcontext
     {
-        context(int io_threads_ = 4);
+        context(int io_threads_ = 2);
     };
 
 } // namespace cloudless
