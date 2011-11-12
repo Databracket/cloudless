@@ -19,6 +19,7 @@
 */
 
 #include <cloudless/details/zeromq/zeromq.hpp>
+#include <cloudless/details/shared_array.hpp>
 #include <cloudless/exceptions.hpp>
 #include <cloudless/poller.hpp>
 
@@ -39,14 +40,14 @@ namespace cloudless
         if (_M_items.size() < 1)
             throw poll_empty();
 
-        pollitem* items = new pollitem[_M_items.size()];
+        details::shared_array<pollitem> items(new pollitem[_M_items.size()]);
 
         std::map<std::string, pollitem>::const_iterator it = _M_items.begin();
 
         for (size_t i = 0; i < _M_items.size(); ++i)
-            items[i] = it++->second;
+            items.get()[i] = it++->second;
 
-        int rc = zmq_poll((zmq_pollitem_t*)items, _M_items.size(), timeout_ * ZMQ_POLL_MSEC);
+        int rc = zmq_poll((zmq_pollitem_t*)items.get(), _M_items.size(), timeout_ * ZMQ_POLL_MSEC);
 
         if (rc == -1)
             throw zexception();
