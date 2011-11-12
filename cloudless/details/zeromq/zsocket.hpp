@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_BASE_HPP
-#define __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_BASE_HPP
+#ifndef __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
+#define __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/noncopyable.hpp>
@@ -32,10 +32,10 @@ namespace cloudless
 namespace details
 {
 
-    struct LIBCLOUDLESS_EXPORT zsocket_base : noncopyable
+    struct LIBCLOUDLESS_EXPORT zsocket : noncopyable
     {
-        zsocket_base(zcontext& context_, int type_);
-        virtual ~zsocket_base();
+        zsocket(zcontext& context_, int type_);
+        virtual ~zsocket();
 
         void close();
 
@@ -58,4 +58,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_BASE_HPP
+#endif // __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP

@@ -19,7 +19,7 @@
 */
 
 #include <cloudless/details/zeromq/zeromq.hpp>
-#include <cloudless/details/zeromq/zsocket_base.hpp>
+#include <cloudless/details/zeromq/zsocket.hpp>
 #include <cloudless/exceptions.hpp>
 
 namespace cloudless
@@ -28,9 +28,9 @@ namespace cloudless
 namespace details
 {
 
-    // zsocket_base
+    // zsocket
 
-    zsocket_base::zsocket_base(zcontext& context_, int type_)
+    zsocket::zsocket(zcontext& context_, int type_)
     {
         _M_ptr = zmq_socket(context_, type_);
 
@@ -38,7 +38,7 @@ namespace details
             throw zexception();
     }
 
-    zsocket_base::~zsocket_base()
+    zsocket::~zsocket()
     {
         if (_M_ptr == NULL)
             return;
@@ -49,7 +49,7 @@ namespace details
     }
 
     void
-    zsocket_base::close()
+    zsocket::close()
     {
         if (_M_ptr == NULL)
             return;
@@ -63,7 +63,7 @@ namespace details
     }
 
     void
-    zsocket_base::setsockopt(int option_, const void* optval_,
+    zsocket::setsockopt(int option_, const void* optval_,
             size_t optvallen_)
     {
         int rc = zmq_setsockopt(_M_ptr, option_, optval_, optvallen_);
@@ -73,7 +73,7 @@ namespace details
     }
 
     void
-    zsocket_base::getsockopt(int option_, void* optval_,
+    zsocket::getsockopt(int option_, void* optval_,
             size_t* optvallen_)
     {
         int rc = zmq_getsockopt(_M_ptr, option_, optval_, optvallen_);
@@ -83,7 +83,7 @@ namespace details
     }
 
     void
-    zsocket_base::bind(const char* addr_)
+    zsocket::bind(const char* addr_)
     {
         int rc = zmq_bind(_M_ptr, addr_);
 
@@ -92,7 +92,7 @@ namespace details
     }
 
     void
-    zsocket_base::connect(const char* addr_)
+    zsocket::connect(const char* addr_)
     {
         int rc = zmq_connect(_M_ptr, addr_);
 
@@ -101,7 +101,7 @@ namespace details
     }
 
     bool
-    zsocket_base::sendmsg(zmessage& msg_, int flags_)
+    zsocket::sendmsg(zmessage& msg_, int flags_)
     {
         int rc = zmq_sendmsg(_M_ptr, msg_, flags_);
 
@@ -115,7 +115,7 @@ namespace details
     }
 
     bool
-    zsocket_base::recvmsg(zmessage& msg_, int flags_)
+    zsocket::recvmsg(zmessage& msg_, int flags_)
     {
         int rc = zmq_recvmsg(_M_ptr, msg_, flags_);
 
@@ -128,7 +128,7 @@ namespace details
         throw zexception();
     }
 
-    zsocket_base::operator void*() const throw()
+    zsocket::operator void*() const throw()
     {
         return _M_ptr;
     }

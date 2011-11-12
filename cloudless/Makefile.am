@@ -13,7 +13,7 @@ nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/export.hpp \
 nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
 
 libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cpp \
-						  details/zeromq/zsocket_base.cpp socket.cpp \
+						  details/zeromq/zsocket.cpp socket.cpp \
 						  address.cpp context.cpp element.cpp exceptions.cpp \
 						  messages.cpp pollitem.cpp poller.cpp
 
