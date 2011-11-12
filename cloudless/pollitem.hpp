@@ -23,7 +23,7 @@
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/zeromq/zeromq.hpp>
-#include <cloudless/details/zeromq/zsocket_base.hpp>
+#include <cloudless/details/zeromq/zsocket.hpp>
 
 namespace cloudless
 {
@@ -40,8 +40,9 @@ namespace poll_events
     struct LIBCLOUDLESS_EXPORT pollitem : private zmq_pollitem_t
     {
         pollitem() throw();
-        pollitem(details::zsocket_base& socket_, socket_t fd_,
-                short events_ = 0, short revents_ = 0) throw();
+        pollitem(details::zsocket& socket_, short events_ = 0,
+                short revents_ = 0) throw();
+        pollitem(socket_t fd_, short events_ = 0, short revents_ = 0) throw();
 
         void register_event(short event_) throw();
         void unregister_event(short event_) throw();
