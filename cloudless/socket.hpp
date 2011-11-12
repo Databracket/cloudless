@@ -24,15 +24,17 @@
 #include <string>
 
 #include <cloudless/details/export.hpp>
-#include <cloudless/details/zeromq/zsocket_base.hpp>
+#include <cloudless/details/zeromq/zsocket.hpp>
+#include <cloudless/details/shared_ptr.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/messages.hpp>
 #include <cloudless/address.hpp>
+#include <cloudless/pollitem.hpp>
 
 namespace cloudless
 {
 
-    struct LIBCLOUDLESS_EXPORT socket : details::zsocket_base
+    struct LIBCLOUDLESS_EXPORT socket : details::zsocket
     {
         socket(context& context_, int type_);
 
@@ -42,10 +44,18 @@ namespace cloudless
         void connect(const std::string& addr_);
         void connect(const address& addr_);
 
-        bool send(messages& msgs_, long timeout_);
         bool send(messages& msgs_, bool block_ = true);
         bool recv(messages& msgs_, bool block_ = true);
 
+        void set_send_timeout(int timeout_);
+        void set_recv_timeout(int timeout_);
+
+        pollitem& poll_item() throw();
+
+    private:
+        int _M_recvtimeo;
+        int _M_sendtimeo;
+        details::shared_ptr<pollitem> _M_ip;
     };
 
 } // namespace cloudless
