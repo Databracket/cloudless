@@ -4,12 +4,12 @@ include_HEADERS = $(top_srcdir)/include/cloudless.h
 
 cloudlessincludedir = $(includedir)/cloudless
 nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/export.hpp \
-								  details/exception.hpp details/shared_ptr.hpp \
-								  details/singleton.hpp details/zeromq/zcontext.hpp \
-								  details/zeromq/zeromq.hpp details/zeromq/zmessage.hpp \
-								  details/zeromq/zsocket_base.hpp socket.hpp \
-								  address.hpp context.hpp element.hpp exceptions.hpp \
-								  messages.hpp poller.hpp pollitem.hpp
+								  details/exception.hpp details/singleton.hpp \
+								  details/shared_ptr.hpp details/shared_array.hpp \
+								  details/zeromq/zcontext.hpp details/zeromq/zeromq.hpp \
+								  details/zeromq/zmessage.hpp details/zeromq/zsocket.hpp \
+								  socket.hpp address.hpp context.hpp element.hpp \
+								  exceptions.hpp messages.hpp poller.hpp pollitem.hpp
 nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
 
 libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cpp \
