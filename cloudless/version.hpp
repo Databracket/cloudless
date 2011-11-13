@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2011 Databracket, LLC
+    Copyright (c) 2011 Databracket, LLC.
     Copyright (c) 2011 Other contributors as noted in the AUTHORS file
 
     This file is part of Cloudless.
@@ -18,19 +18,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CLOUDLESS_H
-#define __CLOUDLESS_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef __CLOUDLESS_VERSION_HPP
+#define __CLOUDLESS_VERSION_HPP
 
 #define CLOUDLESS_VERSION_MAJOR 0
 #define CLOUDLESS_VERSION_MINOR 1
 #define CLOUDLESS_VERSION_PATCH 0
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* __CLOUDLESS_H */
+#endif // __CLOUDLESS_VERSION_HPP
