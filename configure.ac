@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.67)
 #
-# The Cloudless version number is extracted from include/cloudless.h using
+# The Cloudless version number is extracted from cloudless/version.hpp using
 # the version.sh script. Hence, it should be updated there.
 # The version in git should reflect the *next* version planned.
 #
@@ -55,7 +55,7 @@ LIBCLOUDLESS_CHECK_ENABLE_DEBUG
 LIBCLOUDLESS_WITH_GCOV
 
 # Checks for libraries.
-AC_CHECK_LIB([pthread], [pthread_create])
+PKG_CHECK_MODULES([ZMQ], [libzmq >= 2.1.10])
 
 # Set pkgconfig dir
 LIBCLOUDLESS_PKGCONFIG
@@ -226,7 +226,7 @@ AM_CONDITIONAL(ON_MINGW, test "x$libcloudless_on_mingw32" = "xyes")
 AC_TYPE_SIGNAL
 AC_CHECK_FUNCS(perror gettimeofday memset)
 
-# Subst LIBCLOUDLESS_EXTRA_CFLAGS & CXXFLAGS & LDFLAGS
+# Subset LIBCLOUDLESS_EXTRA_CFLAGS & CXXFLAGS & LDFLAGS
 AC_SUBST(LIBCLOUDLESS_EXTRA_CFLAGS)
 AC_SUBST(LIBCLOUDLESS_EXTRA_CXXFLAGS)
 AC_SUBST(LIBCLOUDLESS_EXTRA_LDFLAGS)
@@ -234,5 +234,6 @@ AC_SUBST(LIBCLOUDLESS_EXTRA_LDFLAGS)
 AC_CONFIG_FILES([
 		libcloudless.pc \
 		Makefile \
-		cloudless/Makefile])
+		cloudless/Makefile \
+		tests/Makefile])
 AC_OUTPUT
