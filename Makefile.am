@@ -1,7 +1,7 @@
 ACLOCAL_AMFLAGS = -I config
 
-SUBDIRS = cloudless
-DIST_SUBDIRS = cloudless
+SUBDIRS = cloudless tests
+DIST_SUBDIRS = cloudless tests
 
 pkgconfigdir = @pkgconfigdir@
 pkgconfig_DATA = libcloudless.pc
@@ -25,7 +25,6 @@ dist-hook:
 		else \
 			echo A git clone is required to generate a ChangeLog >&2; \
 		fi
-#		-cp $(top_srcdir)/builds/redhat/cloudless.spec $(distdir)/cloudless.spec
 
 maintainer-clean-local:
 	-rm -rf $(top_srcidr)/config
