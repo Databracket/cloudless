@@ -24,6 +24,7 @@
 
 #include <cstring>
 
+#include <cloudless/details/shared_array.hpp>
 #include <cloudless/address.hpp>
 
 #define TC TEST_CASE
@@ -32,14 +33,29 @@
 
 using namespace std;
 
-TC ("cloudless/address", "Testing address interface.")
+TC ("cloudless/utils", "Testing utility functions.")
 {
-    cloudless::address addr(cloudless::protocol::TCP, "cloudless.test", 880);
+    S ("cloudless/address", "Testing address interface.")
+    {
+        cloudless::address addr(cloudless::protocol::TCP, "cloudless.test", 880);
 
-    R ( (const string&)addr == "tcp://cloudless.test:880" );
-    R ( strcmp((const char*)addr, "tcp://cloudless.test:880") == 0 );
+        R ( (const string&)addr == "tcp://cloudless.test:880" );
+        R ( strcmp((const char*)addr, "tcp://cloudless.test:880") == 0 );
 
-    cloudless::address addr1(cloudless::protocol::UDP, cloudless::path::ANY);
+        cloudless::address addr1(cloudless::protocol::UDP, cloudless::path::ANY);
 
-    R ( (const string&)addr1 == "udp://*" );
+        R ( (const string&)addr1 == "udp://*" );
+    }
+
+    S ("cloudless/details/shared_array", "Testing shared_array interface.")
+    {
+        cloudless::details::shared_array<char> str(new char[100]);
+
+        for (int i = 0; i < 100; ++i)
+            str.get()[i] = (char)i;
+
+        str.reset();
+
+        R ( str.get() == NULL );
+    }
 }
