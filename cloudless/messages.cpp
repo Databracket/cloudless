@@ -44,7 +44,7 @@ namespace cloudless
     element
     messages::tail()
     {
-        if (_M_msgs.size())
+        if (!_M_msgs.empty())
             return _M_msgs.back();
 
         if (_M_element.get() == NULL)
@@ -86,7 +86,7 @@ namespace cloudless
     element
     messages::head()
     {
-        if (_M_msgs.size())
+        if (!_M_msgs.empty())
             return _M_msgs.front();
 
         if (_M_element.get() == NULL)
@@ -129,9 +129,15 @@ namespace cloudless
     }
 
     size_t
-    messages::size() const
+    messages::size() const throw()
     {
         return _M_msgs.size();
+    }
+
+    void
+    messages::clear() throw()
+    {
+        _M_msgs.clear();
     }
 
     std::deque<element>*

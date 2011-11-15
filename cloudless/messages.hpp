@@ -38,23 +38,11 @@ namespace cloudless
         messages(const void* p_, size_t size_);
         messages(const element& elem_);
 
-        template <typename Iter>
-        messages(Iter begin, Iter end)
-        {
-            push_tail(begin, end);
-        }
-
         element tail();
         messages& push_tail(const element& elem_);
         messages& push_tail(const std::string& data_);
         messages& push_tail(const void* p_, size_t size_);
         element pop_tail();
-
-        template <typename Iter>
-        messages& push_tail(Iter begin, Iter end)
-        {
-            return push_tail(element(begin, end));
-        }
 
         element head();
         messages& push_head(const element& elem_);
@@ -62,13 +50,8 @@ namespace cloudless
         messages& push_head(const void* p_, size_t size_);
         element pop_head();
 
-        template <typename Iter>
-        messages& push_head(Iter begin, Iter end)
-        {
-            return push_head(element(begin, end));
-        }
-
-        size_t size() const;
+        size_t size() const throw();
+        void clear() throw();
 
         element operator [](size_t idx_) const;
         std::deque<element>* operator ->();
