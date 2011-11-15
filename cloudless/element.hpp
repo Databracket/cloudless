@@ -21,7 +21,6 @@
 #ifndef __CLOUDLESS_ELEMENT_HPP
 #define __CLOUDLESS_ELEMENT_HPP
 
-#include <algorithm>
 #include <string>
 
 #include <cloudless/details/export.hpp>
@@ -36,14 +35,6 @@ namespace cloudless
         element(details::zmessage* p_ = new details::zmessage);
         element(const std::string& data_);
         element(const void* p_, size_t size_);
-
-        template <typename Iter>
-        element(Iter begin, Iter end) :
-            details::shared_ptr<details::zmessage>(
-                    new details::zmessage(std::count(begin, end)))
-        {
-            std::copy(begin, end, get()->data);
-        }
     };
 
 } // namespace cloudless
