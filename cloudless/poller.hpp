@@ -22,6 +22,7 @@
 #define __CLOUDLESS_POLLER_HPP
 
 #include <string>
+#include <deque>
 #include <map>
 
 #include <cloudless/details/noncopyable.hpp>
@@ -34,14 +35,18 @@ namespace cloudless
     class LIBCLOUDLESS_EXPORT poller : details::noncopyable
     {
     public:
+        poller();
+
         void add_item(pollitem& item_, const std::string& name_) throw();
         bool poll(long timeout_ = 300) const;
 
         const pollitem& operator [](const std::string& rhs) const;
 
     private:
-        typedef std::map<std::string, pollitem> poll_items;
-        poll_items _M_items;
+        typedef std::map<std::string, unsigned int> items_indexes;
+        items_indexes _M_indexes;
+        std::deque<pollitem> _M_items;
+        unsigned int _M_ctr;
     };
 
 } // namespace cloudless

@@ -19,7 +19,6 @@
 */
 
 #include <cloudless/details/zeromq/zeromq.hpp>
-#include <cloudless/details/shared_array.hpp>
 #include <cloudless/exceptions.hpp>
 #include <cloudless/poller.hpp>
 
@@ -28,26 +27,25 @@ namespace cloudless
 
     // poller
 
+    poller::poller() :
+        _M_ctr()
+    {}
+
     void
     poller::add_item(pollitem& item_, const std::string& name_) throw()
     {
-        _M_items[name_] = item_;
+        _M_items.push_back(item_);
+        _M_indexes[name_] = _M_ctr++;
     }
 
     bool
     poller::poll(long timeout_) const
     {
-        if (_M_items.size() < 1)
+        if (_M_items.empty())
             throw poll_empty();
 
-        details::shared_array<pollitem> items(new pollitem[_M_items.size()]);
-
-        std::map<std::string, pollitem>::const_iterator it = _M_items.begin();
-
-        for (size_t i = 0; i < _M_items.size(); ++i)
-            items.get()[i] = it++->second;
-
-        int rc = zmq_poll((zmq_pollitem_t*)items.get(), _M_items.size(), timeout_ * ZMQ_POLL_MSEC);
+        int rc = zmq_poll((zmq_pollitem_t*)&_M_items[0], _M_items.size(),
+                timeout_ * ZMQ_POLL_MSEC);
 
         if (rc == -1)
             throw zexception();
@@ -58,12 +56,12 @@ namespace cloudless
     const pollitem&
     poller::operator [](const std::string& rhs) const
     {
-        poll_items::const_iterator it = _M_items.find(rhs);
+        items_indexes::const_iterator it = _M_indexes.find(rhs);
 
-        if (it == _M_items.end())
+        if (it == _M_indexes.end())
             throw poll_not_found();
 
-        return it->second;
+        return _M_items[it->second];
     }
 
 } // namespace cloudless
