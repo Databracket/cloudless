@@ -17,7 +17,9 @@ autom4te.cache
 *.html
 *.pdf
 *.ps
-.*
+.libs
+.deps
+.dirstamp
 *~
 .*~
 cloudless/details/platform.hpp*
