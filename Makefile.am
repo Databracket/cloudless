@@ -13,6 +13,8 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/configure \
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
+test: check
+
 dist-hook:
 	@if test -d "$(srcdir)/.git"; then \
 		echo Creating ChangeLog && \
