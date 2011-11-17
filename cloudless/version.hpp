@@ -25,4 +25,54 @@
 #define CLOUDLESS_VERSION_MINOR 1
 #define CLOUDLESS_VERSION_PATCH 0
 
+#define CLOUDLESS_MAKE_VERSION(major, minor, patch) \
+    ((major) * 10000 + (minor) * 100 + (patch))
+#define CLOUDLESS_VERSION \
+    CLOUDLESS_MAKE_VERSION(CLOUDLESS_VERSION_MAJOR, CLOUDLESS_VERSION_MINOR, \
+            CLOUDLESS_VERSION_PATCH)
+
+#include <cloudless/details/export.hpp>
+#include <cloudless/details/zeromq/zeromq.hpp>
+
+namespace cloudless
+{
+
+    struct LIBCLOUDLESS_EXPORT version
+    {
+        static int major() throw()
+        {
+            return CLOUDLESS_VERSION_MAJOR;
+        }
+
+        static int minor() throw()
+        {
+            return CLOUDLESS_VERSION_MINOR;
+        }
+
+        static int patch() throw()
+        {
+            return CLOUDLESS_VERSION_PATCH;
+        }
+    };
+
+    struct LIBCLOUDLESS_EXPORT zversion
+    {
+        static int major() throw()
+        {
+            return ZMQ_VERSION_MAJOR;
+        }
+
+        static int minor() throw()
+        {
+            return ZMQ_VERSION_MINOR;
+        }
+
+        static int patch() throw()
+        {
+            return ZMQ_VERSION_PATCH;
+        }
+    };
+
+} // namespace cloudless
+
 #endif // __CLOUDLESS_VERSION_HPP
