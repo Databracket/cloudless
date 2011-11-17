@@ -22,6 +22,7 @@
 #define __CLOUDLESS_ADDRESS_HPP
 
 #include <string>
+#include <utility>
 
 #include <cloudless/details/export.hpp>
 
@@ -50,6 +51,8 @@ namespace path
     static const string ANY = "*";
 
 } // namespace path
+
+    using namespace std::rel_ops;
 
     struct LIBCLOUDLESS_EXPORT address {
         address(const std::string& protocol_, const std::string& path_,
