@@ -22,7 +22,7 @@
 #define __CLOUDLESS_POLLER_HPP
 
 #include <string>
-#include <deque>
+#include <vector>
 #include <map>
 
 #include <cloudless/details/noncopyable.hpp>
@@ -45,7 +45,7 @@ namespace cloudless
     private:
         typedef std::map<std::string, unsigned int> items_indexes;
         items_indexes _M_indexes;
-        std::deque<pollitem> _M_items;
+        std::vector<pollitem> _M_items;
         unsigned int _M_ctr;
     };
 
