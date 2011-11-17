@@ -44,7 +44,7 @@ namespace cloudless
     socket&
     socket::bind(const std::string& addr_)
     {
-        bind(addr_.c_str());
+        details::zsocket::bind(addr_.c_str());
 
         return *this;
     }
@@ -52,7 +52,7 @@ namespace cloudless
     socket&
     socket::bind(const address& addr_)
     {
-        bind((const char*) addr_);
+        details::zsocket::bind((const char*) addr_);
 
         return *this;
     }
@@ -60,7 +60,7 @@ namespace cloudless
     socket&
     socket::connect(const std::string& addr_)
     {
-        connect(addr_.c_str());
+        details::zsocket::connect(addr_.c_str());
 
         return *this;
     }
@@ -68,7 +68,7 @@ namespace cloudless
     socket&
     socket::connect(const address& addr_)
     {
-        connect((const char*) addr_);
+        details::zsocket::connect((const char*) addr_);
 
         return *this;
     }
