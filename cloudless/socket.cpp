@@ -269,14 +269,11 @@ namespace cloudless
     int64_t
     socket::max_msg_size() const
     {
-        int64_t mms;
+        int64_t mms = -1;
 
 #if ZMQ_VERSION_MAJOR == 3
         _M_getsockopt(ZMQ_MAXMSGSIZE, mms);
-#elif ZMQ_VERSION_MAJOR == 2
-        mms = _M_max_msg_size;
 #endif
-
         return mms;
     }
 
@@ -442,8 +439,6 @@ namespace cloudless
     {
 #if ZMQ_VERSION_MAJOR == 3
         _M_setsockopt(ZMQ_MAXMSGSIZE, max_size_);
-#elif ZMQ_VERSION_MAJOR == 2
-        _M_max_msg_size = max_size_;
 #endif
         return *this;
     }

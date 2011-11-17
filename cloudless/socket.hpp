@@ -117,7 +117,6 @@ namespace socket_type
     private:
         int _M_recvtimeo;
         int _M_sendtimeo;
-        int64_t _M_max_msg_size;
         details::shared_ptr<pollitem> _M_ip;
     };
 
