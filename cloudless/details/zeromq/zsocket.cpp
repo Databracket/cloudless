@@ -74,7 +74,7 @@ namespace details
 
     void
     zsocket::getsockopt(int option_, void* optval_,
-            size_t* optvallen_)
+            size_t* optvallen_) const
     {
         int rc = zmq_getsockopt(_M_ptr, option_, optval_, optvallen_);
 

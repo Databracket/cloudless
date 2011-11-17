@@ -40,7 +40,7 @@ namespace details
         void close();
 
         void setsockopt(int option_, const void* optval_, size_t optvallen_);
-        void getsockopt(int option_, void* optval_, size_t* optvallen_);
+        void getsockopt(int option_, void* optval_, size_t* optvallen_) const;
 
         void bind(const char* addr_);
         void connect(const char* addr_);
