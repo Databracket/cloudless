@@ -50,16 +50,20 @@ namespace cloudless
         ((zmq_pollitem_t*)this)->revents = revents_;
     }
 
-    void
+    pollitem&
     pollitem::register_event(short event_) throw()
     {
         events |= event_;
+
+        return *this;
     }
 
-    void
+    pollitem&
     pollitem::unregister_event(short event_) throw()
     {
         events ^= event_;
+
+        return *this;
     }
 
     bool

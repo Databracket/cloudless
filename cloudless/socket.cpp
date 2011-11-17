@@ -41,28 +41,36 @@ namespace cloudless
         _M_ip = details::shared_ptr<pollitem>(new pollitem(*this));
     }
 
-    void
+    socket&
     socket::bind(const std::string& addr_)
     {
         bind(addr_.c_str());
+
+        return *this;
     }
 
-    void
+    socket&
     socket::bind(const address& addr_)
     {
         bind((const char*) addr_);
+
+        return *this;
     }
 
-    void
+    socket&
     socket::connect(const std::string& addr_)
     {
         connect(addr_.c_str());
+
+        return *this;
     }
 
-    void
+    socket&
     socket::connect(const address& addr_)
     {
         connect((const char*) addr_);
+
+        return *this;
     }
 
     bool
@@ -74,9 +82,7 @@ namespace cloudless
 #if ZMQ_VERSION_MAJOR == 2
         // An implementation for timed blocking.
         poller p;
-        pollitem& pi = poll_item();
-
-        pi.register_event(poll_events::OUT);
+        pollitem& pi = poll_item().register_event(poll_events::OUT);
 
         p.add_item(pi, "__send_socket");
 
@@ -99,22 +105,13 @@ namespace cloudless
     bool
     socket::recv(messages& msgs_, bool block_)
     {
-#if ZMQ_VERSION_MAJOR == 2
-        int64_t more;
-#elif ZMQ_VERSION_MAJOR == 3
-        int more;
-#endif
-        size_t more_size = sizeof(more);
-
         if (msgs_.size())
             msgs_->clear();
 
 #if ZMQ_VERSION_MAJOR == 2
         // An implementation for timed blocking.
         poller p;
-        pollitem& pi = poll_item();
-
-        pi.register_event(poll_events::IN);
+        pollitem& pi = poll_item().register_event(poll_events::IN);
 
         p.add_item(pi, "__recv_socket");
 
@@ -130,9 +127,7 @@ namespace cloudless
                 return false;
 
             msgs_.push_tail(e);
-
-            getsockopt(ZMQ_RCVMORE, &more, &more_size);
-        } while (more);
+        } while (recv_more());
 
         return true;
     }
@@ -365,27 +360,30 @@ namespace cloudless
 #endif
     }
 
-    void
+    socket&
     socket::affinity(uint64_t affinity_)
     {
         _M_setsockopt(ZMQ_AFFINITY, affinity_);
+        return *this;
     }
 
-    void
+    socket&
     socket::identity(const std::string& identity_)
     {
         setsockopt(ZMQ_IDENTITY, identity_.c_str(), identity_.size());
+        return *this;
     }
 
-    void
+    socket&
     socket::rate(int rate_)
     {
         int64v rate = rate_;
 
         _M_setsockopt(ZMQ_RATE, rate);
+        return *this;
     }
 
-    void
+    socket&
     socket::recovery_ivl(int ivl_)
     {
 #if ZMQ_VERSION_MAJOR == 3
@@ -396,44 +394,50 @@ namespace cloudless
         int64v ivl = ivl_;
 
         _M_setsockopt(opt, ivl);
+        return *this;
     }
 
-    void
+    socket&
     socket::send_buffer(int size_)
     {
         uint64v size = size_;
 
         _M_setsockopt(ZMQ_SNDBUF, size);
+        return *this;
     }
 
-    void
+    socket&
     socket::recv_buffer(int size_)
     {
         uint64v size = size_;
 
         _M_setsockopt(ZMQ_RCVBUF, size);
+        return *this;
     }
 
-    void
+    socket&
     socket::linger(int linger_)
     {
         _M_setsockopt(ZMQ_LINGER, linger_);
+        return *this;
     }
 
-    void
+    socket&
     socket::reconnect_ivl(int ivl_, int max_)
     {
         _M_setsockopt(ZMQ_RECONNECT_IVL, ivl_);
         _M_setsockopt(ZMQ_RECONNECT_IVL_MAX, max_);
+        return *this;
     }
 
-    void
+    socket&
     socket::backlog(int backlog_)
     {
         _M_setsockopt(ZMQ_BACKLOG, backlog_);
+        return *this;
     }
 
-    void
+    socket&
     socket::max_msg_size(int64_t max_size_)
     {
 #if ZMQ_VERSION_MAJOR == 3
@@ -441,9 +445,10 @@ namespace cloudless
 #elif ZMQ_VERSION_MAJOR == 2
         _M_max_msg_size = max_size_;
 #endif
+        return *this;
     }
 
-    void
+    socket&
     socket::hwm(int hwm_)
     {
 #if ZMQ_VERSION_MAJOR == 3
@@ -454,9 +459,10 @@ namespace cloudless
 
         _M_setsockopt(ZMQ_HWM, hwm);
 #endif
+        return *this;
     }
 
-    void
+    socket&
     socket::send_hwm(int hwm_)
     {
 #if ZMQ_VERSION_MAJOR == 3
@@ -467,9 +473,10 @@ namespace cloudless
         uint64v hwm = hwm_;
 
         _M_setsockopt(hwm_type, hwm);
+        return *this;
     }
 
-    void
+    socket&
     socket::recv_hwm(int hwm_)
     {
 #if ZMQ_VERSION_MAJOR == 3
@@ -480,19 +487,19 @@ namespace cloudless
         uint64v hwm = hwm_;
 
         _M_setsockopt(hwm_type, hwm);
+        return *this;
     }
 
-    void
+    socket&
     socket::multicast_hops(int hops_)
     {
 #if ZMQ_VERSION_MAJOR == 3
         _M_setsockopt(ZMQ_MULTICAST_HOPS, hops_);
-#elif ZMQ_VERSION_MAJOR == 2
-        return;
 #endif
+        return *this;
     }
 
-    void
+    socket&
     socket::send_timeout(int timeout_)
     {
         _M_sendtimeo = timeout_;
@@ -500,9 +507,10 @@ namespace cloudless
 #if ZMQ_VERSION_MAJOR == 3
         _M_setsockopt(ZMQ_SNDTIMEO, _M_sendtimeo);
 #endif
+        return *this;
     }
 
-    void
+    socket&
     socket::recv_timeout(int timeout_)
     {
         _M_recvtimeo = timeout_;
@@ -510,18 +518,18 @@ namespace cloudless
 #if ZMQ_VERSION_MAJOR == 3
         _M_setsockopt(ZMQ_RCVTIMEO, _M_recvtimeo);
 #endif
+        return *this;
     }
 
-    void
+    socket&
     socket::ipv4_only(bool ipv4_only_)
     {
 #if ZMQ_VERSION_MAJOR == 3
         int ipv4 = ipv4_only_;
 
         _M_setsockopt(ZMQ_IPV4ONLY, ipv4);
-#elif ZMQ_VERSION_MAJOR == 2
-        return;
 #endif
+        return *this;
     }
 
     pollitem&

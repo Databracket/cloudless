@@ -48,8 +48,8 @@ namespace poll_events
                 short revents_ = 0) throw();
         pollitem(socket_t fd_, short events_ = 0, short revents_ = 0) throw();
 
-        void register_event(short event_) throw();
-        void unregister_event(short event_) throw();
+        pollitem& register_event(short event_) throw();
+        pollitem& unregister_event(short event_) throw();
 
         bool in() const throw();
         bool out() const throw();

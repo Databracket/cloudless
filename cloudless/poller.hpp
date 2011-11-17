@@ -37,7 +37,7 @@ namespace cloudless
     public:
         poller();
 
-        void add_item(pollitem& item_, const std::string& name_) throw();
+        poller& add_item(pollitem& item_, const std::string& name_) throw();
         bool poll(long timeout_ = 300) const;
 
         const pollitem& operator [](const std::string& rhs) const;

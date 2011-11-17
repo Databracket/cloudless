@@ -31,11 +31,13 @@ namespace cloudless
         _M_ctr()
     {}
 
-    void
+    poller&
     poller::add_item(pollitem& item_, const std::string& name_) throw()
     {
         _M_items.push_back(item_);
         _M_indexes[name_] = _M_ctr++;
+
+        return *this;
     }
 
     bool

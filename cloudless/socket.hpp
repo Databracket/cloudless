@@ -59,11 +59,11 @@ namespace socket_type
     {
         socket(context& context_, int type_);
 
-        void bind(const std::string& addr_);
-        void bind(const address& addr_);
+        socket& bind(const std::string& addr_);
+        socket& bind(const address& addr_);
 
-        void connect(const std::string& addr_);
-        void connect(const address& addr_);
+        socket& connect(const std::string& addr_);
+        socket& connect(const address& addr_);
 
         virtual bool send(messages& msgs_, bool block_ = true);
         virtual bool recv(messages& msgs_, bool block_ = true);
@@ -91,23 +91,23 @@ namespace socket_type
         int recv_timeout() const;
         bool ipv4_only() const;
 
-        void affinity(uint64_t affinity_);
-        void identity(const std::string& identity_);
-        void rate(int rate_);
-        void recovery_ivl(int ivl_);
-        void send_buffer(int size_);
-        void recv_buffer(int size_);
-        void linger(int linger_);
-        void reconnect_ivl(int ivl_, int max_ = 0);
-        void backlog(int backlog_);
-        void max_msg_size(int64_t max_size_);
-        void hwm(int hwm_);
-        void send_hwm(int hwm_);
-        void recv_hwm(int hwm_);
-        void multicast_hops(int hops_);
-        void send_timeout(int timeout_);
-        void recv_timeout(int timeout_);
-        void ipv4_only(bool ipv4_only_);
+        socket& affinity(uint64_t affinity_);
+        socket& identity(const std::string& identity_);
+        socket& rate(int rate_);
+        socket& recovery_ivl(int ivl_);
+        socket& send_buffer(int size_);
+        socket& recv_buffer(int size_);
+        socket& linger(int linger_);
+        socket& reconnect_ivl(int ivl_, int max_ = 0);
+        socket& backlog(int backlog_);
+        socket& max_msg_size(int64_t max_size_);
+        socket& hwm(int hwm_);
+        socket& send_hwm(int hwm_);
+        socket& recv_hwm(int hwm_);
+        socket& multicast_hops(int hops_);
+        socket& send_timeout(int timeout_);
+        socket& recv_timeout(int timeout_);
+        socket& ipv4_only(bool ipv4_only_);
 
         pollitem& poll_item() throw();
 
