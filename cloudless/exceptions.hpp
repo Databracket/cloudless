@@ -27,27 +27,27 @@
 namespace cloudless
 {
 
-    struct LIBCLOUDLESS_EXPORT null_pointer : public details::exception
+    struct LIBCLOUDLESS_EXPORT null_pointer : details::exception
     {
         virtual const char* what() const throw();
     };
 
-    struct LIBCLOUDLESS_EXPORT message_empty : public details::exception
+    struct LIBCLOUDLESS_EXPORT message_empty : details::exception
     {
         virtual const char* what() const throw();
     };
 
-    struct LIBCLOUDLESS_EXPORT poll_empty : public details::exception
+    struct LIBCLOUDLESS_EXPORT poll_empty : details::exception
     {
         virtual const char* what() const throw();
     };
 
-    struct LIBCLOUDLESS_EXPORT poll_not_found : public details::exception
+    struct LIBCLOUDLESS_EXPORT poll_not_found : details::exception
     {
         virtual const char* what() const throw();
     };
 
-    struct LIBCLOUDLESS_EXPORT zexception : public details::exception
+    struct LIBCLOUDLESS_EXPORT zexception : details::exception
     {
         zexception();
 
