@@ -21,6 +21,8 @@
 #ifndef __CLOUDLESS_POLLITEM_HPP
 #define __CLOUDLESS_POLLITEM_HPP
 
+#include <utility>
+
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/zeromq/zeromq.hpp>
 #include <cloudless/details/zeromq/zsocket.hpp>
@@ -37,6 +39,8 @@ namespace poll_events
 
 } // namespace poll_events
 
+    using namespace std::rel_ops;
+
     struct LIBCLOUDLESS_EXPORT pollitem : private zmq_pollitem_t
     {
         pollitem() throw();
@@ -50,6 +54,8 @@ namespace poll_events
         bool in() const throw();
         bool out() const throw();
         bool error() const throw();
+
+        bool operator ==(const pollitem& rhs) const;
     };
 
 } // namespace cloudless

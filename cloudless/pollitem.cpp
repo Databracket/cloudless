@@ -80,4 +80,11 @@ namespace cloudless
         return (revents & poll_events::ERROR);
     }
 
+    bool
+    pollitem::operator ==(const pollitem& rhs) const
+    {
+        return ((zmq_pollitem_t*)this)->socket == ((zmq_pollitem_t*)&rhs)->socket
+            || ((zmq_pollitem_t*)this)->fd == ((zmq_pollitem_t*)&rhs)->fd;
+    }
+
 } // namespace cloudless
