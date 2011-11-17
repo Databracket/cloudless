@@ -47,7 +47,7 @@ namespace cloudless
             throw poll_empty();
 
         int rc = zmq_poll((zmq_pollitem_t*)&_M_items[0], _M_items.size(),
-                timeout_ * ZMQ_POLL_MSEC);
+                timeout_ < 0 ? timeout_ : timeout_ * ZMQ_POLL_MSEC);
 
         if (rc == -1)
             throw zexception();
