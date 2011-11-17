@@ -101,12 +101,13 @@ namespace socket_type
         void reconnect_ivl(int ivl_, int max_ = 0);
         void backlog(int backlog_);
         void max_msg_size(int64_t max_size_);
+        void hwm(int hwm_);
         void send_hwm(int hwm_);
         void recv_hwm(int hwm_);
         void multicast_hops(int hops_);
         void send_timeout(int timeout_);
         void recv_timeout(int timeout_);
-        void ipv4_only(bool ipv4_only_ = true);
+        void ipv4_only(bool ipv4_only_);
 
         pollitem& poll_item() throw();
 

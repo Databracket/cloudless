@@ -149,9 +149,10 @@ namespace cloudless
     std::string
     socket::identity() const
     {
-        // TODO
+        char id[256];
 
-        return std::string();
+        _M_getsockopt(ZMQ_IDENTITY, id);
+        return std::string(id, optvallen);
     }
 
     int
@@ -373,7 +374,7 @@ namespace cloudless
     void
     socket::identity(const std::string& identity_)
     {
-        // TODO
+        setsockopt(ZMQ_IDENTITY, identity_.c_str(), identity_.size());
     }
 
     void
@@ -439,6 +440,19 @@ namespace cloudless
         _M_setsockopt(ZMQ_MAXMSGSIZE, max_size_);
 #elif ZMQ_VERSION_MAJOR == 2
         _M_max_msg_size = max_size_;
+#endif
+    }
+
+    void
+    socket::hwm(int hwm_)
+    {
+#if ZMQ_VERSION_MAJOR == 3
+        _M_setsockopt(ZMQ_SNDHWM, hwm_);
+        _M_setsockopt(ZMQ_RCVHWM, hwm_);
+#elif ZMQ_VERSION_MAJOR == 2
+        uint64v hwm = hwm_;
+
+        _M_setsockopt(ZMQ_HWM, hwm);
 #endif
     }
 
