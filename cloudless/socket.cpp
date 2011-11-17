@@ -81,13 +81,15 @@ namespace cloudless
 
 #if ZMQ_VERSION_MAJOR == 2
         // An implementation for timed blocking.
-        poller p;
-        pollitem& pi = poll_item().register_event(poll_events::OUT);
+        if (block_ && !can_send()) {
+            poller p;
 
-        p.add_item(pi, "__send_socket");
+            p.add_item(poll_item().register_event(poll_events::OUT),
+                    "__send_socket");
 
-        if (!p.poll(block_ == true ? _M_sendtimeo : 0) || !pi.out())
-            return false;
+            if (!p.poll(_M_sendtimeo) || !p["__send_socket"].out())
+                return false;
+        }
 #endif
 
         while (msgs_.size()) {
@@ -110,13 +112,15 @@ namespace cloudless
 
 #if ZMQ_VERSION_MAJOR == 2
         // An implementation for timed blocking.
-        poller p;
-        pollitem& pi = poll_item().register_event(poll_events::IN);
+        if (block_ && !can_recv()) {
+            poller p;
 
-        p.add_item(pi, "__recv_socket");
+            p.add_item(poll_item().register_event(poll_events::IN),
+                    "__recv_socket");
 
-        if (!p.poll(block_ == true ? _M_recvtimeo : 0) || !pi.in())
-            return false;
+            if (!p.poll(_M_recvtimeo) || !p["__recv_socket"].in())
+                return false;
+        }
 #endif
 
         do {
