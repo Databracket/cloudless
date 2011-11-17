@@ -45,7 +45,7 @@ namespace details
 
         zmq_close(_M_ptr);
 
-        _M_ptr = 0;
+        _M_ptr = NULL;
     }
 
     void
@@ -59,7 +59,7 @@ namespace details
         if (rc == -1)
             throw zexception();
 
-        _M_ptr = 0;
+        _M_ptr = NULL;
     }
 
     void
