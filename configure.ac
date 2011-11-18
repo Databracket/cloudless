@@ -55,6 +55,7 @@ LIBCLOUDLESS_CHECK_ENABLE_DEBUG
 LIBCLOUDLESS_WITH_GCOV
 
 # Checks for libraries.
+PKG_PROG_PKG_CONFIG
 PKG_CHECK_MODULES([ZMQ], [libzmq >= 2.1.10])
 
 # Set pkgconfig dir
