@@ -74,9 +74,9 @@ namespace cloudless
     }
 
     bool
-    socket::send(messages& msgs_, bool block_)
+    socket::send(message& msg_, bool block_)
     {
-        if (msgs_->empty())
+        if (msg_->empty())
             throw message_empty();
 
 #if ZMQ_VERSION_MAJOR == 2
@@ -92,23 +92,23 @@ namespace cloudless
         }
 #endif
 
-        while (msgs_.size()) {
-            if (!sendmsg(*msgs_->front(),
-                        (msgs_->size() > 1 ? ZMQ_SNDMORE : 0)
+        while (msg_.size()) {
+            if (!sendmsg(*msg_->front(),
+                        (msg_->size() > 1 ? ZMQ_SNDMORE : 0)
                         | (block_ == true ? 0 : ZMQ_DONTWAIT)))
                 return false;
 
-            msgs_->pop_front();
+            msg_->pop_front();
         }
 
         return true;
     }
 
     bool
-    socket::recv(messages& msgs_, bool block_)
+    socket::recv(message& msg_, bool block_)
     {
-        if (msgs_.size())
-            msgs_->clear();
+        if (msg_.size())
+            msg_->clear();
 
 #if ZMQ_VERSION_MAJOR == 2
         // An implementation for timed blocking.
@@ -130,7 +130,7 @@ namespace cloudless
                         (block_ == true ? 0 : ZMQ_DONTWAIT)))
                 return false;
 
-            msgs_.push_tail(e);
+            msg_.push_tail(e);
         } while (recv_more());
 
         return true;

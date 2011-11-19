@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CLOUDLESS_MESSAGES_HPP
-#define __CLOUDLESS_MESSAGES_HPP
+#ifndef __CLOUDLESS_MESSAGE_HPP
+#define __CLOUDLESS_MESSAGE_HPP
 
 #include <string>
 #include <deque>
@@ -31,23 +31,23 @@
 namespace cloudless
 {
 
-    struct LIBCLOUDLESS_EXPORT messages
+    struct LIBCLOUDLESS_EXPORT message
     {
-        messages() {}
-        messages(const std::string& data_);
-        messages(const void* p_, size_t size_);
-        messages(const element& elem_);
+        message() {}
+        message(const std::string& data_);
+        message(const void* p_, size_t size_);
+        message(const element& elem_);
 
         element tail();
-        messages& push_tail(const element& elem_);
-        messages& push_tail(const std::string& data_);
-        messages& push_tail(const void* p_, size_t size_);
+        message& push_tail(const element& elem_);
+        message& push_tail(const std::string& data_);
+        message& push_tail(const void* p_, size_t size_);
         element pop_tail();
 
         element head();
-        messages& push_head(const element& elem_);
-        messages& push_head(const std::string& data_);
-        messages& push_head(const void* p_, size_t size_);
+        message& push_head(const element& elem_);
+        message& push_head(const std::string& data_);
+        message& push_head(const void* p_, size_t size_);
         element pop_head();
 
         size_t size() const throw();
@@ -58,9 +58,9 @@ namespace cloudless
 
     private:
         element _M_element;
-        std::deque<element> _M_msgs;
+        std::deque<element> _M_elements;
     };
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_MESSAGES_HPP
+#endif // __CLOUDLESS_MESSAGE_HPP

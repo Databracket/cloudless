@@ -27,7 +27,7 @@
 
 #include <cloudless/details/zeromq/zmessage.hpp>
 #include <cloudless/element.hpp>
-#include <cloudless/messages.hpp>
+#include <cloudless/message.hpp>
 
 #define TC TEST_CASE
 #define S SECTION
@@ -69,37 +69,37 @@ TC ("cloudless/element", "Testing element interface.")
     }
 }
 
-TC ("cloudless/messages", "Testing messages interface.")
+TC ("cloudless/message", "Testing message interface.")
 {
     string test_buffer = "test buffer";
 
     {
-        cloudless::messages msgs(test_buffer);
-        R ( msgs.head()->toString() == test_buffer );
-        R ( msgs.size() == 1 );
+        cloudless::message msg(test_buffer);
+        R ( msg.head()->toString() == test_buffer );
+        R ( msg.size() == 1 );
     }
 
     {
-        cloudless::messages msgs;
-        msgs.push_tail(test_buffer)
+        cloudless::message msg;
+        msg.push_tail(test_buffer)
             .push_tail(test_buffer + "1")
             .push_head(test_buffer + "2");
 
-        R ( msgs.size() == 3 );
-        R ( msgs.pop_tail()->toString() == (test_buffer + "1") );
-        R ( msgs.pop_head()->toString() == (test_buffer + "2") );
-        R ( msgs.pop_head()->toString() == test_buffer );
-        R ( msgs.size() == 0 );
+        R ( msg.size() == 3 );
+        R ( msg.pop_tail()->toString() == (test_buffer + "1") );
+        R ( msg.pop_head()->toString() == (test_buffer + "2") );
+        R ( msg.pop_head()->toString() == test_buffer );
+        R ( msg.size() == 0 );
     }
 
     {
         cloudless::element e(test_buffer);
-        cloudless::messages msgs(e);
+        cloudless::message msg(e);
 
-        msgs.push_head(test_buffer);
+        msg.push_head(test_buffer);
 
-        R ( msgs.size() == 2 );
-        R ( msgs.tail()->toString() == msgs.head()->toString() );
-        R ( msgs.size() == 2 );
+        R ( msg.size() == 2 );
+        R ( msg.tail()->toString() == msg.head()->toString() );
+        R ( msg.size() == 2 );
     }
 }

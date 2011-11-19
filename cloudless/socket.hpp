@@ -27,7 +27,7 @@
 #include <cloudless/details/zeromq/zsocket.hpp>
 #include <cloudless/details/shared_ptr.hpp>
 #include <cloudless/context.hpp>
-#include <cloudless/messages.hpp>
+#include <cloudless/message.hpp>
 #include <cloudless/address.hpp>
 #include <cloudless/pollitem.hpp>
 
@@ -65,8 +65,8 @@ namespace socket_type
         socket& connect(const std::string& addr_);
         socket& connect(const address& addr_);
 
-        virtual bool send(messages& msgs_, bool block_ = true);
-        virtual bool recv(messages& msgs_, bool block_ = true);
+        virtual bool send(message& msg_, bool block_ = true);
+        virtual bool recv(message& msg_, bool block_ = true);
 
         uint64_t affinity() const;
         std::string identity() const;

@@ -7,14 +7,14 @@ nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/export.hpp \
 								  details/zeromq/zcontext.hpp details/zeromq/zeromq.hpp \
 								  details/zeromq/zmessage.hpp details/zeromq/zsocket.hpp \
 								  socket.hpp address.hpp context.hpp element.hpp \
-								  exceptions.hpp messages.hpp poller.hpp pollitem.hpp \
+								  exceptions.hpp message.hpp poller.hpp pollitem.hpp \
 								  version.hpp
 nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
 
 libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cpp \
 						  details/zeromq/zsocket.cpp socket.cpp \
 						  address.cpp context.cpp element.cpp exceptions.cpp \
-						  messages.cpp pollitem.cpp poller.cpp
+						  message.cpp pollitem.cpp poller.cpp
 
 if ON_MINGW
 libcloudless_la_LDFLAGS = -no-undefined -avoid-version -version-info @LTVER@ @LIBCLOUDLESS_EXTRA_LDFLAGS@

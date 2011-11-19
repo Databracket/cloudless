@@ -26,7 +26,6 @@
 #include <cloudless/pollitem.hpp>
 #include <cloudless/poller.hpp>
 #include <cloudless/socket.hpp>
-#include <cloudless/messages.hpp>
 #include <cloudless/exceptions.hpp>
 
 #define TC TEST_CASE
