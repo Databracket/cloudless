@@ -58,6 +58,11 @@ namespace cloudless
         int _M_errnum;
     };
 
+    struct LIBCLOUDLESS_EXPORT feature_not_supported : details::exception
+    {
+        virtual const char* what() const throw();
+    };
+
 } // namespace cloudless
 
 #endif // __CLOUDLESS_EXCEPTIONS_HPP

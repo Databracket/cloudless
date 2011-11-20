@@ -74,4 +74,12 @@ namespace cloudless
         return _M_errnum;
     }
 
+    // feature_not_supported
+
+    const char*
+    feature_not_supported::what() const throw()
+    {
+        return "this socket type doesn't support this feature";
+    }
+
 } // namespace cloudless
