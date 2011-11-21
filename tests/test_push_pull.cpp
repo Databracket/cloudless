@@ -26,10 +26,12 @@
 #include <cloudless/message.hpp>
 #include <cloudless/push.hpp>
 #include <cloudless/pull.hpp>
+#include <cloudless/exceptions.hpp>
 
 #define TC TEST_CASE
 #define S SECTION
 #define R REQUIRE
+#define RTA REQUIRE_THROWS_AS
 #define RNT REQUIRE_NOTHROW
 
 TC ("cloudless/socket/push-pull", "Testing PUSH/PULL socket.")
@@ -44,8 +46,10 @@ TC ("cloudless/socket/push-pull", "Testing PUSH/PULL socket.")
     cloudless::message msg("testPUSH-PULL");
 
     R ( s1.send(msg) == true );
+    RTA ( s1.recv(msg), cloudless::feature_not_supported );
     RNT ( msg.clear() );
     R ( s2.recv(msg) == true );
+    RTA ( s2.send(msg), cloudless::feature_not_supported );
     R ( msg.pop_head()->toString() == "testPUSH-PULL" );
     R ( msg.size() == 0 );
 
