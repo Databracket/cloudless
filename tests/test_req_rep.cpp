@@ -24,7 +24,8 @@
 
 #include <cloudless/context.hpp>
 #include <cloudless/message.hpp>
-#include <cloudless/socket.hpp>
+#include <cloudless/req.hpp>
+#include <cloudless/rep.hpp>
 
 #define TC TEST_CASE
 #define S SECTION
@@ -34,8 +35,8 @@
 TC ("cloudless/socket/req-rep", "Testing REQ/REP socket.")
 {
     cloudless::context c;
-    cloudless::socket s1(c, cloudless::socket_type::REQ);
-    cloudless::socket s2(c, cloudless::socket_type::REP);
+    cloudless::req s1(c);
+    cloudless::rep s2(c);
 
     RNT ( s1.bind("inproc://req-rep_test") );
     RNT ( s2.connect("inproc://req-rep_test") );

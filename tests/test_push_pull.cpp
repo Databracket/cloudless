@@ -24,7 +24,8 @@
 
 #include <cloudless/context.hpp>
 #include <cloudless/message.hpp>
-#include <cloudless/socket.hpp>
+#include <cloudless/push.hpp>
+#include <cloudless/pull.hpp>
 
 #define TC TEST_CASE
 #define S SECTION
@@ -34,8 +35,8 @@
 TC ("cloudless/socket/push-pull", "Testing PUSH/PULL socket.")
 {
     cloudless::context c;
-    cloudless::socket s1(c, cloudless::socket_type::PUSH);
-    cloudless::socket s2(c, cloudless::socket_type::PULL);
+    cloudless::push s1(c);
+    cloudless::pull s2(c);
 
     RNT ( s1.bind("inproc://push-pull_test") );
     RNT ( s2.connect("inproc://push-pull_test") );

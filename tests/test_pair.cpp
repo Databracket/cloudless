@@ -24,7 +24,7 @@
 
 #include <cloudless/context.hpp>
 #include <cloudless/message.hpp>
-#include <cloudless/socket.hpp>
+#include <cloudless/pair.hpp>
 
 #define TC TEST_CASE
 #define S SECTION
@@ -34,8 +34,8 @@
 TC ("cloudless/socket/pair", "Testing PAIR socket.")
 {
     cloudless::context c;
-    cloudless::socket s1(c, cloudless::socket_type::PAIR);
-    cloudless::socket s2(c, cloudless::socket_type::PAIR);
+    cloudless::pair s1(c);
+    cloudless::pair s2(c);
 
     RNT ( s1.bind("inproc://pair_test") );
     RNT ( s2.connect("inproc://pair_test") );
