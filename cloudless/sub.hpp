@@ -21,6 +21,8 @@
 #ifndef __CLOUDLESS_SUB_HPP
 #define __CLOUDLESS_SUB_HPP
 
+#include <string>
+
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/socket.hpp>
@@ -33,6 +35,9 @@ namespace cloudless
         sub(context& context_);
 
         virtual bool send(message& msg_, bool block_ = true);
+
+        socket& subscribe(const std::string& topic_);
+        socket& unsubscribe(const std::string& topic_);
     };
 
 } // namespace cloudless

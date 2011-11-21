@@ -36,4 +36,18 @@ namespace cloudless
         throw feature_not_supported();
     }
 
+    socket&
+    sub::subscribe(const std::string& topic_)
+    {
+        setsockopt(ZMQ_SUBSCRIBE, topic_.c_str(), topic_.size());
+        return *this;
+    }
+
+    socket&
+    sub::unsubscribe(const std::string& topic_)
+    {
+        setsockopt(ZMQ_UNSUBSCRIBE, topic_.c_str(), topic_.size());
+        return *this;
+    }
+
 } // namespace cloudless
