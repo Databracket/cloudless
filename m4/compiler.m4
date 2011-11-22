@@ -1,24 +1,4 @@
 dnl ##############################################################################
-dnl # LIBCLOUDLESS_CONFIG_LIBTOOL                                                #
-dnl # Configure libtool. Requires AC_CANONICAL_HOST                              #
-dnl ##############################################################################
-AC_DEFUN([LIBCLOUDLESS_CONFIG_LIBTOOL],  [{
-    AC_REQUIRE([AC_CANONICAL_HOST])
-
-    # Libtool configuration for different targets
-    case "${host_os}" in
-        *mingw32*|*cygwin*)
-            # Disable static build by default
-            AC_DISABLE_STATIC
-        ;;
-        *)
-            # Everything else with static enabled
-            AC_ENABLE_STATIC
-        ;;
-    esac
-}])
-
-dnl ##############################################################################
 dnl # LIBCLOUDLESS_CHECK_LANG_ICC([action-if-found], [action-if-not-found])      #
 dnl # Check if the current language is compiled using ICC                        #
 dnl # Adapted from http://software.intel.com/en-us/forums/showthread.php?t=67984 #
@@ -82,51 +62,6 @@ AC_DEFUN([LIBCLOUDLESS_CHECK_LANG_GCC4],
           [libcloudless_cv_[]_AC_LANG_ABBREV[]_gcc4_compiler="yes" ; $1],
           [libcloudless_cv_[]_AC_LANG_ABBREV[]_gcc4_compiler="no" ; $2])
 ])])
-
-dnl ##############################################################################
-dnl # LIBCLOUDLESS_CHECK_DOC_BUILD                                               #
-dnl # Check whether to build documentation and install man-pages                 #
-dnl ##############################################################################
-AC_DEFUN([LIBCLOUDLESS_CHECK_DOC_BUILD], [{
-    # Allow user to disable doc build
-    AC_ARG_WITH([documentation], [AS_HELP_STRING([--without-documentation],
-        [disable documentation build even if asciidoc and xmlto are present [default=no]])])
-
-    if test "x$with_documentation" = "xno"; then
-        libcloudless_build_doc="no"
-        libcloudless_install_man="no"
-    else
-        # Determine whether or not documentation should be built and installed.
-        libcloudless_build_doc="yes"
-        libcloudless_install_man="yes"
-        # Check for asciidoc and xmlto and don't build the docs if these are not installed.
-        AC_CHECK_PROG(libcloudless_have_asciidoc, asciidoc, yes, no)
-        AC_CHECK_PROG(libcloudless_have_xmlto, xmlto, yes, no)
-        if test "x$libcloudless_have_asciidoc" = "xno" -o "x$libcloudless_have_xmlto" = "xno"; then
-            libcloudless_build_doc="no"
-            # Tarballs built with 'make dist' ship with prebuilt documentation.
-            if ! test -f doc/zmq.7; then
-                libcloudless_install_man="no"
-                AC_MSG_WARN([You are building an unreleased version of Cloudless and asciidoc or xmlto are not installed.])
-                AC_MSG_WARN([Documentation will not be built and manual pages will not be installed.])
-            fi
-        fi
-
-        # Do not install man pages if on mingw
-        if test "x$libcloudless_on_mingw32" = "xyes"; then
-            libcloudless_install_man="no"
-        fi
-    fi
-
-    AC_MSG_CHECKING([whether to build documentation])
-    AC_MSG_RESULT([$libcloudless_build_doc])
-
-    AC_MSG_CHECKING([whether to install manpages])
-    AC_MSG_RESULT([$libcloudless_install_man])
-
-    AM_CONDITIONAL(BUILD_DOC, test "x$libcloudless_build_doc" = "xyes")
-    AM_CONDITIONAL(INSTALL_MAN, test "x$libcloudless_install_man" = "xyes")
-}])
 
 dnl ##############################################################################
 dnl # LIBCLOUDLESS_CHECK_LANG_COMPILER([action-if-found], [action-if-not-found]) #
@@ -262,101 +197,6 @@ AC_DEFUN([LIBCLOUDLESS_CHECK_LANG_FLAG_PREPEND], [{
                   [CPPFLAGS="$1 $CPPFLAGS"; $2], $3)
        ;;
     esac
-}])
-
-dnl ##############################################################################
-dnl # LIBCLOUDLESS_CHECK_ENABLE_DEBUG([action-if-found], [action-if-not-found])  #
-dnl # Check whether to enable debug build and set compiler flags accordingly     #
-dnl ##############################################################################
-AC_DEFUN([LIBCLOUDLESS_CHECK_ENABLE_DEBUG], [{
-
-    # Require compiler specifics
-    AC_REQUIRE([LIBCLOUDLESS_CHECK_COMPILERS])
-
-    # This flag is checked also in
-    AC_ARG_ENABLE([debug], [AS_HELP_STRING([--enable-debug],
-        [Enable debugging information [default=no]])])
-
-    AC_MSG_CHECKING(whether to enable debugging information)
-
-    if test "x$enable_debug" = "xyes"; then
-
-        # GCC, clang and ICC
-        if test "x$GCC" = "xyes" -o \
-                "x$libcloudless_cv_c_intel_compiler" = "xyes" -o \
-                "x$libcloudless_cv_c_clang_compiler" = "xyes"; then
-            CFLAGS="-g -O0 "
-        elif test "x$libcloudless_cv_c_sun_studio_compiler" = "xyes"; then
-            CFLAGS="-g0 "
-        fi
-
-        # GCC, clang and ICC
-        if test "x$GXX" = "xyes" -o \
-                "x$libcloudless_cv_cxx_intel_compiler" = "xyes" -o \
-                "x$libcloudless_cv_cxx_clang_compiler" = "xyes"; then
-            CPPFLAGS="-g -O0 "
-            CXXFLAGS="-g -O0 "
-        # Sun studio
-        elif test "x$libcloudless_cv_cxx_sun_studio_compiler" = "xyes"; then
-            CPPFLAGS="-g0 "
-            CXXFLAGS="-g0 "
-        fi
-
-        if test "x$CLOUDLESS_ORIG_CFLAGS" != "xnone"; then
-            CFLAGS="${CFLAGS} ${CLOUDLESS_ORIG_CFLAGS}"
-        fi
-        if test "x$CLOUDLESS_ORIG_CPPFLAGS" != "xnone"; then
-            CPPFLAGS="${CPPFLAGS} ${CLOUDLESS_ORIG_CPPFLAGS}"
-        fi
-        if test "x$CLOUDLESS_ORIG_CXXFLAGS" != "xnone"; then
-            CXXFLAGS="${CXXFLAGS} ${CLOUDLESS_ORIG_CXXFLAGS}"
-        fi
-        AC_MSG_RESULT(yes)
-    else
-        AC_MSG_RESULT(no)
-    fi
-}])
-
-dnl ##############################################################################
-dnl # LIBCLOUDLESS_WITH_GCOV([action-if-found], [action-if-not-found])           #
-dnl # Check whether to build with code coverage                                  #
-dnl ##############################################################################
-AC_DEFUN([LIBCLOUDLESS_WITH_GCOV], [{
-    # Require compiler specifics
-    AC_REQUIRE([LIBCLOUDLESS_CHECK_COMPILERS])
-
-    AC_ARG_WITH(gcov, [AS_HELP_STRING([--with-gcov=yes/no],
-                      [With GCC Code Coverage reporting.])],
-                      [CLOUDLESS_GCOV="$withval"])
-
-    AC_MSG_CHECKING(whether to enable code coverage)
-
-    if test "x$CLOUDLESS_GCOV" = "xyes"; then
-
-        if test "x$GXX" != "xyes"; then
-            AC_MSG_ERROR([--with-gcov=yes works only with GCC])
-        fi
-
-        CFLAGS="-g -O0 -fprofile-arcs -ftest-coverage"
-        if test "x${CLOUDLESS_ORIG_CPPFLAGS}" != "xnone"; then
-            CFLAGS="${CFLAGS} ${CLOUDLESS_ORIG_CFLAGS}"
-        fi
-
-        CPPFLAGS="-g -O0 -fprofile-arcs -ftest-coverage"
-        if test "x${CLOUDLESS_ORIG_CPPFLAGS}" != "xnone"; then
-            CPPFLAGS="${CPPFLAGS} ${CLOUDLESS_ORIG_CPPFLAGS}"
-        fi
-
-        CXXFLAGS="-fprofile-arcs"
-        if test "x${CLOUDLESS_ORIG_CXXFLAGS}" != "xnone"; then
-            CXXFLAGS="${CXXFLAGS} ${CLOUDLESS_ORIG_CXXFLAGS}"
-        fi
-
-        LIBS="-lgcov ${LIBS}"
-    fi
-
-    AS_IF([test "x$CLOUDLESS_GCOV" = "xyes"],
-          [AC_MSG_RESULT(yes) ; $1], [AC_MSG_RESULT(no) ; $2])
 }])
 
 dnl ##############################################################################
@@ -580,31 +420,3 @@ AC_DEFUN([LIBCLOUDLESS_CHECK_LANG_VISIBILITY], [{
     AS_IF([test "x$libcloudless_cv_[]_AC_LANG_ABBREV[]_visibility_flag" != "x"],
           [AC_MSG_RESULT(yes) ; $1], [AC_MSG_RESULT(no) ; $2])
 }])
-
-dnl ################################################################################
-dnl # LIBCLOUDLESS_PKGCONFIG([action-if-found], [action-if-not-found])             #
-dnl # Provide an option to set pkgconfig dir                                       #
-dnl ################################################################################
-AC_DEFUN([LIBCLOUDLESS_PKGCONFIG],[
-AC_ARG_WITH(
-  [pkgconfigdir],
-  [AC_HELP_STRING([--with-pkgconfigdir=DIR],[location of pkgconfig dir (default is libdir/pkgcofnig)])],
-  [pkgconfigdir=${withval}],
-  [pkgconfigdir='${libdir}/pkgconfig'])
-AC_SUBST([pkgconfigdir])
-])
-
-dnl ################################################################################
-dnl # STATIS_LIB([action-if-found], [action-if-not-found])                         #
-dnl # Define MACRO if we are on MinGW and are only building static library.        #
-dnl ################################################################################
-AC_DEFUN([STATIC_LIB],
-[
-if test x$enable_shared = xno; then
-  case $host_os in
-    mingw*)
-      AC_DEFINE([$1], [1], [$2])
-      ;;
-  esac
-fi
-])
