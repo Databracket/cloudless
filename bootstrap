@@ -1,25 +1,33 @@
 #!/bin/sh
 
 command -v libtool >/dev/null 2>&1
-if  [ $? -ne 0 ]; then
-    echo "autogen.sh: error: could not find libtool.  libtool is required to run autogen.sh." 1>&2
-    exit 1
+if test $? -ne 0; then
+	echo "bootstrap: error: could not find libtool.  libtool is required to run bootstrap." 1>&2
+	exit 1
 fi
 
 command -v autoreconf >/dev/null 2>&1
-if [ $? -ne 0 ]; then
-    echo "autogen.sh: error: could not find autoreconf.  autoconf and automake are required to run autogen.sh." 1>&2
-    exit 1
+if test $? -ne 0; then
+	echo "bootstrap: error: could not find autoreconf.  autoconf and automake are required to run bootstrap." 1>&2
+	exit 1
 fi
 
-mkdir -p ./config
-if [ $? -ne 0 ]; then
-    echo "autogen.sh: error: could not create directory: ./config." 1>&2
-    exit 1
+if test ! -d m4; then
+	echo "bootstrap: error: could not find directory: m4." 1>&2
+	exit 1
 fi
 
-autoreconf -vif -I config
-if [ $? -ne 0 ]; then
-    echo "autogen.sh: error: autoreconf exited with status $?" 1>&2
-    exit 1
+if test ! -d config; then
+	mkdir config
+
+	if test $? -ne 0; then
+		echo "bootstrap: error: could not create directory: config." 1>&2
+		exit 1
+	fi
+fi
+
+autoreconf -vif
+if test $? -ne 0; then
+	echo "bootstrap: error: autoreconf exited with status $?" 1>&2
+	exit 1
 fi
