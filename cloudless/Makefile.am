@@ -25,8 +25,6 @@ else
 libcloudless_la_LDFLAGS = -version-info @LTVER@ @LIBCLOUDLESS_EXTRA_LDFLAGS@
 endif
 
-libcloudless_la_LDFLAGS += @ZMQ_LIBS@
-
 libcloudless_la_CXXFLAGS = -I'$(top_srcdir)' -I'$(top_builddir)' @LIBCLOUDLESS_EXTRA_CXXFLAGS@
 
 dist-hook:

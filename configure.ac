@@ -33,10 +33,7 @@ CLOUDLESS_ORIG_CPPFLAGS="${CPPFLAGS:-none}"
 CLOUDLESS_ORIG_CXXFLAGS="${CXXFLAGS:-none}"
 
 # Checks for programs.
-AC_PROG_CC
-AC_PROG_CC_C99
 AC_PROG_CXX
-AM_PROG_CC_C_O
 AC_PROG_SED
 AC_PROG_AWK
 
@@ -51,12 +48,8 @@ AC_PROG_LIBTOOL
 # Check whether to build with debug symbols
 LIBCLOUDLESS_CHECK_ENABLE_DEBUG
 
-# Check wheter to enable code coverage
+# Check whether to enable code coverage
 LIBCLOUDLESS_WITH_GCOV
-
-# Checks for libraries.
-PKG_PROG_PKG_CONFIG
-PKG_CHECK_MODULES([ZMQ], [libzmq >= 2.1.10])
 
 # Set pkgconfig dir
 LIBCLOUDLESS_PKGCONFIG
@@ -226,6 +219,9 @@ AM_CONDITIONAL(ON_MINGW, test "x$libcloudless_on_mingw32" = "xyes")
 # Checks for library functions.
 AC_TYPE_SIGNAL
 AC_CHECK_FUNCS(perror gettimeofday memset)
+
+# Checks for libraries.
+LIBZMQ([], [AC_MSG_ERROR([libzmq is not found; consider using --with-libzmq=DIR])])
 
 # Subset LIBCLOUDLESS_EXTRA_CFLAGS & CXXFLAGS & LDFLAGS
 AC_SUBST(LIBCLOUDLESS_EXTRA_CFLAGS)
