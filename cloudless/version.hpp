@@ -37,40 +37,24 @@
 namespace cloudless
 {
 
+    // version
+
     struct LIBCLOUDLESS_EXPORT version
     {
-        static int major() throw()
-        {
-            return CLOUDLESS_VERSION_MAJOR;
-        }
-
-        static int minor() throw()
-        {
-            return CLOUDLESS_VERSION_MINOR;
-        }
-
-        static int patch() throw()
-        {
-            return CLOUDLESS_VERSION_PATCH;
-        }
+        static int major() throw() { return CLOUDLESS_VERSION_MAJOR; }
+        static int minor() throw() { return CLOUDLESS_VERSION_MINOR; }
+        static int patch() throw() { return CLOUDLESS_VERSION_PATCH; }
+        int operator ()() const throw() { return CLOUDLESS_VERSION; }
     };
+
+    // zversion
 
     struct LIBCLOUDLESS_EXPORT zversion
     {
-        static int major() throw()
-        {
-            return ZMQ_VERSION_MAJOR;
-        }
-
-        static int minor() throw()
-        {
-            return ZMQ_VERSION_MINOR;
-        }
-
-        static int patch() throw()
-        {
-            return ZMQ_VERSION_PATCH;
-        }
+        static int major() throw() { return ZMQ_VERSION_MAJOR; }
+        static int minor() throw() { return ZMQ_VERSION_MINOR; }
+        static int patch() throw() { return ZMQ_VERSION_PATCH; }
+        int operator ()() const throw() { return ZMQ_VERSION; }
     };
 
 } // namespace cloudless
