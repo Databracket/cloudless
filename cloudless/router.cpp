@@ -18,21 +18,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CLOUDLESS_XREQ_HPP
-#define __CLOUDLESS_XREQ_HPP
-
-#include <cloudless/details/export.hpp>
-#include <cloudless/context.hpp>
-#include <cloudless/socket.hpp>
+#include <cloudless/router.hpp>
 
 namespace cloudless
 {
 
-    struct LIBCLOUDLESS_EXPORT xreq : socket
-    {
-        xreq(context& context_);
-    };
+    // router
+
+    router::router(context& context_) :
+        socket(context_, socket_type::ROUTER)
+    {}
 
 } // namespace cloudless
-
-#endif // __CLOUDLESS_XREQ_HPP
