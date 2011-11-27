@@ -42,16 +42,16 @@ namespace socket_type
     static const int SUB = ZMQ_SUB;
     static const int REQ = ZMQ_REQ;
     static const int REP = ZMQ_REP;
-    static const int XREQ = ZMQ_XREQ;
-    static const int XREP = ZMQ_XREP;
+    static const int DEALER = ZMQ_DEALER;
+    static const int ROUTER = ZMQ_ROUTER;
     static const int PULL = ZMQ_PULL;
     static const int PUSH = ZMQ_PUSH;
     static const int XPUB = ZMQ_XPUB;
     static const int XSUB = ZMQ_XSUB;
 
     // Backwards compatibility
-    static const int DEALER = ZMQ_XREQ;
-    static const int ROUTER = ZMQ_XREP;
+    static const int XREQ = DEALER;
+    static const int XREP = ROUTER;
 
 } // namespace socket_type
 

@@ -8,7 +8,7 @@ nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/export.hpp \
 								  details/zeromq/zmessage.hpp details/zeromq/zsocket.hpp \
 								  socket.hpp address.hpp context.hpp element.hpp \
 								  exceptions.hpp message.hpp poller.hpp pollitem.hpp \
-								  version.hpp req.hpp rep.hpp xreq.hpp xrep.hpp \
+								  version.hpp req.hpp rep.hpp dealer.hpp router.hpp \
 								  push.hpp pull.hpp pub.hpp sub.hpp pair.hpp
 nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
 
@@ -16,7 +16,7 @@ libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cp
 						  details/zeromq/zsocket.cpp socket.cpp \
 						  address.cpp context.cpp element.cpp exceptions.cpp \
 						  message.cpp pollitem.cpp poller.cpp \
-						  req.cpp rep.cpp xreq.cpp xrep.cpp push.cpp pull.cpp \
+						  req.cpp rep.cpp dealer.cpp router.cpp push.cpp pull.cpp \
 						  pub.cpp sub.cpp pair.cpp
 
 if ON_MINGW
