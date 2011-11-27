@@ -60,7 +60,7 @@ main()
   int major, minor, patch;
 
   zmq_version(&major, &minor, &patch);
-  return (major != 2 && minor != 1 && patch == 0);
+  return (major == 2 && minor == 1 && patch > 0) ? 0 : 1;
 }
 ]])],
 [libzmq_v2_1_x=yes])
@@ -78,12 +78,13 @@ main()
   int major, minor, patch;
 
   zmq_version(&major, &minor, &patch);
-  return (major != 3 && minor != 1 && patch >= 0);
+  return (major == 3 && minor == 1 && patch >= 0) ? 0 : 1;
 }
 ]])],
 [libzmq_v3_1_x=yes])
 
-if test x"$libzmq_v2_1_x" = xno -o x"$libzmq_v3_1_x" = xno; then
+if test x"$libzmq_v2_1_x" = xno -a x"$libzmq_v3_1_x" = xno; then
+  AC_MSG_RESULT([no])
   AC_MSG_ERROR([version of libzmq is not supported])
 fi
 
