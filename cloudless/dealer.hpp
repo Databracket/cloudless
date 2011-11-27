@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CLOUDLESS_XREP_HPP
-#define __CLOUDLESS_XREP_HPP
+#ifndef __CLOUDLESS_DEALER_HPP
+#define __CLOUDLESS_DEALER_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -28,11 +28,11 @@
 namespace cloudless
 {
 
-    struct LIBCLOUDLESS_EXPORT xrep : socket
+    struct LIBCLOUDLESS_EXPORT dealer : socket
     {
-        xrep(context& context_);
+        dealer(context& context_);
     };
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_XREP_HPP
+#endif // __CLOUDLESS_DEALER_HPP

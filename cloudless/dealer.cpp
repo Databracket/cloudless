@@ -18,15 +18,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <cloudless/xrep.hpp>
+#include <cloudless/dealer.hpp>
 
 namespace cloudless
 {
 
-    // xrep
+    // dealer
 
-    xrep::xrep(context& context_) :
-        socket(context_, socket_type::XREP)
+    dealer::dealer(context& context_) :
+        socket(context_, socket_type::DEALER)
     {}
 
 } // namespace cloudless
