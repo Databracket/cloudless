@@ -32,6 +32,9 @@ CLOUDLESS_ORIG_CFLAGS="${CFLAGS:-none}"
 CLOUDLESS_ORIG_CPPFLAGS="${CPPFLAGS:-none}"
 CLOUDLESS_ORIG_CXXFLAGS="${CXXFLAGS:-none}"
 
+# initialize libtool
+LT_INIT([win32-dll])
+
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_SED
@@ -42,8 +45,6 @@ AC_PATH_PROG([XMLTO], [xmlto])
 AC_ARG_VAR([ASCIIDOC], [Path to asciidoc command])
 AC_PATH_PROG([ASCIIDOC], [asciidoc])
 LIBCLOUDLESS_CONFIG_LIBTOOL
-AC_LIBTOOL_WIN32_DLL
-AC_PROG_LIBTOOL
 
 # Check whether to build with debug symbols
 LIBCLOUDLESS_CHECK_ENABLE_DEBUG
@@ -219,6 +220,9 @@ AM_CONDITIONAL(ON_MINGW, test "x$libcloudless_on_mingw32" = "xyes")
 # Checks for library functions.
 AC_TYPE_SIGNAL
 AC_CHECK_FUNCS(perror gettimeofday memset)
+
+# Generate configured libtool
+LT_OUTPUT
 
 # Checks for libraries.
 LIBZMQ([], [AC_MSG_ERROR([libzmq is not found; consider using --with-libzmq=DIR])])
