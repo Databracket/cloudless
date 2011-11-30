@@ -21,6 +21,8 @@
 #ifndef __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
 #define __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
 
+#include <string>
+
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/noncopyable.hpp>
 #include <cloudless/details/zeromq/zcontext.hpp>
@@ -28,6 +30,27 @@
 
 namespace cloudless
 {
+
+namespace socket_type
+{
+
+    static const int PAIR = ZMQ_PAIR;
+    static const int PUB = ZMQ_PUB;
+    static const int SUB = ZMQ_SUB;
+    static const int REQ = ZMQ_REQ;
+    static const int REP = ZMQ_REP;
+    static const int DEALER = ZMQ_DEALER;
+    static const int ROUTER = ZMQ_ROUTER;
+    static const int PULL = ZMQ_PULL;
+    static const int PUSH = ZMQ_PUSH;
+    static const int XPUB = ZMQ_XPUB;
+    static const int XSUB = ZMQ_XSUB;
+
+    // Backwards compatibility
+    static const int XREQ = DEALER;
+    static const int XREP = ROUTER;
+
+} // namespace socket_type
 
 namespace details
 {
@@ -48,10 +71,58 @@ namespace details
         bool sendmsg(zmessage& msg_, int flags_ = 0);
         bool recvmsg(zmessage& msg_, int flags_ = 0);
 
+        uint64_t affinity() const;
+        std::string identity() const;
+        int rate() const;
+        int recovery_ivl() const;
+        int send_buffer() const;
+        int recv_buffer() const;
+        bool recv_more() const;
+        socket_t fd() const;
+        bool can_send() const;
+        bool can_recv() const;
+        int type() const;
+        int linger() const;
+        int reconnect_ivl() const;
+        int reconnect_ivl_max() const;
+        int backlog() const;
+        int64_t max_msg_size() const;
+        int send_hwm() const;
+        int recv_hwm() const;
+        int multicast_hops() const;
+        int send_timeout() const;
+        int recv_timeout() const;
+        bool ipv4_only() const;
+
+        zsocket& affinity(uint64_t affinity_);
+        zsocket& identity(const std::string& identity_);
+        zsocket& rate(int rate_);
+        zsocket& recovery_ivl(int ivl_);
+        zsocket& send_buffer(int size_);
+        zsocket& recv_buffer(int size_);
+        zsocket& linger(int linger_);
+        zsocket& reconnect_ivl(int ivl_, int max_ = 0);
+        zsocket& backlog(int backlog_);
+        zsocket& max_msg_size(int64_t max_size_);
+        zsocket& hwm(int hwm_);
+        zsocket& send_hwm(int hwm_);
+        zsocket& recv_hwm(int hwm_);
+        zsocket& multicast_hops(int hops_);
+        zsocket& send_timeout(int timeout_);
+        zsocket& recv_timeout(int timeout_);
+        zsocket& ipv4_only(bool ipv4_only_);
+        zsocket& subscribe(const std::string& topic_);
+        zsocket& unsubscribe(const std::string& topic_);
+
         operator void*() const throw();
 
     private:
+        int _M_get_events() const;
+
+    private:
         void* _M_ptr;
+        int _M_recvtimeo;
+        int _M_sendtimeo;
     };
 
 } // namespace details

@@ -35,9 +35,6 @@ namespace cloudless
         sub(context& context_);
 
         virtual bool send(message& msg_, bool block_ = true);
-
-        socket& subscribe(const std::string& topic_);
-        socket& unsubscribe(const std::string& topic_);
     };
 
 } // namespace cloudless
