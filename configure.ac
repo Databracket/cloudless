@@ -1,6 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-AC_PREREQ(2.67)
+AC_PREREQ([2.67])
+LT_PREREQ([2.4.0])
 #
 # The Cloudless version number is extracted from cloudless/version.hpp using
 # the version.sh script. Hence, it should be updated there.
