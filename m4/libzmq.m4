@@ -101,14 +101,13 @@ fi
 
 if test x"$libzmq_found" = xyes; then
   if test x"$libzmq_v2_1_x" = xyes; then
-    AC_DEFINE([HAVE_ZMQ_MAJOR], [2], [0MQ major version.])
-    AC_DEFINE([HAVE_ZMQ_MINOR], [1], [0MQ minor version.])
     AC_MSG_RESULT([v2.1.x])
   elif test x"$libzmq_v3_1_x" = xyes; then
-    AC_DEFINE([HAVE_ZMQ_MAJOR], [3], [0MQ major version.])
-    AC_DEFINE([HAVE_ZMQ_MINOR], [1], [0MQ minor version.])
     AC_MSG_RESULT([v3.1.x])
   fi
+
+  AM_CONDITIONAL([ZMQ_2_X], [test x"$libzmq_v2_1_x" = xyes])
+  AM_CONDITIONAL([ZMQ_3_X], [test x"$libzmq_v3_1_x" = xyes])
 
   $1
 else
