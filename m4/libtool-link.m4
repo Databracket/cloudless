@@ -1,8 +1,8 @@
 dnl ################################################################################
-dnl # CXX_LIBTOOL_RUN_IFELSE(input, [action-if-found], [action-if-not-found])      #
-dnl # Similar to AC_RUN_IFELSE. ONLY USE IT FOR OS INDEPENDENT TESTS               #
+dnl # CXX_LIBTOOL_LINK_IFELSE(input, [action-if-found], [action-if-not-found])     #
+dnl # Similar to AC_LINK_IFELSE, only that it uses libtool instead                 #
 dnl ################################################################################
-AC_DEFUN([CXX_LIBTOOL_RUN_IFELSE],[
+AC_DEFUN([CXX_LIBTOOL_LINK_IFELSE],[
 AC_LANG_SAVE
 AC_LANG(C++)
 
@@ -20,25 +20,14 @@ AC_COMPILE_IFELSE([$1],
   else
     libtool_link_ok=no
   fi
-
-  if test x"$libtool_link_ok" = xyes; then
-    ac_try='./conftest$EXEEXT'
-    if _AC_DO_VAR(ac_try); then
-      libtool_run_ok=yes
-    else
-      libtool_run_ok=no
-    fi
-  else
-    libtool_run_ok=no
-  fi
 ],
-[libtool_run_ok=no])
+[libtool_link_ok=no])
 
 if test x"$delete_libs_dir" = xyes; then
   rm -rf .libs
 fi
 
-if test x"$libtool_run_ok" = xyes; then
+if test x"$libtool_link_ok" = xyes; then
 [$2]
 :
 else
