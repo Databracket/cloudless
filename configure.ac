@@ -33,13 +33,17 @@ CLOUDLESS_ORIG_CFLAGS="${CFLAGS:-none}"
 CLOUDLESS_ORIG_CPPFLAGS="${CPPFLAGS:-none}"
 CLOUDLESS_ORIG_CXXFLAGS="${CXXFLAGS:-none}"
 
-# initialize libtool
-LT_INIT([win32-dll])
-
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_SED
 AC_PROG_AWK
+
+# initialize libtool
+LT_INIT([win32-dll])
+AC_SUBST([LIBTOOL_DEPS])
+
+# Generate configured libtool
+LT_OUTPUT
 
 AC_ARG_VAR([XMLTO], [Path to xmlto command])
 AC_PATH_PROG([XMLTO], [xmlto])
