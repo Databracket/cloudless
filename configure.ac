@@ -35,6 +35,11 @@ CLOUDLESS_ORIG_CXXFLAGS="${CXXFLAGS:-none}"
 
 # Checks for programs.
 AC_PROG_CXX
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
 AC_PROG_SED
 AC_PROG_AWK
 
@@ -189,7 +194,7 @@ AC_CHECK_HEADERS(errno.h stddef.h stdlib.h string.h sys/time.h unistd.h limits.h
 AC_LANG_PUSH(C++)
 
 AC_HEADER_STDBOOL
-AC_C_CONST
+AC_HEADER_MAJOR
 AC_C_INLINE
 # Checks for typedefs, structures, and compiler characteristics.
 if test "x$libcloudless_cv_[]_AC_LANG_ABBREV[]_intel_compiler" = "xyes"; then
@@ -201,9 +206,8 @@ else
     AC_TYPE_SIZE_T
     AC_TYPE_SSIZE_T
 fi
-AC_HEADER_TIME
-AC_TYPE_UINT32_T
-AC_C_VOLATILE
+AC_TYPE_INT64_T
+AC_TYPE_UINT64_T
 
 # Set -Wall, -Werror and -pedantic
 AC_LANG_PUSH([C++])
@@ -223,11 +227,7 @@ AC_LANG_POP([C++])
 AM_CONDITIONAL(ON_MINGW, test "x$libcloudless_on_mingw32" = "xyes")
 
 # Checks for library functions.
-AC_TYPE_SIGNAL
-AC_CHECK_FUNCS(perror gettimeofday memset)
-
-# Generate configured libtool
-LT_OUTPUT
+AC_CHECK_FUNCS(memset memcpy)
 
 # Checks for libraries.
 LIBZMQ([], [AC_MSG_ERROR([libzmq is not found; consider using --with-libzmq=DIR])])
