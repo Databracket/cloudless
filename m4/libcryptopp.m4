@@ -83,6 +83,7 @@ fi
 
 if test x"$libcryptopp_found" = xyes; then
   AC_MSG_RESULT([yes])
+  AC_DEFINE(HAVE_CRYPTOPP, 1, [Have libcrypto++])
   $1
 else
   AC_MSG_RESULT([no])
