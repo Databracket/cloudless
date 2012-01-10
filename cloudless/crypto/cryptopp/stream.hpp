@@ -29,6 +29,7 @@
 #include <cryptopp/salsa.h>
 #include <cryptopp/seal.h>
 
+#include <cloudless/details/export.hpp>
 #include <cloudless/details/shared_array.hpp>
 
 namespace cloudless
@@ -40,7 +41,7 @@ namespace crypto
     using namespace CryptoPP;
 
     template<typename Algo>
-    class stream
+    class LIBCLOUDLESS_EXPORT stream
     {
     public:
         stream(const std::string& key_, const std::string& iv_) :
