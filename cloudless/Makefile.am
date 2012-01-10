@@ -15,6 +15,15 @@ if ZMQ_3_X
 nobase_cloudlessinclude_HEADERS += xsub.hpp xpub.hpp
 endif
 
+if CRYPTO
+nobase_cloudlessinclude_HEADERS += crypto/block.hpp crypto/stream.hpp crypto/hash.hpp \
+								   crypto/random.hpp
+if CRYPTOPP
+nobase_cloudlessinclude_HEADERS += crypto/cryptopp/block.hpp crypto/cryptopp/stream.hpp \
+								   crypto/cryptopp/hash.hpp crypto/cryptopp/random.hpp
+endif
+endif
+
 nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
 
 libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cpp \

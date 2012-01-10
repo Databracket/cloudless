@@ -48,4 +48,3 @@ namespace details
 } // namespace cloudless
 
 #endif // __CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
-
