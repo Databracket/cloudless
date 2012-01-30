@@ -68,15 +68,15 @@ namespace crypto
     {
     public:
         block(const std::string& key_, const std::string& iv_) :
-            _M_key((byte*)key_.c_str(), key_.size()),
-            _M_iv((byte*)iv_.c_str(), iv_.size())
+            _M_key((byte*)key_.data(), key_.size()),
+            _M_iv((byte*)iv_.data(), iv_.size())
         {
             _M_algo.SetKeyWithIV(_M_key.BytePtr(), _M_key.SizeInBytes(),
                     _M_iv.BytePtr());
         }
 
         block(const std::string& key_) :
-            _M_key((byte*)key_.c_str(), key_.size())
+            _M_key((byte*)key_.data(), key_.size())
         {
             _M_algo.SetKey(_M_key.BytePtr(), _M_key.SizeInBytes());
         }
@@ -89,7 +89,7 @@ namespace crypto
                             new StringSink(_M_ciphertext),
                             StreamTransformationFilter::PKCS_PADDING));
 
-            _Mp_stf->Put((const byte*)value_.c_str(), value_.size());
+            _Mp_stf->Put((const byte*)value_.data(), value_.size());
         }
 
         std::string

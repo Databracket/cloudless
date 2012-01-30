@@ -46,7 +46,7 @@ namespace crypto
         void
         update(const std::string& value_)
         {
-            _M_hd.Update((const byte*)value_.c_str(), value_.size());
+            _M_hd.Update((const byte*)value_.data(), value_.size());
         }
 
         std::string
@@ -64,7 +64,7 @@ namespace crypto
             Hash hd;
             byte dig[Hash::DIGESTSIZE];
 
-            hd.CalculateDigest(dig, (const byte*)value_.c_str(), value_.size());
+            hd.CalculateDigest(dig, (const byte*)value_.data(), value_.size());
             return std::string((const char*)dig, Hash::DIGESTSIZE);
         }
 
@@ -73,8 +73,8 @@ namespace crypto
         {
             Hash hd;
 
-            return hd.VerifyDigest((const byte*)digest_.c_str(),
-                    (const byte*)input_.c_str(), input_.size());
+            return hd.VerifyDigest((const byte*)digest_.data(),
+                    (const byte*)input_.data(), input_.size());
         }
 
     private:

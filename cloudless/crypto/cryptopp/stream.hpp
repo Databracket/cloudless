@@ -45,15 +45,15 @@ namespace crypto
     {
     public:
         stream(const std::string& key_, const std::string& iv_) :
-            _M_key((byte*)key_.c_str(), key_.size()),
-            _M_iv((byte*)iv_.c_str(), iv_.size())
+            _M_key((byte*)key_.data(), key_.size()),
+            _M_iv((byte*)iv_.data(), iv_.size())
         {
             _M_algo.SetKeyWithIV(_M_key.BytePtr(), _M_key.SizeInBytes(),
                     _M_iv.BytePtr());
         }
 
         stream(const std::string& key_) :
-            _M_key((byte*)key_.c_str(), key_.size())
+            _M_key((byte*)key_.data(), key_.size())
         {
             _M_algo.SetKey(_M_key.BytePtr(), _M_key.SizeInBytes());
         }
@@ -63,7 +63,7 @@ namespace crypto
         {
             details::shared_array<byte> buffer(new byte[value_.size()]);
 
-            _M_algo.ProcessData(buffer.get(), (byte*)value_.c_str(), value_.size());
+            _M_algo.ProcessData(buffer.get(), (byte*)value_.data(), value_.size());
 
             return std::string((const char*)buffer.get(), value_.size());
         }
