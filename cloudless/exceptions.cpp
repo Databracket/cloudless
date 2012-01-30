@@ -82,4 +82,12 @@ namespace cloudless
         return "this socket type doesn't support this feature";
     }
 
+    // function_not_implemented
+
+    const char*
+    function_not_implemented::what() const throw()
+    {
+        return "this function is not implemented";
+    }
+
 } // namespace cloudless

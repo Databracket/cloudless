@@ -27,27 +27,29 @@
 namespace cloudless
 {
 
-    struct LIBCLOUDLESS_EXPORT null_pointer : details::exception
+    using details::exception;
+
+    struct LIBCLOUDLESS_EXPORT null_pointer : exception
     {
         virtual const char* what() const throw();
     };
 
-    struct LIBCLOUDLESS_EXPORT message_empty : details::exception
+    struct LIBCLOUDLESS_EXPORT message_empty : exception
     {
         virtual const char* what() const throw();
     };
 
-    struct LIBCLOUDLESS_EXPORT poll_empty : details::exception
+    struct LIBCLOUDLESS_EXPORT poll_empty : exception
     {
         virtual const char* what() const throw();
     };
 
-    struct LIBCLOUDLESS_EXPORT poll_not_found : details::exception
+    struct LIBCLOUDLESS_EXPORT poll_not_found : exception
     {
         virtual const char* what() const throw();
     };
 
-    struct LIBCLOUDLESS_EXPORT zexception : details::exception
+    struct LIBCLOUDLESS_EXPORT zexception : exception
     {
         zexception();
 
@@ -58,7 +60,12 @@ namespace cloudless
         int _M_errnum;
     };
 
-    struct LIBCLOUDLESS_EXPORT feature_not_supported : details::exception
+    struct LIBCLOUDLESS_EXPORT feature_not_supported : exception
+    {
+        virtual const char* what() const throw();
+    };
+
+    struct LIBCLOUDLESS_EXPORT function_not_implemented : exception
     {
         virtual const char* what() const throw();
     };
