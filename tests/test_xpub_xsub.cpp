@@ -44,6 +44,7 @@ TC ("cloudless/socket/xpub-xsub", "Testing XPUB/XSUB socket.")
     cloudless::pub p2(c);
     cloudless::sub s2(c);
 
+    // SUB <- XPUB <- DEVICE -> XSUB <- PUB
     RNT ( p1.bind("inproc://xpub_test") );
     RNT ( s1.bind("inproc://xsub_test") );
     RNT ( p2.connect("inproc://xsub_test") );
@@ -59,6 +60,7 @@ TC ("cloudless/socket/xpub-xsub", "Testing XPUB/XSUB socket.")
 
     // If transport is not INPROC a wait is a must
     // to allow the publisher to get the subscription.
+    // e.g., sleep(1)
 
     R ( p2.send(msg.push_head("testXPUB-XSUB")) == true );
 
