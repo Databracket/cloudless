@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CLOUDLESS_DETAILS_NONCOPYABLE_HPP
-#define __CLOUDLESS_DETAILS_NONCOPYABLE_HPP
+#ifndef __CLOUDLESS_DETAILS_NONCONSTRUCTIVE_HPP
+#define __CLOUDLESS_DETAILS_NONCONSTRUCTIVE_HPP
 
 namespace cloudless
 {
@@ -27,19 +27,14 @@ namespace cloudless
 namespace details
 {
 
-    class noncopyable
+    class nonconstructive
     {
-    protected:
-        noncopyable() {}
-        ~noncopyable() {}
-
-    private:
-        noncopyable(const noncopyable&);
-        const noncopyable& operator =(const noncopyable&);
+        nonconstructive();
+        ~nonconstructive();
     };
 
 } // namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_NONCOPYABLE_HPP
+#endif // __CLOUDLESS_DETAILS_NONCONSTRUCTIVE_HPP
