@@ -1,11 +1,11 @@
 lib_LTLIBRARIES = libcloudless.la
 
 cloudlessincludedir = $(includedir)/cloudless
-nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/export.hpp \
-								  details/exception.hpp details/singleton.hpp \
-								  details/shared_ptr.hpp details/shared_array.hpp \
-								  details/zeromq/zcontext.hpp details/zeromq/zeromq.hpp \
-								  details/zeromq/zmessage.hpp details/zeromq/zsocket.hpp \
+nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/nonconstructive.hpp \
+								  details/export.hpp details/exception.hpp \
+								  details/singleton.hpp details/shared_ptr.hpp \
+								  details/shared_array.hpp details/zeromq/zcontext.hpp \
+								  details/zeromq/zeromq.hpp details/zeromq/zmessage.hpp details/zeromq/zsocket.hpp \
 								  socket.hpp address.hpp context.hpp element.hpp \
 								  exceptions.hpp message.hpp poller.hpp pollitem.hpp \
 								  version.hpp req.hpp rep.hpp dealer.hpp router.hpp \
@@ -17,10 +17,11 @@ endif
 
 if CRYPTO
 nobase_cloudlessinclude_HEADERS += crypto/block.hpp crypto/stream.hpp crypto/hash.hpp \
-								   crypto/random.hpp
+								   crypto/random.hpp crypto/dh_modp.hpp
 if CRYPTOPP
 nobase_cloudlessinclude_HEADERS += crypto/cryptopp/block.hpp crypto/cryptopp/stream.hpp \
-								   crypto/cryptopp/hash.hpp crypto/cryptopp/random.hpp
+								   crypto/cryptopp/hash.hpp crypto/cryptopp/random.hpp \
+								   crypto/cryptopp/dh_modp.hpp
 endif
 endif
 
@@ -32,6 +33,12 @@ libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cp
 						  message.cpp pollitem.cpp poller.cpp \
 						  req.cpp rep.cpp dealer.cpp router.cpp push.cpp pull.cpp \
 						  pub.cpp sub.cpp pair.cpp
+
+if CRYPTO
+if CRYPTOPP
+libcloudless_la_SOURCES += crypto/cryptopp/dh_modp.cpp
+endif
+endif
 
 if ZMQ_3_X
 libcloudless_la_SOURCES += xsub.cpp xpub.cpp
