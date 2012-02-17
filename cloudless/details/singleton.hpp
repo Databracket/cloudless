@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define __CLOUDLESS_DETAILS_SINGLETON_HPP
 #ifndef __CLOUDLESS_DETAILS_SINGLETON_HPP
+#define __CLOUDLESS_DETAILS_SINGLETON_HPP
 
 #include <cassert>
 
