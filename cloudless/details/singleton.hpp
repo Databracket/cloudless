@@ -24,7 +24,6 @@
 #include <cassert>
 
 #include <cloudless/details/export.hpp>
-#include <cloudless/details/noncopyable.hpp>
 #include <cloudless/details/shared_ptr.hpp>
 
 namespace cloudless
@@ -45,10 +44,6 @@ namespace details
             assert(_M_instance.get() != NULL);
             return _M_instance.get();
         }
-
-    protected:
-        singleton();
-        ~singleton();
 
     private:
         static shared_ptr<T> _M_instance;
