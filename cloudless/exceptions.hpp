@@ -70,6 +70,16 @@ namespace cloudless
         virtual const char* what() const throw();
     };
 
+    struct LIBCLOUDLESS_EXPORT crypto_exception : exception
+    {
+        virtual const char* what() const throw() = 0;
+    };
+
+    struct LIBCLOUDLESS_EXPORT size_mismatch : crypto_exception
+    {
+        virtual const char* what() const throw();
+    };
+
 } // namespace cloudless
 
 #endif // __CLOUDLESS_EXCEPTIONS_HPP

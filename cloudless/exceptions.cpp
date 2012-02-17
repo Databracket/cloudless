@@ -90,4 +90,12 @@ namespace cloudless
         return "this function is not implemented";
     }
 
+    // size_mismatch
+
+    const char*
+    size_mismatch::what() const throw()
+    {
+        return "size mismatch";
+    }
+
 } // namespace cloudless
