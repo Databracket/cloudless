@@ -33,17 +33,17 @@ namespace cloudless
 namespace details
 {
 
-    template <class T>
-    class LIBCLOUDLESS_EXPORT singleton : public noncopyable
+    template <typename T>
+    class LIBCLOUDLESS_EXPORT singleton
     {
     public:
-        static shared_ptr<T>& instance()
+        static T* instance()
         {
             if (!_M_instance)
                 _M_instance = shared_ptr<T>(new T);
 
             assert(_M_instance.get() != NULL);
-            return _M_instance;
+            return _M_instance.get();
         }
 
     protected:
@@ -54,7 +54,7 @@ namespace details
         static shared_ptr<T> _M_instance;
     };
 
-    template <class T> shared_ptr<T> singleton<T>::_M_instance;
+    template <typename T> shared_ptr<T> singleton<T>::_M_instance;
 
 } // namespace details
 
