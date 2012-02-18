@@ -5,7 +5,7 @@ noinst_PROGRAMS = test_messages test_utils test_context test_comm test_pair \
 				  test_req_rep test_push_pull test_pub_sub test_dealer_router
 
 if CRYPTO
-noinst_PROGRAMS += test_crypto_block test_crypto_stream test_crypto_hash
+noinst_PROGRAMS += test_crypto_block test_crypto_stream test_crypto_hash test_crypto_exchanger
 endif
 
 if ZMQ_3_X
@@ -26,6 +26,7 @@ if CRYPTO
 test_crypto_block_SOURCES = test_crypto_block.cpp
 test_crypto_stream_SOURCES = test_crypto_stream.cpp
 test_crypto_hash_SOURCES = test_crypto_hash.cpp
+test_crypto_exchanger_SOURCES = test_crypto_exchanger.cpp
 endif
 
 if ZMQ_3_X
