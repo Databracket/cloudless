@@ -237,11 +237,10 @@ LIBZMQ([], [AC_MSG_ERROR([libzmq is not found; consider using --with-libzmq=DIR]
 ENABLE_CRYPTO([crypto_enable=yes])
 
 if test "x$crypto_enable" = "xyes"; then
-  LIBCRYPTOPP([cryptopp_ok=yes], [AC_MSG_ERROR([libcrypto++ is not found; consider using --with-libcryptopp=DIR])])
+  LIBCRYPTOPP([], [AC_MSG_ERROR([libcrypto++ is not found; consider using --with-libcryptopp=DIR])])
 fi
 
 AM_CONDITIONAL([CRYPTO], [test x"$crypto_enable" = xyes])
-AM_CONDITIONAL([CRYPTOPP], [test x"$cryptopp_ok" = xyes])
 
 # Subset LIBCLOUDLESS_EXTRA_CFLAGS & CXXFLAGS & LDFLAGS
 AC_SUBST(LIBCLOUDLESS_EXTRA_CFLAGS)

@@ -21,10 +21,75 @@
 #ifndef __CLOUDLESS_CRYPTO_STREAM_HPP
 #define __CLOUDLESS_CRYPTO_STREAM_HPP
 
-#include <cloudless/details/platform.hpp>
+#include <string>
 
-#ifdef HAVE_CRYPTOPP
-#include <cloudless/crypto/cryptopp/stream.hpp>
-#endif
+// Stream ciphers
+#include <cryptopp/panama.h>
+#include <cryptopp/sosemanuk.h>
+#include <cryptopp/salsa.h>
+#include <cryptopp/seal.h>
+
+#include <cloudless/details/export.hpp>
+#include <cloudless/details/shared_array.hpp>
+
+namespace cloudless
+{
+
+namespace crypto
+{
+
+    using namespace CryptoPP;
+
+    template<typename Algo>
+    class LIBCLOUDLESS_EXPORT stream
+    {
+    public:
+        stream(const std::string& key_, const std::string& iv_) :
+            _M_key((byte*)key_.data(), key_.size()),
+            _M_iv((byte*)iv_.data(), iv_.size())
+        {
+            _M_algo.SetKeyWithIV(_M_key.BytePtr(), _M_key.SizeInBytes(),
+                    _M_iv.BytePtr());
+        }
+
+        stream(const std::string& key_) :
+            _M_key((byte*)key_.data(), key_.size())
+        {
+            _M_algo.SetKey(_M_key.BytePtr(), _M_key.SizeInBytes());
+        }
+
+        std::string
+        process(const std::string& value_)
+        {
+            details::shared_array<byte> buffer(new byte[value_.size()]);
+
+            _M_algo.ProcessData(buffer.get(), (byte*)value_.data(), value_.size());
+
+            return std::string((const char*)buffer.get(), value_.size());
+        }
+
+        std::string
+        key() const
+        {
+            return std::string((const char*)_M_key.BytePtr(),
+                    _M_key.SizeInBytes());
+        }
+
+        std::string
+        iv() const
+        {
+            return std::string((const char*)_M_iv.BytePtr(),
+                    _M_iv.SizeInBytes());
+        }
+
+    private:
+        Algo _M_algo;
+        SecByteBlock _M_key;
+        SecByteBlock _M_iv;
+    };
+
+} // namespace crypto
+
+} // namespace cloudless
 
 #endif // __CLOUDLESS_CRYPTO_STREAM_HPP

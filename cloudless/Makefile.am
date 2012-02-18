@@ -17,12 +17,7 @@ endif
 
 if CRYPTO
 nobase_cloudlessinclude_HEADERS += crypto/block.hpp crypto/stream.hpp crypto/hash.hpp \
-								   crypto/random.hpp crypto/dh_modp.hpp
-if CRYPTOPP
-nobase_cloudlessinclude_HEADERS += crypto/cryptopp/block.hpp crypto/cryptopp/stream.hpp \
-								   crypto/cryptopp/hash.hpp crypto/cryptopp/random.hpp \
-								   crypto/cryptopp/dh_modp.hpp
-endif
+								   crypto/random.hpp crypto/dh_modp.hpp crypto/exchanger.hpp
 endif
 
 nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
@@ -35,9 +30,7 @@ libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cp
 						  pub.cpp sub.cpp pair.cpp
 
 if CRYPTO
-if CRYPTOPP
-libcloudless_la_SOURCES += crypto/cryptopp/dh_modp.cpp
-endif
+libcloudless_la_SOURCES += crypto/dh_modp.cpp
 endif
 
 if ZMQ_3_X

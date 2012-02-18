@@ -21,10 +21,39 @@
 #ifndef __CLOUDLESS_CRYPTO_RANDOM_HPP
 #define __CLOUDLESS_CRYPTO_RANDOM_HPP
 
-#include <cloudless/details/platform.hpp>
+#include <string>
 
-#ifdef HAVE_CRYPTOPP
-#include <cloudless/crypto/cryptopp/random.hpp>
-#endif
+#include <cryptopp/osrng.h>
+
+#include <cloudless/details/export.hpp>
+#include <cloudless/details/noncopyable.hpp>
+#include <cloudless/details/shared_array.hpp>
+
+namespace cloudless
+{
+
+namespace crypto
+{
+
+    using namespace CryptoPP;
+
+    template <int Size>
+    class LIBCLOUDLESS_EXPORT random : details::noncopyable
+    {
+    public:
+        static std::string
+        generate()
+        {
+            AutoSeededRandomPool asrp;
+            details::shared_array<byte> rndblck(new byte[Size]);
+
+            asrp.GenerateBlock(rndblck.get(), Size);
+            return std::string((const char*)rndblck.get(), Size);
+        }
+    };
+
+} // namespace crypto
+
+} // namespace cloudless
 
 #endif // __CLOUDLESS_CRYPTO_RANDOM_HPP

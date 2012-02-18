@@ -21,10 +21,68 @@
 #ifndef __CLOUDLESS_CRYPTO_HASH_HPP
 #define __CLOUDLESS_CRYPTO_HASH_HPP
 
-#include <cloudless/details/platform.hpp>
+#include <string>
 
-#ifdef HAVE_CRYPTOPP
-#include <cloudless/crypto/cryptopp/hash.hpp>
-#endif
+// Hash ciphers
+#include <cryptopp/sha.h>
+#include <cryptopp/tiger.h>
+#include <cryptopp/whrlpool.h>
+#include <cryptopp/ripemd.h>
+
+#include <cloudless/details/export.hpp>
+
+namespace cloudless
+{
+
+namespace crypto
+{
+
+    using namespace CryptoPP;
+
+    template<typename Hash>
+    class LIBCLOUDLESS_EXPORT hash
+    {
+    public:
+        void
+        update(const std::string& value_)
+        {
+            _M_hd.Update((const byte*)value_.data(), value_.size());
+        }
+
+        std::string
+        final()
+        {
+            byte digest[Hash::DIGESTSIZE];
+
+            _M_hd.Final(digest);
+            return std::string((const char*)digest, Hash::DIGESTSIZE);
+        }
+
+        static std::string
+        digest(const std::string& value_)
+        {
+            Hash hd;
+            byte dig[Hash::DIGESTSIZE];
+
+            hd.CalculateDigest(dig, (const byte*)value_.data(), value_.size());
+            return std::string((const char*)dig, Hash::DIGESTSIZE);
+        }
+
+        static bool
+        verify(const std::string& digest_, const std::string& input_)
+        {
+            Hash hd;
+
+            return hd.VerifyDigest((const byte*)digest_.data(),
+                    (const byte*)input_.data(), input_.size());
+        }
+
+    private:
+        Hash _M_hd;
+    };
+
+} // namespace crypto
+
+} // namespace cloudless
 
 #endif // __CLOUDLESS_CRYPTO_HASH_HPP

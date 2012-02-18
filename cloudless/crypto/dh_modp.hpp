@@ -21,10 +21,92 @@
 #ifndef __CLOUDLESS_CRYPTO_DH_MODP_HPP
 #define __CLOUDLESS_CRYPTO_DH_MODP_HPP
 
-#include <cloudless/details/platform.hpp>
+// Big Integer
+#include <cryptopp/integer.h>
 
-#ifdef HAVE_CRYPTOPP
-#include <cloudless/crypto/cryptopp/dh_modp.hpp>
-#endif
+#include <cloudless/details/export.hpp>
+#include <cloudless/details/nonconstructive.hpp>
+
+namespace cloudless
+{
+
+namespace crypto
+{
+
+    /*
+     * RFC 3526
+     * 1536-bit MODP Group
+     * ID: 5
+     */
+    struct LIBCLOUDLESS_EXPORT MODP_5 : details::nonconstructive
+    {
+        static const CryptoPP::Integer p;
+        static const CryptoPP::Integer q;
+        static const CryptoPP::Integer g;
+    };
+
+    /*
+     * RFC 3526
+     * 2048-bit MODP Group
+     * ID: 14
+     */
+    struct LIBCLOUDLESS_EXPORT MODP_14 : details::nonconstructive
+    {
+        static const CryptoPP::Integer p;
+        static const CryptoPP::Integer q;
+        static const CryptoPP::Integer g;
+    };
+
+    /*
+     * RFC 3526
+     * 3072-bit MODP Group
+     * ID: 15
+     */
+    struct LIBCLOUDLESS_EXPORT MODP_15 : details::nonconstructive
+    {
+        static const CryptoPP::Integer p;
+        static const CryptoPP::Integer q;
+        static const CryptoPP::Integer g;
+    };
+
+    /*
+     * RFC 3526
+     * 4096-bit MODP Group
+     * ID: 16
+     */
+    struct LIBCLOUDLESS_EXPORT MODP_16 : details::nonconstructive
+    {
+        static const CryptoPP::Integer p;
+        static const CryptoPP::Integer q;
+        static const CryptoPP::Integer g;
+    };
+
+    /*
+     * RFC 3526
+     * 6144-bit MODP Group
+     * ID: 17
+     */
+    struct LIBCLOUDLESS_EXPORT MODP_17 : details::nonconstructive
+    {
+        static const CryptoPP::Integer p;
+        static const CryptoPP::Integer q;
+        static const CryptoPP::Integer g;
+    };
+
+    /*
+     * RFC 3526
+     * 8192-bit MODP Group
+     * ID: 18
+     */
+    struct LIBCLOUDLESS_EXPORT MODP_18 : details::nonconstructive
+    {
+        static const CryptoPP::Integer p;
+        static const CryptoPP::Integer q;
+        static const CryptoPP::Integer g;
+    };
+
+} // namespace crypto
+
+} // namespace cloudless
 
 #endif // __CLOUDLESS_CRYPTO_DH_MODP_HPP

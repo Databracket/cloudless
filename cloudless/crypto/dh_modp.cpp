@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <cloudless/crypto/cryptopp/dh_modp.hpp>
+#include <cloudless/crypto/dh_modp.hpp>
 
 namespace cloudless
 {
