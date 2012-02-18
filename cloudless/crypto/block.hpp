@@ -81,7 +81,7 @@ namespace crypto
             _M_algo.SetKey(_M_key.BytePtr(), _M_key.SizeInBytes());
         }
 
-        void
+        block<Algo>&
         process(const std::string& value_)
         {
             if (!_Mp_stf)
@@ -90,6 +90,7 @@ namespace crypto
                             StreamTransformationFilter::PKCS_PADDING));
 
             _Mp_stf->Put((const byte*)value_.data(), value_.size());
+            return *const_cast<block<Algo>*>(this);
         }
 
         std::string
