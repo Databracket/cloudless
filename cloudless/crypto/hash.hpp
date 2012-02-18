@@ -43,10 +43,11 @@ namespace crypto
     class LIBCLOUDLESS_EXPORT hash
     {
     public:
-        void
+        hash<Hash>&
         update(const std::string& value_)
         {
             _M_hd.Update((const byte*)value_.data(), value_.size());
+            return *const_cast<hash<Hash>*>(this);
         }
 
         std::string
