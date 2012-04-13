@@ -22,12 +22,9 @@
 
 #include "catch.hpp"
 
-#include <iostream>
-#include <sstream>
-#include <string>
-
 #include <cloudless/crypto/dh_modp.hpp>
 #include <cloudless/crypto/exchanger.hpp>
+#include <cloudless/crypto/hash.hpp>
 
 #define TC TEST_CASE
 #define S SECTION
@@ -41,20 +38,13 @@ TC ("cloudless/crypto/dh", "Testing Exchanger interface.")
     using namespace cloudless;
     using namespace crypto;
 
-    exchanger<MODP_14> inst;
-    exchanger<MODP_14>* instp = exchanger<MODP_14>::instance();
+    exchanger<SHA256, true> client; // Client == true
+    exchanger<SHA256, false>* server = exchanger<SHA256, false>::instance();
 
-    RNT ( inst.generate_static_private()
-            .generate_static_public()
-            .generate_ephemeral_private()
-            .generate_ephemeral_public() );
+    RNT ( client.generate_keys() );
+    RNT ( server->generate_keys() );
 
-    RNT ( instp->generate_static_private()
-            .generate_static_public()
-            .generate_ephemeral_private()
-            .generate_ephemeral_public() );
-
-    R ( inst.agree(instp->static_public(), instp->ephemeral_public()) == true );
-    R ( instp->agree(inst.static_public(), inst.ephemeral_public()) == true );
-    R ( inst.shared_secret() == instp->shared_secret() );
+    R ( client.agree(server->static_public(), server->ephemeral_public()) == true );
+    R ( server->agree(client.static_public(), client.ephemeral_public()) == true );
+    R ( client.shared_secret() == server->shared_secret() );
 }
