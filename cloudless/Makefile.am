@@ -17,7 +17,8 @@ endif
 
 if CRYPTO
 nobase_cloudlessinclude_HEADERS += crypto/block.hpp crypto/stream.hpp crypto/hash.hpp \
-								   crypto/random.hpp crypto/dh_modp.hpp crypto/exchanger.hpp
+								   crypto/random.hpp crypto/dh_modp.hpp crypto/exchanger.hpp \
+								   crypto/cryptopp/eccrypto.h crypto/cryptopp/fhmqv.h
 endif
 
 nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
