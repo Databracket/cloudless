@@ -30,6 +30,7 @@
 #define TC TEST_CASE
 #define S SECTION
 #define R REQUIRE
+#define RNT REQUIRE_NOTHROW
 
 using namespace std;
 
@@ -38,25 +39,69 @@ TC ("cloudless/crypto/block", "Testing block cipher interface.")
     using namespace cloudless;
     using namespace crypto;
 
-    string key(crypto::random<16>::generate());
-    string iv(crypto::random<16>::generate());
+    S ("cloudless/crypto/block/unauthenticated", "Testing unauthenticated modes interface.")
+    {
+        string key(crypto::random<16>::generate());
+        string iv(crypto::random<16>::generate());
+        string plaintext("test plain text");
 
-    block<CBC_Mode<AES>::Encryption> enc(key, iv);
+        // Encrypt
 
-    R ( enc.key() == key );
-    R ( enc.iv() == iv );
+        block<CBC_Mode<AES>::Encryption> enc(key, iv);
 
-    string plaintext("test plain text");
-    enc.process(plaintext);
+        R ( enc.key() == key );
+        R ( enc.iv() == iv );
 
-    string ciphertext = enc.final();
+        enc.process(plaintext);
 
-    block<CBC_Mode<AES>::Decryption> dec(key, iv);
+        string ciphertext = enc.final();
 
-    R ( dec.key() == key );
-    R ( dec.iv() == iv );
+        // Decrypt
 
-    dec.process(ciphertext);
+        block<CBC_Mode<AES>::Decryption> dec(key, iv);
 
-    R ( dec.final() == plaintext );
+        R ( dec.key() == key );
+        R ( dec.iv() == iv );
+
+        dec.process(ciphertext);
+
+        R ( dec.final() == plaintext );
+    }
+
+    S ("cloudless/crypto/block/authenticated", "Testing authenticated modes interface.")
+    {
+        string key(crypto::random<32>::generate());
+        string iv(crypto::random<16>::generate());
+        string pdata_b1("test plain text block #01");
+        string pdata_b2("test plain text block #02");
+        string adata("ADDITIONAL DATA");
+
+        // Encrypt
+
+        block_auth<GCM<Serpent, GCM_64K_Tables>::Encryption> enc(key, iv, 16 /* i.e., 128-bits TAG */);
+
+        R ( enc.key() == key );
+        R ( enc.iv() == iv );
+
+        RNT ( enc.process_encryption(pdata_b1, adata)
+                .process_encryption(pdata_b2)
+                .final_encryption() );
+
+        string cdata = enc.data();
+        string mac = enc.mac();
+
+        R ( mac.size() == 16 );
+
+        // Decrypt
+
+        block_auth<GCM<Serpent, GCM_2K_Tables>::Decryption> dec(key, iv);
+
+        R ( dec.key() == key );
+        R ( dec.iv() == iv );
+
+        RNT ( dec.process_decryption(cdata, mac, adata)
+                .final_decryption() );
+
+        R ( dec.data() == (pdata_b1 + pdata_b2) );
+    }
 }
