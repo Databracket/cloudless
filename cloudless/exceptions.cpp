@@ -98,4 +98,12 @@ namespace cloudless
         return "size mismatch";
     }
 
+    // mac_verification_failed
+
+    const char*
+    mac_verification_failed::what() const throw()
+    {
+        return "MAC verification failed";
+    }
+
 } // namespace cloudless

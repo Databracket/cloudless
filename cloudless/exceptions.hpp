@@ -80,6 +80,11 @@ namespace cloudless
         virtual const char* what() const throw();
     };
 
+    struct LIBCLOUDLESS_EXPORT mac_verification_failed : crypto_exception
+    {
+        virtual const char* what() const throw();
+    };
+
 } // namespace cloudless
 
 #endif // __CLOUDLESS_EXCEPTIONS_HPP
