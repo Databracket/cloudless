@@ -232,6 +232,7 @@ AC_CHECK_FUNCS(memset memcpy)
 # Checks for libraries.
 BOOST_REQUIRE([1.46.1])
 BOOST_SMART_PTR
+BOOST_BIND
 BOOST_THREADS([mt-])
 LIBZMQ([], [AC_MSG_ERROR([libzmq is not found; consider using --with-libzmq=DIR])])
 ENABLE_CRYPTO([crypto_enable=yes])
