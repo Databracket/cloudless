@@ -5,7 +5,8 @@ nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/nonconstructiv
 								  details/export.hpp details/exception.hpp \
 								  details/singleton.hpp details/shared_ptr.hpp \
 								  details/shared_array.hpp details/zeromq/zcontext.hpp \
-								  details/zeromq/zeromq.hpp details/zeromq/zmessage.hpp details/zeromq/zsocket.hpp \
+								  details/zeromq/zeromq.hpp details/zeromq/zmessage.hpp \
+								  details/zeromq/zsocket.hpp details/thread.hpp \
 								  socket.hpp address.hpp context.hpp element.hpp \
 								  exceptions.hpp message.hpp poller.hpp pollitem.hpp \
 								  version.hpp req.hpp rep.hpp dealer.hpp router.hpp \
@@ -24,7 +25,7 @@ endif
 nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
 
 libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cpp \
-						  details/zeromq/zsocket.cpp socket.cpp \
+						  details/zeromq/zsocket.cpp details/thread.cpp socket.cpp \
 						  address.cpp context.cpp element.cpp exceptions.cpp \
 						  message.cpp pollitem.cpp poller.cpp \
 						  req.cpp rep.cpp dealer.cpp router.cpp push.cpp pull.cpp \
