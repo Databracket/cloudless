@@ -60,10 +60,28 @@ namespace poll_events
          * A default constructor.
          */
         pollitem() throw();
-        pollitem(details::zsocket& socket_, short events_ = 0,
-                short revents_ = 0) throw();
-        pollitem(socket_t fd_, short events_ = 0, short revents_ = 0) throw();
 
+        /**
+         * A constructor that takes a 0MQ socket.
+         *
+         * @param socket_ a 0MQ socket.
+         * @param events_ the events that poller should be monitoring. (e.g., IN | OUT)
+         */
+        pollitem(details::zsocket& socket_, short events_ = 0) throw();
+
+        /**
+         * A constructor that takes a system socket.
+         *
+         * @param fd_ a system's socket file descriptor.
+         * @param events_ the events that polller should be monitoring. (e.g., IN | ERROR)
+         */
+        pollitem(socket_t fd_, short events_ = 0) throw();
+
+        /**
+         * Register an event to be monitored by poller.
+         *
+         * @param event_ an event. (e.g., poll_events::IN)
+         */
         pollitem& register_event(short event_) throw();
 
         /**
