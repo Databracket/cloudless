@@ -3,8 +3,8 @@
  *
  * @section LICENSE
  *
- * Copyright (c) 2011 Databracket, LLC.
- * Copyright (c) 2011 Other contributors as noted in the AUTHORS file
+ * Copyright (c) 2012 Databracket, LLC.
+ * Copyright (c) 2012 Other contributors as noted in the AUTHORS file
  *
  * This file is part of Cloudless.
  *
@@ -46,7 +46,9 @@ namespace cloudless
 namespace details
 {
 
-    // thread
+    /**
+     * An abstraction class of Boost::Thread.
+     */
 
     class LIBCLOUDLESS_EXPORT thread : noncopyable, public boost::enable_shared_from_this<thread>
     {
@@ -54,22 +56,96 @@ namespace details
         typedef boost::thread::native_handle_type native_handle_type;
         typedef boost::thread::id id;
 
+        /**
+         * A default constructor.
+         */
         thread();
+
+        /**
+         * A destructor.
+         */
         virtual ~thread();
 
+        /**
+         * Start this thread either in detach or join mode.
+         *
+         * @param detach_ whether to laucnh the thread in detach mode.
+         * @param time_ if detach_ was false; a time period in milliseconds
+         * of which after joining, the thread will be detached. Value 0 means
+         * join till the thread is finished.
+         * @return whether launching the thread was successful.
+         */
         bool start(bool detach_ = true, unsigned int time_ = 0);
+
+        /**
+         * Send a request to a detached thread to stop.
+         */
         void stop() throw();
 
+        /**
+         * Get this thread's ID.
+         *
+         * @return thread's id.
+         */
         id get_id() const throw();
+
+        /**
+         * Get the native system handle for the underlying thread.
+         *
+         * @return a native handle for this thread.
+         */
         native_handle_type native_handle() const throw();
+
+        /**
+         * Get the number of hardware threads available on the current system.
+         * Note that a value of 0 means that this information is not available.
+         *
+         * @return number of hardware threads available.
+         */
         static unsigned int hardware_concurrency() throw();
+
+        /**
+         * A static helper function to instruct the calling thread
+         * to sleep for a specific period of time expressed in milliseconds.
+         *
+         * @param time_ number of milliseconds for the calling thread to sleep.
+         */
         static void sleep(unsigned int time_);
 
+        /**
+         * Equality comparison between two threads.
+         *
+         * @param rhs an instance of thread.
+         * @return true or false.
+         */
         bool operator ==(const thread& rhs) const;
 
     protected:
+
+        /**
+         * A pure virtual function to be overrided by a child of this class.
+         * This function represents the body of instructions and expressions
+         * to be ran inside the thread.
+         *
+         * Note: This function will be called within an indefinite while-loop,
+         * if you wish to conclude the operation of this thread, you must call
+         * stop() from within this function.
+         */
         virtual void body() = 0;
-        virtual void on_error(const std::exception& ex_);
+
+        /**
+         * A virtual function to be optionally overrided by a child of this class.
+         * This function will be executed in the event body() throws an exception.
+         *
+         * @param ex_ any exception inherited from std::exception or
+         * even std::exception itself.
+         */
+        virtual void on_error(const std::exception& ex_)
+        {
+            // No default error reporting mechanism configured.
+            // Feel free to override this function to provide error
+            // reporting in the case body() throws an exception.
+        }
 
     private:
         shared_ptr<boost::thread> _Mp_thread;

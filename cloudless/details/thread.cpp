@@ -3,8 +3,8 @@
  *
  * @section LICENSE
  *
- * Copyright (c) 2011 Databracket, LLC.
- * Copyright (c) 2011 Other contributors as noted in the AUTHORS file
+ * Copyright (c) 2012 Databracket, LLC.
+ * Copyright (c) 2012 Other contributors as noted in the AUTHORS file
  *
  * This file is part of Cloudless.
  *
@@ -110,14 +110,6 @@ namespace details
     thread::operator ==(const thread& rhs) const
     {
         return get_id() == rhs.get_id();
-    }
-
-    void
-    thread::on_error(const std::exception& ex_)
-    {
-        // No default error reporting mechanism configured.
-        // Feel free to override this function to provide
-        // error reporting in the case body() throws an exception.
     }
 
     void
