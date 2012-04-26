@@ -82,7 +82,7 @@ namespace details
         return zmq_msg_size((zmq_msg_t*)this);
     }
 
-    zmessage::operator std::string() throw()
+    zmessage::operator std::string() const throw()
     {
         return std::string((const char*) data(), size());
     }
@@ -90,6 +90,18 @@ namespace details
     zmessage::operator zmq_msg_t*() throw()
     {
         return this;
+    }
+
+    bool
+    zmessage::operator ==(const char* rhs) const
+    {
+        return (std::string)*this == rhs;
+    }
+
+    bool
+    zmessage::operator <(const char* rhs) const
+    {
+        return (std::string)*this < rhs;
     }
 
 } // namespace details

@@ -30,6 +30,7 @@
 #define __CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
 
 #include <string>
+#include <utility>
 
 #include <cloudless/details/zeromq/zeromq.hpp>
 #include <cloudless/details/export.hpp>
@@ -39,6 +40,8 @@ namespace cloudless
 
 namespace details
 {
+
+    using namespace std::rel_ops;
 
     /**
      * A wrapper structure around 0MQ low level messages.
@@ -90,7 +93,7 @@ namespace details
          *
          * @return std::string of the data inside this message.
          */
-        operator std::string() throw();
+        operator std::string() const throw();
 
         /**
          * Cast a message to the low level 0MQ message type.
@@ -98,6 +101,42 @@ namespace details
          * @return 0MQ message type.
          */
         operator zmq_msg_t*() throw();
+
+        /**
+         * A generic equality comparison against this zmessage.
+         *
+         * @tparam T a generic type that this zmessage is casted against.
+         * @param rhs a constant reference to T.
+         * @return true or false.
+         */
+        template <typename T>
+        inline bool operator ==(const T& rhs) const
+        {
+            return (T)*this == rhs;
+        }
+
+        /*
+         * A special case of the equality comparison.
+         */
+        bool operator ==(const char* rhs) const;
+
+        /**
+         * A generic less-than comparison against this zmessage.
+         *
+         * @tparam T a generic type that this zmessage is casted against.
+         * @param rhs a constant reference to T.
+         * @return true or false.
+         */
+        template <typename T>
+        inline bool operator <(const T& rhs) const
+        {
+            return (T)*this < rhs;
+        }
+
+        /*
+         * A special case of the less-than comparison.
+         */
+        bool operator <(const char* rhs) const;
 
     };
 
