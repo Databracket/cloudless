@@ -50,7 +50,7 @@ TC ("cloudless/socket/push-pull", "Testing PUSH/PULL socket.")
     RNT ( msg.clear() );
     R ( s2.recv(msg) == true );
     RTA ( s2.send(msg), cloudless::feature_not_supported );
-    R ( msg.pop_head()->toString() == "testPUSH-PULL" );
+    R ( msg.pop_head() == "testPUSH-PULL" );
     R ( msg.size() == 0 );
 
     RNT ( s1.close() );

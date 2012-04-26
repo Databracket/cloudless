@@ -46,12 +46,12 @@ TC ("cloudless/socket/req-rep", "Testing REQ/REP socket.")
     R ( s1.send(msg) == true );
     RNT ( msg.clear() );
     R ( s2.recv(msg) == true );
-    R ( msg.pop_head()->toString() == "testREQ-REP" );
+    R ( msg.pop_head() == "testREQ-REP" );
     RNT ( msg.push_head("testREQ-REP1") );
     R ( s2.send(msg) == true );
     RNT ( msg.clear() );
     R ( s1.recv(msg) == true );
-    R ( msg.pop_tail()->toString() == "testREQ-REP1" );
+    R ( msg.pop_tail() == "testREQ-REP1" );
     R ( msg.size() == 0 );
 
     RNT ( s1.close() );

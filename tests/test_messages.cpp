@@ -46,7 +46,7 @@ TC ("cloudless/details/zmessage", "Testing zmessage interface.")
 
     R ( zmsg.size() == test_buffer.size() );
     R ( bcmp(zmsg.data(), test_buffer.c_str(), zmsg.size()) == 0 );
-    R ( zmsg.toString() == test_buffer );
+    R ( zmsg == test_buffer );
 
     zmsg_cpy = zmsg;
 
@@ -60,12 +60,12 @@ TC ("cloudless/element", "Testing element interface.")
 
     {
         cloudless::element e(test_buffer);
-        R ( e->toString() == test_buffer );
+        R ( e == test_buffer );
     }
 
     {
         cloudless::element e(test_buffer.c_str(), test_buffer.size());
-        R ( e->toString() == test_buffer );
+        R ( e == test_buffer );
     }
 }
 
@@ -75,7 +75,7 @@ TC ("cloudless/message", "Testing message interface.")
 
     {
         cloudless::message msg(test_buffer);
-        R ( msg.head()->toString() == test_buffer );
+        R ( msg.head() == test_buffer );
         R ( msg.size() == 1 );
     }
 
@@ -86,9 +86,9 @@ TC ("cloudless/message", "Testing message interface.")
             .push_head(test_buffer + "2");
 
         R ( msg.size() == 3 );
-        R ( msg.pop_tail()->toString() == (test_buffer + "1") );
-        R ( msg.pop_head()->toString() == (test_buffer + "2") );
-        R ( msg.pop_head()->toString() == test_buffer );
+        R ( msg.pop_tail() == (test_buffer + "1") );
+        R ( msg.pop_head() == (test_buffer + "2") );
+        R ( msg.pop_head() == test_buffer );
         R ( msg.size() == 0 );
     }
 
@@ -99,7 +99,7 @@ TC ("cloudless/message", "Testing message interface.")
         msg.push_head(test_buffer);
 
         R ( msg.size() == 2 );
-        R ( msg.tail()->toString() == msg.head()->toString() );
+        R ( msg.tail() == (string)*msg.head() );
         R ( msg.size() == 2 );
     }
 }

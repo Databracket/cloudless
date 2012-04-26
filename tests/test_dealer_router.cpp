@@ -58,7 +58,7 @@ TC ("cloudless/socket/dealer-router", "Testing DEALER/ROUTER socket.")
     R ( rep.recv(msg) == true );
 
     // Keep the address of REQ received and discard the message
-    R ( msg.pop_tail()->toString() == "testXREP-XREQ" );
+    R ( msg.pop_tail() == "testXREP-XREQ" );
 
     // Send reply back through the device
     R ( rep.send(msg.push_tail("testXREQ-XREP")) == true );
@@ -66,7 +66,7 @@ TC ("cloudless/socket/dealer-router", "Testing DEALER/ROUTER socket.")
     R ( xrep.send(msg) == true );
     R ( req.recv(msg) == true );
 
-    R ( msg.head()->toString() == "testXREQ-XREP" );
+    R ( msg.head() == "testXREQ-XREP" );
     R ( msg.size() == 1 );
 
     RNT ( req.close() );

@@ -51,7 +51,7 @@ TC ("cloudless/socket/pub-sub", "Testing PUB/SUB socket.")
     RNT ( msg.clear() );
     R ( s2.recv(msg) == true );
     RTA ( s2.send(msg), cloudless::feature_not_supported );
-    R ( msg.pop_head()->toString() == "testPUB-SUB" );
+    R ( msg.pop_head() == "testPUB-SUB" );
     R ( msg.size() == 0 );
 
     RNT ( s1.close() );

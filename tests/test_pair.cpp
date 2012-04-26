@@ -45,12 +45,12 @@ TC ("cloudless/socket/pair", "Testing PAIR socket.")
     R ( s2.send(msg) == true );
     RNT ( msg.clear() );
     R ( s1.recv(msg) == true );
-    R ( msg.head()->toString() == "testPAIR" );
+    R ( msg.head() == "testPAIR" );
 
     R ( s1.send(msg) == true );
     RNT ( msg.clear() );
     R ( s2.recv(msg) == true );
-    R ( msg.head()->toString() == "testPAIR" );
+    R ( msg.head() == "testPAIR" );
 
     RNT ( s1.close() );
     RNT ( s2.close() );
