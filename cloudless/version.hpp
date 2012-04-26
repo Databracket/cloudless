@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2011 Databracket, LLC.
+    Copyright (c) 2011 Databracket LLC.
     Copyright (c) 2011 Other contributors as noted in the AUTHORS file
 
     This file is part of Cloudless.

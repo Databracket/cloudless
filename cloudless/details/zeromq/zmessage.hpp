@@ -3,7 +3,7 @@
  *
  * @section LICENSE
  *
- * Copyright (c) 2012 Databracket, LLC.
+ * Copyright (c) 2012 Databracket LLC.
  * Copyright (c) 2012 Other contributors as noted in the AUTHORS file
  *
  * This file is part of Cloudless.
