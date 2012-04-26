@@ -30,6 +30,7 @@
 #define __CLOUDLESS_ELEMENT_HPP
 
 #include <string>
+#include <utility>
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/shared_ptr.hpp>
@@ -37,6 +38,8 @@
 
 namespace cloudless
 {
+
+    using namespace std::rel_ops;
 
     /**
      * A structure that wraps an element inside a the message container.
@@ -67,6 +70,36 @@ namespace cloudless
          * @param size_ the size of the char array.
          */
         element(const void* p_, size_t size_);
+
+        /**
+         * Equality comparison against a generic type and the underlying
+         * zmessage.
+         *
+         * @tparam T any type that is defined to be compatible with zmessages.
+         * @param rhs a constant reference to the other type to be compared with
+         * the underlying zmessage.
+         * @return true or false.
+         */
+        template <typename T>
+        inline bool operator ==(const T& rhs) const
+        {
+            return *get() == rhs;
+        }
+
+        /**
+         * Less-than comparison against a generic type and the underlying
+         * zmessage.
+         *
+         * @tparam T any type that is defined to be compatible with zmessages.
+         * @param rhs a constant reference to the other type to be compared with
+         * the underlying zmessage.
+         * @return true or false.
+         */
+        template <typename T>
+        inline bool operator <(const T& rhs) const
+        {
+            return *get() < rhs;
+        }
     };
 
 } // namespace cloudless
