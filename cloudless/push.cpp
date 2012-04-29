@@ -41,7 +41,7 @@ namespace cloudless
     bool
     push::recv(message& msg_, bool block_)
     {
-        throw feature_not_supported();
+        raise(feature_not_supported);
     }
 
 } // namespace cloudless

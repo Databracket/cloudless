@@ -51,7 +51,7 @@ namespace details
         _Mp_ptr = zmq_socket(context_, type_);
 
         if (_Mp_ptr == NULL)
-            throw zexception();
+            raise(zexception);
     }
 
     zsocket::~zsocket()
@@ -73,7 +73,7 @@ namespace details
         int rc = zmq_close(_Mp_ptr);
 
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
 
         _Mp_ptr = NULL;
     }
@@ -85,7 +85,7 @@ namespace details
         int rc = zmq_setsockopt(_Mp_ptr, option_, optval_, optvallen_);
 
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
     }
 
     void
@@ -95,7 +95,7 @@ namespace details
         int rc = zmq_getsockopt(_Mp_ptr, option_, optval_, optvallen_);
 
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
     }
 
     void
@@ -104,7 +104,7 @@ namespace details
         int rc = zmq_bind(_Mp_ptr, addr_);
 
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
     }
 
     void
@@ -113,7 +113,7 @@ namespace details
         int rc = zmq_connect(_Mp_ptr, addr_);
 
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
     }
 
     bool
@@ -132,7 +132,7 @@ namespace details
         if (rc == -1 && zmq_errno() == EAGAIN)
             return false;
 
-        throw zexception();
+        raise(zexception);
     }
 
     bool
@@ -151,7 +151,7 @@ namespace details
         if (rc == -1 && zmq_errno() == EAGAIN)
             return false;
 
-        throw zexception();
+        raise(zexception);
     }
 
     uint64_t
@@ -553,7 +553,7 @@ namespace details
     zsocket::subscribe(const std::string& topic_)
     {
         if (type() != socket_type::SUB)
-            throw feature_not_supported();
+            raise(feature_not_supported);
 
         setsockopt(ZMQ_SUBSCRIBE, topic_.c_str(), topic_.size());
         return *this;
@@ -563,7 +563,7 @@ namespace details
     zsocket::unsubscribe(const std::string& topic_)
     {
         if (type() != socket_type::SUB)
-            throw feature_not_supported();
+            raise(feature_not_supported);
 
         setsockopt(ZMQ_UNSUBSCRIBE, topic_.c_str(), topic_.size());
         return *this;

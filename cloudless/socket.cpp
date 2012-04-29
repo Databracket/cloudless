@@ -78,7 +78,7 @@ namespace cloudless
     socket::send(message& msg_, bool block_)
     {
         if (msg_->empty())
-            throw message_empty();
+            raise(message_empty);
 
 #if ZMQ_VERSION_MAJOR == 2
         // An implementation for timed blocking.

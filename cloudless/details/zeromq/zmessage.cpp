@@ -44,7 +44,7 @@ namespace details
         int rc = zmq_msg_init(this);
 
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
     }
 
     zmessage::zmessage(size_t size_)
@@ -52,7 +52,7 @@ namespace details
         int rc = zmq_msg_init_size(this, size_);
 
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
     }
 
     zmessage::zmessage(const zmessage& msg_)
@@ -60,7 +60,7 @@ namespace details
         int rc = zmq_msg_copy(this, (zmq_msg_t*) &msg_);
 
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
     }
 
     zmessage::~zmessage()

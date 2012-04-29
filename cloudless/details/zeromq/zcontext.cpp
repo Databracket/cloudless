@@ -45,7 +45,7 @@ namespace details
         _M_ptr = zmq_init(io_threads_);
 
         if (_M_ptr == NULL)
-            throw null_pointer();
+            raise(null_pointer);
     }
 
     zcontext::~zcontext()

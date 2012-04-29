@@ -297,7 +297,7 @@ namespace crypto
 
                 _Mp_adf->ChannelMessageEnd(DEFAULT_CHANNEL);
             } catch (HashVerificationFilter::HashVerificationFailed&) {
-                throw mac_verification_failed();
+                raise(mac_verification_failed);
             }
 
             _Mp_adf->SetRetrievalChannel(DEFAULT_CHANNEL);

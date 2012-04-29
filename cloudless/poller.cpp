@@ -52,7 +52,7 @@ namespace cloudless
     poller::poll(long timeout_) const
     {
         if (_M_items.empty())
-            throw poll_empty();
+            raise(poll_empty);
 
         // Accessing a std::vector like that is safe, as its memory is guaranteed
         // to be contiguous.
@@ -61,7 +61,7 @@ namespace cloudless
 
         // 0MQ error occurred
         if (rc == -1)
-            throw zexception();
+            raise(zexception);
 
         // rc is the number of pollitems that had an event triggered.
         // In the current form of poller that piece of information is irrelevant.
@@ -75,7 +75,7 @@ namespace cloudless
         items_indexes::const_iterator it = _M_indexes.find(rhs);
 
         if (it == _M_indexes.end())
-            throw poll_not_found();
+            raise(poll_not_found);
 
         return _M_items[it->second];
     }

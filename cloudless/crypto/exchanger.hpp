@@ -98,7 +98,7 @@ namespace crypto
         {
             if (spub_.size() != _M_fhmqv->StaticPublicKeyLength() ||
                     epub_.size() != _M_fhmqv->EphemeralPublicKeyLength())
-                throw size_mismatch();
+                raise(size_mismatch);
 
             CryptoPP::SecByteBlock spub((byte*)spub_.data(), spub_.size());
             CryptoPP::SecByteBlock epub((byte*)epub_.data(), epub_.size());
@@ -193,7 +193,7 @@ namespace crypto
         static_private(const std::string& val_)
         {
             if (val_.size() != _M_fhmqv->StaticPrivateKeyLength())
-                throw size_mismatch();
+                raise(size_mismatch);
 
             _M_spriv.reset(
                     new CryptoPP::SecByteBlock(
@@ -210,7 +210,7 @@ namespace crypto
         static_public(const std::string& val_)
         {
             if (val_.size() != _M_fhmqv->StaticPublicKeyLength())
-                throw size_mismatch();
+                raise(size_mismatch);
 
             _M_spub.reset(
                     new CryptoPP::SecByteBlock(
@@ -227,7 +227,7 @@ namespace crypto
         ephemeral_private(const std::string& val_)
         {
             if (val_.size() != _M_fhmqv->EphemeralPrivateKeyLength())
-                throw size_mismatch();
+                raise(size_mismatch);
 
             _M_epriv.reset(
                     new CryptoPP::SecByteBlock(
@@ -244,7 +244,7 @@ namespace crypto
         ephemeral_public(const std::string& val_)
         {
             if (val_.size() != _M_fhmqv->EphemeralPublicKeyLength())
-                throw size_mismatch();
+                raise(size_mismatch);
 
             _M_epub.reset(
                     new CryptoPP::SecByteBlock(
@@ -309,7 +309,7 @@ namespace crypto
         shared_secret() const
         {
             if (!_M_sharedS)
-                throw null_pointer();
+                raise(null_pointer);
 
             return std::string((char*)_M_sharedS->BytePtr(),
                     _M_sharedS->SizeInBytes());
