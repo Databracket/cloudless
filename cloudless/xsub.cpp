@@ -34,8 +34,8 @@ namespace cloudless
 
     // xsub
 
-    xsub::xsub(context& context_) :
-        socket(context_, socket_type::XSUB)
+    xsub::xsub(context& context) :
+        socket(context, socket_type::XSUB)
     {}
 
 } // namespace cloudless

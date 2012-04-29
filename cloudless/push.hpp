@@ -46,15 +46,15 @@ namespace cloudless
         /**
          * A constructor that takes a context.
          *
-         * @param context_ a context.
+         * @param context a context.
          */
-        push(context& context_);
+        push(context& context);
 
         /**
          * An override of the recv() function in the socket interface
          * to disable it as PUSH sockets does not receive any messages.
          */
-        virtual bool recv(message& msg_, bool block_ = true);
+        virtual bool recv(message& msg, bool block = true);
     };
 
 } // namespace cloudless

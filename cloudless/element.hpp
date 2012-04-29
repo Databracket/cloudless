@@ -52,24 +52,24 @@ namespace cloudless
          * A default constructor that optionally takes a pointer
          * to a 0MQ message.
          *
-         * @param p_ a pointer to a 0MQ message.
+         * @param p a pointer to a 0MQ message.
          */
-        element(details::zmessage* p_ = new details::zmessage);
+        element(details::zmessage* p = new details::zmessage);
 
         /**
          * A constructor that takes a constant reference to a std::string.
          *
-         * @param data_ the data in std::string to be wrapped.
+         * @param data the data in std::string to be wrapped.
          */
-        element(const std::string& data_);
+        element(const std::string& data);
 
         /**
          * A constructor that takes a char array pointer and its size.
          *
-         * @param p_ a pointer to data in a char array.
-         * @param size_ the size of the char array.
+         * @param p a pointer to data in a char array.
+         * @param size the size of the char array.
          */
-        element(const void* p_, size_t size_);
+        element(const void* p, size_t size);
 
         /**
          * Equality comparison against a generic type and the underlying

@@ -34,16 +34,16 @@ namespace cloudless
 {
 
     std::string
-    from_hex(const std::string& hex_)
+    from_hex(const std::string& hex)
     {
-        if (hex_.size() % 2 != 0)
+        if (hex.size() % 2 != 0)
             raise(invalid_format);
 
-        std::string res(hex_.size() / 2, 0);
+        std::string res(hex.size() / 2, 0);
         std::string::iterator ptr(res.begin());
 
-        for (std::string::const_iterator it = hex_.begin();
-                it != hex_.end(); it += 2) {
+        for (std::string::const_iterator it = hex.begin();
+                it != hex.end(); it += 2) {
             char x = std::tolower(*it);
             char y = std::tolower(*(it + 1));
 
@@ -62,14 +62,14 @@ namespace cloudless
     }
 
     std::string
-    to_hex(const std::string& str_)
+    to_hex(const std::string& str)
     {
         static const char* digits("0123456789abcdef");
-        std::string res(str_.size() * 2, 0);
+        std::string res(str.size() * 2, 0);
         std::string::iterator ptr(res.begin());
 
-        for (std::string::const_iterator it = str_.begin();
-                it != str_.end(); ++it) {
+        for (std::string::const_iterator it = str.begin();
+                it != str.end(); ++it) {
             *ptr++ = digits[(unsigned char)*it >> 4];
             *ptr++ = digits[(unsigned char)*it & 15];
         }

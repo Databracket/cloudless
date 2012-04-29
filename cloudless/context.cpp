@@ -31,8 +31,8 @@
 namespace cloudless
 {
 
-    context::context(int io_threads_) :
-        details::zcontext(io_threads_)
+    context::context(int io_threads) :
+        details::zcontext(io_threads)
     {}
 
 } // namespace cloudless

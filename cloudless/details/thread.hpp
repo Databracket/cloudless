@@ -69,13 +69,13 @@ namespace details
         /**
          * Start this thread either in detach or join mode.
          *
-         * @param detach_ whether to laucnh the thread in detach mode.
-         * @param time_ if detach_ was false; a time period in milliseconds
+         * @param detach whether to laucnh the thread in detach mode.
+         * @param time if detach was false; a time period in milliseconds
          * of which after joining, the thread will be detached. Value 0 means
          * join till the thread is finished.
          * @return whether launching the thread was successful.
          */
-        bool start(bool detach_ = true, unsigned int time_ = 0);
+        bool start(bool detach = true, unsigned int time = 0);
 
         /**
          * Send a request to a detached thread to stop.
@@ -108,9 +108,9 @@ namespace details
          * A static helper function to instruct the calling thread
          * to sleep for a specific period of time expressed in milliseconds.
          *
-         * @param time_ number of milliseconds for the calling thread to sleep.
+         * @param time number of milliseconds for the calling thread to sleep.
          */
-        static void sleep(unsigned int time_);
+        static void sleep(unsigned int time);
 
         /**
          * Equality comparison between two threads.
@@ -137,10 +137,10 @@ namespace details
          * A virtual function to be optionally overrided by a child of this class.
          * This function will be executed in the event body() throws an exception.
          *
-         * @param ex_ any exception inherited from std::exception or
+         * @param ex any exception inherited from std::exception or
          * even std::exception itself.
          */
-        virtual void on_error(const std::exception& ex_)
+        virtual void on_error(const std::exception& ex)
         {
             // No default error reporting mechanism configured.
             // Feel free to override this function to provide error

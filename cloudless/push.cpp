@@ -34,12 +34,12 @@ namespace cloudless
 
     // push
 
-    push::push(context& context_) :
-        socket(context_, socket_type::PUSH)
+    push::push(context& context) :
+        socket(context, socket_type::PUSH)
     {}
 
     bool
-    push::recv(message& msg_, bool block_)
+    push::recv(message& msg, bool block)
     {
         raise(feature_not_supported);
     }

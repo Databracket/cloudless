@@ -56,21 +56,21 @@ namespace cloudless
         /**
          * Add a pollitem to the pool to be monitored.
          *
-         * @param item_ a pollitem.
-         * @param name_ a std::string of a name to be associated with the pollitem.
+         * @param item a pollitem.
+         * @param name a std::string of a name to be associated with the pollitem.
          */
-        poller& add_item(pollitem& item_, const std::string& name_) throw();
+        poller& add_item(pollitem& item, const std::string& name) throw();
 
         /**
          * Poll on all pollitems in the container.
-         * Block until an event fires or timeout and return. If timeout_ was set
+         * Block until an event fires or timeout and return. If timeout was set
          * to -1 then the function will block indefinitely until an event fires.
          *
-         * @param timeout_ a timeout period in milliseconds. If -1 the function
+         * @param timeout a timeout period in milliseconds. If -1 the function
          * will block indefinitely, if 0 the function will return immediately.
          * @return whether any events fired.
          */
-        bool poll(long timeout_ = 300) const;
+        bool poll(long timeout = 300) const;
 
         /**
          * Get a pollitem from the container by the name associated with it.

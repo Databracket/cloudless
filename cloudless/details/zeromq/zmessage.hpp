@@ -58,16 +58,16 @@ namespace details
         /**
          * A constructor to initialize a 0MQ message with a specific size.
          *
-         * @param size_ size of message to be initialized.
+         * @param size size of message to be initialized.
          */
-        zmessage(size_t size_);
+        zmessage(size_t size);
 
         /**
          * A copy constructor.
          *
-         * @param msg_ a constant referance to an instance of zmessage.
+         * @param msg a constant referance to an instance of zmessage.
          */
-        zmessage(const zmessage& msg_);
+        zmessage(const zmessage& msg);
 
         /**
          * A destructor to free the allocated 0MQ message.

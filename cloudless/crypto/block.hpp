@@ -92,12 +92,12 @@ namespace crypto
         /**
          * A constructor that accepts a key and an IV.
          *
-         * @param key_ a cryptographic key.
-         * @param iv_ an initialization vector.
+         * @param key a cryptographic key.
+         * @param iv an initialization vector.
          */
-        block(const std::string& key_, const std::string& iv_) :
-            _M_key((byte*)key_.data(), key_.size()),
-            _M_iv((byte*)iv_.data(), iv_.size())
+        block(const std::string& key, const std::string& iv) :
+            _M_key((byte*)key.data(), key.size()),
+            _M_iv((byte*)iv.data(), iv.size())
         {
             _M_algo.SetKeyWithIV(_M_key.BytePtr(), _M_key.SizeInBytes(),
                     _M_iv.BytePtr());
@@ -106,10 +106,10 @@ namespace crypto
         /**
          * A constructor that accepts only a key for algorithms that don't deal with IVs.
          *
-         * @param key_ a cryptographic key.
+         * @param key a cryptographic key.
          */
-        block(const std::string& key_) :
-            _M_key((byte*)key_.data(), key_.size())
+        block(const std::string& key) :
+            _M_key((byte*)key.data(), key.size())
         {
             _M_algo.SetKey(_M_key.BytePtr(), _M_key.SizeInBytes());
         }
@@ -118,17 +118,17 @@ namespace crypto
          * Process a block of plaintext or ciphertext; depends on the state specified.
          * Note: PKCS5 Padding is automatically added or removed if needed.
          *
-         * @param value_ a block of plaintext or ciphertext.
+         * @param value a block of plaintext or ciphertext.
          */
         block<Algo>&
-        process(const std::string& value_)
+        process(const std::string& value)
         {
             if (!_Mp_stf)
                 _Mp_stf.reset(new StreamTransformationFilter(_M_algo,
                             new StringSink(_M_data),
                             StreamTransformationFilter::PKCS_PADDING));
 
-            _Mp_stf->Put((const byte*)value_.data(), value_.size());
+            _Mp_stf->Put((const byte*)value.data(), value.size());
             return *const_cast<block<Algo>*>(this);
         }
 
@@ -194,13 +194,13 @@ namespace crypto
         /**
          * A constrcutor that accepts a key, an IV, and a TAG size.
          *
-         * @param key_ a cryptographic key.
-         * @param iv_ an initialization vector.
-         * @param tagsize_ the TAG size for the MAC used. Defaults to 16. (optional)
+         * @param key a cryptographic key.
+         * @param iv an initialization vector.
+         * @param tagsize the TAG size for the MAC used. Defaults to 16. (optional)
          */
-        block_auth(const std::string& key_, const std::string& iv_, int tagsize_ = 16) :
-            _M_key((byte*)key_.data(), key_.size()),
-            _M_iv((byte*)iv_.data(), iv_.size()), _M_tagsize(tagsize_)
+        block_auth(const std::string& key, const std::string& iv, int tagsize = 16) :
+            _M_key((byte*)key.data(), key.size()),
+            _M_iv((byte*)iv.data(), iv.size()), _M_tagsize(tagsize)
         {
             _M_algo.SetKeyWithIV(_M_key.BytePtr(), _M_key.SizeInBytes(),
                     _M_iv.BytePtr(), _M_iv.SizeInBytes());
@@ -211,23 +211,23 @@ namespace crypto
          * Note: The first call to this function MUST provide ALL ADATA if any,
          * and all subsequent calls MUST not provide any ADATA.
          *
-         * @param value_ a plaintext block.
-         * @param adata_ additional data or ADATA. Defaults to "". (optional)
+         * @param value a plaintext block.
+         * @param adata additional data or ADATA. Defaults to "". (optional)
          */
         block_auth<Algo>&
-        process_encryption(const std::string& value_, const std::string& adata_ = "")
+        process_encryption(const std::string& value, const std::string& adata = "")
         {
             if (!_Mp_aef)
                 _Mp_aef.reset(new AuthenticatedEncryptionFilter(_M_algo,
                             new StringSink(_M_data), false, _M_tagsize));
 
             // The order of the following ChannelPut() calls are important
-            if (adata_.size()) {
+            if (adata.size()) {
                 _M_adata = true;
-                _Mp_aef->ChannelPut(AAD_CHANNEL, (byte*)adata_.data(), adata_.size());
+                _Mp_aef->ChannelPut(AAD_CHANNEL, (byte*)adata.data(), adata.size());
             }
 
-            _Mp_aef->ChannelPut(DEFAULT_CHANNEL, (byte*)value_.data(), value_.size());
+            _Mp_aef->ChannelPut(DEFAULT_CHANNEL, (byte*)value.data(), value.size());
             return *const_cast<block_auth<Algo>*>(this);
         }
 
@@ -257,13 +257,13 @@ namespace crypto
          * ALL ADATA if any. All subsequent calls MUST not provide either
          * ADATA or the MAC.
          *
-         * @param ctext_ a ciphertext block.
-         * @param mac_ the Message Authentication Code. Defaults to "". (optional)
-         * @param adata_ additional data or ADATA. Defaults to "". (optional)
+         * @param ctext a ciphertext block.
+         * @param mac the Message Authentication Code. Defaults to "". (optional)
+         * @param adata additional data or ADATA. Defaults to "". (optional)
          */
         block_auth<Algo>&
-        process_decryption(const std::string& ctext_,
-                const std::string& mac_ = "", const std::string& adata_ = "")
+        process_decryption(const std::string& ctext,
+                const std::string& mac = "", const std::string& adata = "")
         {
             if (!_Mp_adf)
                 _Mp_adf.reset(new AuthenticatedDecryptionFilter(_M_algo, NULL,
@@ -271,15 +271,15 @@ namespace crypto
                             AuthenticatedDecryptionFilter::THROW_EXCEPTION, _M_tagsize));
 
             // The order of the following ChannelPut() calls are important
-            if (mac_.size())
-                _Mp_adf->ChannelPut(DEFAULT_CHANNEL, (byte*)mac_.data(), mac_.size());
+            if (mac.size())
+                _Mp_adf->ChannelPut(DEFAULT_CHANNEL, (byte*)mac.data(), mac.size());
 
-            if (adata_.size()) {
+            if (adata.size()) {
                 _M_adata = true;
-                _Mp_adf->ChannelPut(AAD_CHANNEL, (byte*)adata_.data(), adata_.size());
+                _Mp_adf->ChannelPut(AAD_CHANNEL, (byte*)adata.data(), adata.size());
             }
 
-            _Mp_adf->ChannelPut(DEFAULT_CHANNEL, (byte*)ctext_.data(), ctext_.size());
+            _Mp_adf->ChannelPut(DEFAULT_CHANNEL, (byte*)ctext.data(), ctext.size());
             return *const_cast<block_auth<Algo>*>(this);
         }
 

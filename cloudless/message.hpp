@@ -54,24 +54,24 @@ namespace cloudless
         /**
          * A constructor that takes a std::string.
          *
-         * @param data_ a std::string for data to be put as a message in a container.
+         * @param data a std::string for data to be put as a message in a container.
          */
-        message(const std::string& data_);
+        message(const std::string& data);
 
         /**
          * A constructor that takes a char array and its size.
          *
-         * @param p_ a pointer to a char array.
-         * @param size_ the size of the char array.
+         * @param p a pointer to a char array.
+         * @param size the size of the char array.
          */
-        message(const void* p_, size_t size_);
+        message(const void* p, size_t size);
 
         /**
          * A constructor that takes an element.
          *
-         * @param elem_ an element that wraps a 0MQ message.
+         * @param elem an element that wraps a 0MQ message.
          */
-        message(const element& elem_);
+        message(const element& elem);
 
         /**
          * Get the message at the bottom of the stack.
@@ -83,24 +83,24 @@ namespace cloudless
         /**
          * Push an element at the buttom of the stack.
          *
-         * @param elem_ an element that wraps a 0MQ message.
+         * @param elem an element that wraps a 0MQ message.
          */
-        message& push_tail(const element& elem_);
+        message& push_tail(const element& elem);
 
         /**
          * Push a std::string at the bottom of the stack.
          *
-         * @param data_ a std::string data that will be wrapped as an element internally.
+         * @param data a std::string data that will be wrapped as an element internally.
          */
-        message& push_tail(const std::string& data_);
+        message& push_tail(const std::string& data);
 
         /**
          * Push a char array at the bottom of the stack.
          *
-         * @param p_ a pointer to a char array.
-         * @param size_ the size of the char array.
+         * @param p a pointer to a char array.
+         * @param size the size of the char array.
          */
-        message& push_tail(const void* p_, size_t size_);
+        message& push_tail(const void* p, size_t size);
 
         /**
          * Pop the message at the bottom of the stack.
@@ -119,24 +119,24 @@ namespace cloudless
         /**
          * Push an element at the top of the stack.
          *
-         * @param elem_ an element that wraps a 0MQ message.
+         * @param elem an element that wraps a 0MQ message.
          */
-        message& push_head(const element& elem_);
+        message& push_head(const element& elem);
 
         /**
          * Push a std::string at the bottom of the stack.
          *
-         * @param data_ a std::string data that will be wrapped as an element internally.
+         * @param data a std::string data that will be wrapped as an element internally.
          */
-        message& push_head(const std::string& data_);
+        message& push_head(const std::string& data);
 
         /**
          * Push a char array at the bottom of the stack.
          *
-         * @param p_ a pointer to a char array.
-         * @param size_ the size of the char array.
+         * @param p a pointer to a char array.
+         * @param size the size of the char array.
          */
-        message& push_head(const void* p_, size_t size_);
+        message& push_head(const void* p, size_t size);
 
         /**
          * Pop the message at the bottom of the stack.
@@ -160,10 +160,10 @@ namespace cloudless
         /**
          * Access elements in the container by index.
          *
-         * @param idx_ the index of the element.
+         * @param idx the index of the element.
          * @return an element.
          */
-        element operator [](size_t idx_) const;
+        element operator [](size_t idx) const;
 
         std::deque<element>* operator ->();
 

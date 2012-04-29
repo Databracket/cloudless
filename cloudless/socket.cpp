@@ -36,53 +36,53 @@ namespace cloudless
 
     // socket
 
-    socket::socket(context& context_, int type_) :
-        details::zsocket(context_, type_)
+    socket::socket(context& context, int type) :
+        details::zsocket(context, type)
     {
         _M_ip = details::shared_ptr<pollitem>(new pollitem(*this));
     }
 
     socket&
-    socket::bind(const std::string& addr_)
+    socket::bind(const std::string& addr)
     {
-        details::zsocket::bind(addr_.c_str());
+        details::zsocket::bind(addr.c_str());
 
         return *this;
     }
 
     socket&
-    socket::bind(const address& addr_)
+    socket::bind(const address& addr)
     {
-        details::zsocket::bind((const char*) addr_);
+        details::zsocket::bind((const char*) addr);
 
         return *this;
     }
 
     socket&
-    socket::connect(const std::string& addr_)
+    socket::connect(const std::string& addr)
     {
-        details::zsocket::connect(addr_.c_str());
+        details::zsocket::connect(addr.c_str());
 
         return *this;
     }
 
     socket&
-    socket::connect(const address& addr_)
+    socket::connect(const address& addr)
     {
-        details::zsocket::connect((const char*) addr_);
+        details::zsocket::connect((const char*) addr);
 
         return *this;
     }
 
     bool
-    socket::send(message& msg_, bool block_)
+    socket::send(message& msg, bool block)
     {
-        if (msg_->empty())
+        if (msg->empty())
             raise(message_empty);
 
 #if ZMQ_VERSION_MAJOR == 2
         // An implementation for timed blocking.
-        if (block_ && !can_send()) {
+        if (block && !can_send()) {
             poller p;
 
             p.add_item(poll_item().register_event(poll_events::OUT),
@@ -93,27 +93,27 @@ namespace cloudless
         }
 #endif
 
-        while (msg_.size()) {
-            if (!sendmsg(*msg_->front(),
-                        (msg_->size() > 1 ? ZMQ_SNDMORE : 0)
-                        | (block_ == true ? 0 : ZMQ_DONTWAIT)))
+        while (msg.size()) {
+            if (!sendmsg(*msg->front(),
+                        (msg->size() > 1 ? ZMQ_SNDMORE : 0)
+                        | (block == true ? 0 : ZMQ_DONTWAIT)))
                 return false;
 
-            msg_->pop_front();
+            msg->pop_front();
         }
 
         return true;
     }
 
     bool
-    socket::recv(message& msg_, bool block_)
+    socket::recv(message& msg, bool block)
     {
-        if (msg_.size())
-            msg_->clear();
+        if (msg.size())
+            msg->clear();
 
 #if ZMQ_VERSION_MAJOR == 2
         // An implementation for timed blocking.
-        if (block_ && !can_recv()) {
+        if (block && !can_recv()) {
             poller p;
 
             p.add_item(poll_item().register_event(poll_events::IN),
@@ -128,10 +128,10 @@ namespace cloudless
             element e;
 
             if (!recvmsg(*e,
-                        (block_ == true ? 0 : ZMQ_DONTWAIT)))
+                        (block == true ? 0 : ZMQ_DONTWAIT)))
                 return false;
 
-            msg_.push_tail(e);
+            msg.push_tail(e);
         } while (recv_more());
 
         return true;

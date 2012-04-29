@@ -53,51 +53,51 @@ namespace cloudless
         /**
          * A constructor that takes a context and a socket type.
          *
-         * @param context_ a context.
-         * @param type_ a socket type.
+         * @param context a context.
+         * @param type a socket type.
          */
-        socket(context& context_, int type_);
+        socket(context& context, int type);
 
         /**
          * Bind this socket to a specific address given via
          * a std::string.
          *
-         * @param addr_ a socket address string.
+         * @param addr a socket address string.
          */
-        socket& bind(const std::string& addr_);
+        socket& bind(const std::string& addr);
 
         /**
          * Bind this socket to a specific address given via
          * the address structure.
          *
-         * @param addr_ a socket address structure.
+         * @param addr a socket address structure.
          */
-        socket& bind(const address& addr_);
+        socket& bind(const address& addr);
 
         /**
          * Connect this socket to a specific address given via
          * a std::string.
          *
-         * @param addr_ a socket address string.
+         * @param addr a socket address string.
          */
-        socket& connect(const std::string& addr_);
+        socket& connect(const std::string& addr);
 
         /**
          * Connect this socket to a specific address given via
          * the address structure.
          *
-         * @param addr_ a socket address structure.
+         * @param addr a socket address structure.
          */
-        socket& connect(const address& addr_);
+        socket& connect(const address& addr);
 
         /**
          * Send a message through this socket.
          *
-         * @param msg_ a reference to an instance of a message.
-         * @param block_ whether to send this message synchronously or asynchronously.
+         * @param msg a reference to an instance of a message.
+         * @param block whether to send this message synchronously or asynchronously.
          * @return whether the message was sent successfully.
          */
-        virtual bool send(message& msg_, bool block_ = true);
+        virtual bool send(message& msg, bool block = true);
 
         /**
          * Receive a message through this socket.
@@ -105,11 +105,11 @@ namespace cloudless
          * the message container will be cleared of all elements prior to filling
          * it with the message to be received.
          *
-         * @param msg_ a reference to an instance of a message.
-         * @param block_ whether to receive this message synchronously or asynchronously.
+         * @param msg a reference to an instance of a message.
+         * @param block whether to receive this message synchronously or asynchronously.
          * @return whether the message was received successfully.
          */
-        virtual bool recv(message& msg_, bool block_ = true);
+        virtual bool recv(message& msg, bool block = true);
 
         /**
          * Get a pollitem that represents this socket.

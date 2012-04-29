@@ -46,9 +46,9 @@ namespace cloudless
         /**
          * A constructor that takes a context.
          *
-         * @param context_ a context.
+         * @param context a context.
          */
-        router(context& context_);
+        router(context& context);
     };
 
 } // namespace cloudless

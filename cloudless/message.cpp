@@ -34,19 +34,19 @@ namespace cloudless
 
     // message
 
-    message::message(const std::string& data_)
+    message::message(const std::string& data)
     {
-        push_tail(data_);
+        push_tail(data);
     }
 
-    message::message(const void* p_, size_t size_)
+    message::message(const void* p, size_t size)
     {
-        push_tail(p_, size_);
+        push_tail(p, size);
     }
 
-    message::message(const element& elem_)
+    message::message(const element& elem)
     {
-        push_tail(elem_);
+        push_tail(elem);
     }
 
     element
@@ -62,23 +62,23 @@ namespace cloudless
     }
 
     message&
-    message::push_tail(const element& elem_)
+    message::push_tail(const element& elem)
     {
-        _M_elements.push_back(elem_);
+        _M_elements.push_back(elem);
 
         return *this;
     }
 
     message&
-    message::push_tail(const std::string& data_)
+    message::push_tail(const std::string& data)
     {
-        return push_tail(element(data_));
+        return push_tail(element(data));
     }
 
     message&
-    message::push_tail(const void* p_, size_t size_)
+    message::push_tail(const void* p, size_t size)
     {
-        return push_tail(element(p_, size_));
+        return push_tail(element(p, size));
     }
 
     element
@@ -104,23 +104,23 @@ namespace cloudless
     }
 
     message&
-    message::push_head(const element& elem_)
+    message::push_head(const element& elem)
     {
-        _M_elements.push_front(elem_);
+        _M_elements.push_front(elem);
 
         return *this;
     }
 
     message&
-    message::push_head(const std::string& data_)
+    message::push_head(const std::string& data)
     {
-        return push_head(element(data_));
+        return push_head(element(data));
     }
 
     message&
-    message::push_head(const void* p_, size_t size_)
+    message::push_head(const void* p, size_t size)
     {
-        return push_head(element(p_, size_));
+        return push_head(element(p, size));
     }
 
     element
@@ -155,9 +155,9 @@ namespace cloudless
     }
 
     element
-    message::operator [](size_t idx_) const
+    message::operator [](size_t idx) const
     {
-        return _M_elements.at(idx_);
+        return _M_elements.at(idx);
     }
 
 } // namespace cloudless

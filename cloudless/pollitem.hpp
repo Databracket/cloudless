@@ -64,32 +64,32 @@ namespace poll_events
         /**
          * A constructor that takes a 0MQ socket.
          *
-         * @param socket_ a 0MQ socket.
-         * @param events_ the events that poller should be monitoring. (e.g., IN | OUT)
+         * @param socket a 0MQ socket.
+         * @param events the events that poller should be monitoring. (e.g., IN | OUT)
          */
-        pollitem(details::zsocket& socket_, short events_ = 0) throw();
+        pollitem(details::zsocket& socket, short events = 0) throw();
 
         /**
          * A constructor that takes a system socket.
          *
-         * @param fd_ a system's socket file descriptor.
-         * @param events_ the events that polller should be monitoring. (e.g., IN | ERROR)
+         * @param fd a system's socket file descriptor.
+         * @param events the events that polller should be monitoring. (e.g., IN | ERROR)
          */
-        pollitem(socket_t fd_, short events_ = 0) throw();
+        pollitem(socket_t fd, short events = 0) throw();
 
         /**
          * Register an event to be monitored by poller.
          *
-         * @param event_ an event. (e.g., poll_events::IN)
+         * @param event an event. (e.g., poll_events::IN)
          */
-        pollitem& register_event(short event_) throw();
+        pollitem& register_event(short event) throw();
 
         /**
          * Unregister an event.
          *
-         * @param event_ an event. (e.g., poll_events::OUT)
+         * @param event an event. (e.g., poll_events::OUT)
          */
-        pollitem& unregister_event(short event_) throw();
+        pollitem& unregister_event(short event) throw();
 
         /**
          * Check whether poll_events::IN was triggered.

@@ -34,12 +34,12 @@ namespace cloudless
 
     // pub
 
-    pub::pub(context& context_) :
-        socket(context_, socket_type::PUB)
+    pub::pub(context& context) :
+        socket(context, socket_type::PUB)
     {}
 
     bool
-    pub::recv(message& msg_, bool block_)
+    pub::recv(message& msg, bool block)
     {
         raise(feature_not_supported);
     }

@@ -62,12 +62,12 @@ namespace crypto
          * A function to update the context of the underlying Hash algorithm
          * with a block of data.
          *
-         * @param value_ a block of data.
+         * @param value a block of data.
          */
         hash<Hash>&
-        update(const std::string& value_)
+        update(const std::string& value)
         {
-            _M_hd.Update((const byte*)value_.data(), value_.size());
+            _M_hd.Update((const byte*)value.data(), value.size());
             return *const_cast<hash<Hash>*>(this);
         }
 
@@ -89,33 +89,33 @@ namespace crypto
         /**
          * A static function for offline message digest generation.
          *
-         * @param value_ a block of data.
+         * @param value a block of data.
          * @return a raw message digest.
          */
         static std::string
-        digest(const std::string& value_)
+        digest(const std::string& value)
         {
             Hash hd;
             byte dig[Hash::DIGESTSIZE];
 
-            hd.CalculateDigest(dig, (const byte*)value_.data(), value_.size());
+            hd.CalculateDigest(dig, (const byte*)value.data(), value.size());
             return std::string((const char*)dig, Hash::DIGESTSIZE);
         }
 
         /**
          * A static function for offline verification of data and its digest.
          *
-         * @param digest_ the digest against the data given to verify.
-         * @param input_ the data corresponding to the digest provided.
+         * @param digest the digest against the data given to verify.
+         * @param input the data corresponding to the digest provided.
          * @return true or false.
          */
         static bool
-        verify(const std::string& digest_, const std::string& input_)
+        verify(const std::string& digest, const std::string& input)
         {
             Hash hd;
 
-            return hd.VerifyDigest((const byte*)digest_.data(),
-                    (const byte*)input_.data(), input_.size());
+            return hd.VerifyDigest((const byte*)digest.data(),
+                    (const byte*)input.data(), input.size());
         }
 
     private:

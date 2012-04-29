@@ -41,41 +41,41 @@ namespace cloudless
     /**
      * Convert a hexadecimal string to a string of bytes.
      *
-     * @param hex_ a hexadecimal string.
+     * @param hex a hexadecimal string.
      * @return a string of bytes.
      */
-    std::string LIBCLOUDLESS_EXPORT from_hex(const std::string& hex_);
+    std::string LIBCLOUDLESS_EXPORT from_hex(const std::string& hex);
 
     /**
      * Convert a string of bytes to a hexadecimal string.
      *
-     * @param str_ a string of bytes.
+     * @param str a string of bytes.
      * @return a hexadecimal string.
      */
-    std::string LIBCLOUDLESS_EXPORT to_hex(const std::string& str_);
+    std::string LIBCLOUDLESS_EXPORT to_hex(const std::string& str);
 
     /**
      * Convert to a type T from a string.
      *
      * @tparam T the generic type the string will be converted to.
-     * @param str_ a std::string.
-     * @param fully_ whether to throw an exception if the string isn't fully parsed.
-     * @param exceptions_ whether exceptions should be thrown on a format error.
+     * @param str a std::string.
+     * @param fully whether to throw an exception if the string isn't fully parsed.
+     * @param exceptions whether exceptions should be thrown on a format error.
      * @return an instance of T.
      */
     template <typename T>
     T
-    LIBCLOUDLESS_EXPORT from_string(const std::string& str_, bool fully_ = true,
-            bool exceptions_ = true)
+    LIBCLOUDLESS_EXPORT from_string(const std::string& str, bool fully = true,
+            bool exceptions = true)
     {
-        std::istringstream iss(str_);
+        std::istringstream iss(str);
         T res;
 
         iss >> std::boolalpha >> res;
 
-        if (fully_ && !iss.eof())
+        if (fully && !iss.eof())
             raise(not_fully_parsed);
-        else if (exceptions_ && !iss) // operator! checks (failbit|badbit)
+        else if (exceptions && !iss) // operator! checks (failbit|badbit)
             raise(invalid_format);
 
         return res;
@@ -85,16 +85,16 @@ namespace cloudless
      * Convert a generic type T to a string.
      *
      * @tparam T the generic type that will be converted to a string.
-     * @param t_ an instance of type T.
-     * @return a std::string of converted value from t_.
+     * @param t an instance of type T.
+     * @return a std::string of converted value from t.
      */
     template <typename T>
     std::string
-    LIBCLOUDLESS_EXPORT to_string(const T& t_)
+    LIBCLOUDLESS_EXPORT to_string(const T& t)
     {
         std::ostringstream oss;
 
-        oss << std::boolalpha << t_;
+        oss << std::boolalpha << t;
         return oss.str();
     }
 

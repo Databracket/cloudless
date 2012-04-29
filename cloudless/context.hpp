@@ -50,7 +50,7 @@ namespace cloudless
          * A constructor that takes the number of threads that should
          * handle recieving and sending messages.
          */
-        context(int io_threads_ = 2);
+        context(int io_threads = 2);
     };
 
 } // namespace cloudless

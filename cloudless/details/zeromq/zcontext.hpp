@@ -49,9 +49,9 @@ namespace details
          * A constrcutor that takes the number of I/O threads
          * to handle sending and receiving messages.
          *
-         * @param io_threads_ the number of threads to handle I/O. Defaults to 1.
+         * @param io_threads the number of threads to handle I/O. Defaults to 1.
          */
-        zcontext(int io_threads_ = 1);
+        zcontext(int io_threads = 1);
 
         /**
          * A destructor to free the allocated context by 0MQ.

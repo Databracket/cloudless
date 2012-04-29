@@ -33,8 +33,8 @@ namespace cloudless
 
     // pair
 
-    pair::pair(context& context_) :
-        socket(context_, socket_type::PAIR)
+    pair::pair(context& context) :
+        socket(context, socket_type::PAIR)
     {}
 
 } // namespace cloudless

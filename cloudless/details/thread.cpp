@@ -54,7 +54,7 @@ namespace details
     }
 
     bool
-    thread::start(bool detach_, unsigned int time_)
+    thread::start(bool detach, unsigned int time)
     {
         if (_Mp_thread)
             return false;
@@ -63,17 +63,17 @@ namespace details
                     boost::bind(&thread::_M_run,
                         shared_from_this())));
 
-        if (detach_) {
+        if (detach) {
             _Mp_thread->detach();
             return _M_detached = true;
         }
 
-        if (time_ == 0) {
+        if (time == 0) {
             _Mp_thread->join();
             return true;
         }
 
-        return _Mp_thread->timed_join(boost::posix_time::milliseconds(time_));
+        return _Mp_thread->timed_join(boost::posix_time::milliseconds(time));
     }
 
     void
@@ -95,9 +95,9 @@ namespace details
     }
 
     void
-    thread::sleep(unsigned int time_)
+    thread::sleep(unsigned int time)
     {
-        boost::this_thread::sleep(boost::posix_time::milliseconds(time_));
+        boost::this_thread::sleep(boost::posix_time::milliseconds(time));
     }
 
     thread::native_handle_type
@@ -130,8 +130,8 @@ namespace details
 
         try {
             while (!_M_stop) { body(); }
-        } catch (const std::exception& ex_) {
-            try { on_error(ex_); }
+        } catch (const std::exception& ex) {
+            try { on_error(ex); }
             catch (...) { /* We're sorry for your loss. */ }
         } catch (...) { /* Not much to be done ... */ }
 

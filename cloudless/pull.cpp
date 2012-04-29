@@ -34,12 +34,12 @@ namespace cloudless
 
     // pull
 
-    pull::pull(context& context_) :
-        socket(context_, socket_type::PULL)
+    pull::pull(context& context) :
+        socket(context, socket_type::PULL)
     {}
 
     bool
-    pull::send(message& msg_, bool block_)
+    pull::send(message& msg, bool block)
     {
         raise(feature_not_supported);
     }

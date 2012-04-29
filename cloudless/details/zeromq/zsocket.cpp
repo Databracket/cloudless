@@ -31,8 +31,8 @@
 #include <cloudless/exceptions.hpp>
 
 #define _M_getsockopt(opt_, optval_) \
-    size_t optvallen = sizeof(optval_); \
-    getsockopt(opt_, (void*)&optval_, &optvallen);
+    size_t optvallen_ = sizeof(optval_); \
+    getsockopt(opt_, (void*)&optval_, &optvallen_);
 
 #define _M_setsockopt(opt_, optval_) \
     setsockopt(opt_, (void*)&optval_, sizeof(optval_));
@@ -45,10 +45,10 @@ namespace details
 
     // zsocket
 
-    zsocket::zsocket(zcontext& context_, int type_) :
+    zsocket::zsocket(zcontext& context, int type) :
         _M_recvtimeo(-1), _M_sendtimeo(-1)
     {
-        _Mp_ptr = zmq_socket(context_, type_);
+        _Mp_ptr = zmq_socket(context, type);
 
         if (_Mp_ptr == NULL)
             raise(zexception);
@@ -79,47 +79,47 @@ namespace details
     }
 
     void
-    zsocket::setsockopt(int option_, const void* optval_,
-            size_t optvallen_)
+    zsocket::setsockopt(int option, const void* optval,
+            size_t optvallen)
     {
-        int rc = zmq_setsockopt(_Mp_ptr, option_, optval_, optvallen_);
+        int rc = zmq_setsockopt(_Mp_ptr, option, optval, optvallen);
 
         if (rc == -1)
             raise(zexception);
     }
 
     void
-    zsocket::getsockopt(int option_, void* optval_,
-            size_t* optvallen_) const
+    zsocket::getsockopt(int option, void* optval,
+            size_t* optvallen) const
     {
-        int rc = zmq_getsockopt(_Mp_ptr, option_, optval_, optvallen_);
+        int rc = zmq_getsockopt(_Mp_ptr, option, optval, optvallen);
 
         if (rc == -1)
             raise(zexception);
     }
 
     void
-    zsocket::bind(const char* addr_)
+    zsocket::bind(const char* addr)
     {
-        int rc = zmq_bind(_Mp_ptr, addr_);
+        int rc = zmq_bind(_Mp_ptr, addr);
 
         if (rc == -1)
             raise(zexception);
     }
 
     void
-    zsocket::connect(const char* addr_)
+    zsocket::connect(const char* addr)
     {
-        int rc = zmq_connect(_Mp_ptr, addr_);
+        int rc = zmq_connect(_Mp_ptr, addr);
 
         if (rc == -1)
             raise(zexception);
     }
 
     bool
-    zsocket::sendmsg(zmessage& msg_, int flags_)
+    zsocket::sendmsg(zmessage& msg, int flags)
     {
-        int rc = zmq_sendmsg(_Mp_ptr, msg_, flags_);
+        int rc = zmq_sendmsg(_Mp_ptr, msg, flags);
 
 #if ZMQ_VERSION_MAJOR == 3
         if (rc > 0) // 0MQ 3.x returns the number of bytes sent
@@ -136,9 +136,9 @@ namespace details
     }
 
     bool
-    zsocket::recvmsg(zmessage& msg_, int flags_)
+    zsocket::recvmsg(zmessage& msg, int flags)
     {
-        int rc = zmq_recvmsg(_Mp_ptr, msg_, flags_);
+        int rc = zmq_recvmsg(_Mp_ptr, msg, flags);
 
 #if ZMQ_VERSION_MAJOR == 3
         if (rc > 0) // 0MQ 3.x returns the number of bytes received
@@ -169,7 +169,7 @@ namespace details
         char id[256];
 
         _M_getsockopt(ZMQ_IDENTITY, id);
-        return std::string(id, optvallen);
+        return std::string(id, optvallen_);
     }
 
     int
@@ -380,146 +380,146 @@ namespace details
     }
 
     zsocket&
-    zsocket::affinity(uint64_t affinity_)
+    zsocket::affinity(uint64_t affinity)
     {
-        _M_setsockopt(ZMQ_AFFINITY, affinity_);
+        _M_setsockopt(ZMQ_AFFINITY, affinity);
         return *this;
     }
 
     zsocket&
-    zsocket::identity(const std::string& identity_)
+    zsocket::identity(const std::string& identity)
     {
-        setsockopt(ZMQ_IDENTITY, identity_.c_str(), identity_.size());
+        setsockopt(ZMQ_IDENTITY, identity.c_str(), identity.size());
         return *this;
     }
 
     zsocket&
-    zsocket::rate(int rate_)
+    zsocket::rate(int rate)
     {
-        int64v rate = rate_;
+        int64v rate_ = rate;
 
-        _M_setsockopt(ZMQ_RATE, rate);
+        _M_setsockopt(ZMQ_RATE, rate_);
         return *this;
     }
 
     zsocket&
-    zsocket::recovery_ivl(int ivl_)
+    zsocket::recovery_ivl(int ivl)
     {
 #if ZMQ_VERSION_MAJOR == 3
         int opt = ZMQ_RECOVERY_IVL;
 #elif ZMQ_VERSION_MAJOR == 2
         int opt = ZMQ_RECOVERY_IVL_MSEC;
 #endif
-        int64v ivl = ivl_;
+        int64v ivl_ = ivl;
 
-        _M_setsockopt(opt, ivl);
+        _M_setsockopt(opt, ivl_);
         return *this;
     }
 
     zsocket&
-    zsocket::send_buffer(int size_)
+    zsocket::send_buffer(int size)
     {
-        uint64v size = size_;
+        uint64v size_ = size;
 
-        _M_setsockopt(ZMQ_SNDBUF, size);
+        _M_setsockopt(ZMQ_SNDBUF, size_);
         return *this;
     }
 
     zsocket&
-    zsocket::recv_buffer(int size_)
+    zsocket::recv_buffer(int size)
     {
-        uint64v size = size_;
+        uint64v size_ = size;
 
-        _M_setsockopt(ZMQ_RCVBUF, size);
+        _M_setsockopt(ZMQ_RCVBUF, size_);
         return *this;
     }
 
     zsocket&
-    zsocket::linger(int linger_)
+    zsocket::linger(int linger)
     {
-        _M_setsockopt(ZMQ_LINGER, linger_);
+        _M_setsockopt(ZMQ_LINGER, linger);
         return *this;
     }
 
     zsocket&
-    zsocket::reconnect_ivl(int ivl_, int max_)
+    zsocket::reconnect_ivl(int ivl, int max)
     {
-        _M_setsockopt(ZMQ_RECONNECT_IVL, ivl_);
-        _M_setsockopt(ZMQ_RECONNECT_IVL_MAX, max_);
+        _M_setsockopt(ZMQ_RECONNECT_IVL, ivl);
+        _M_setsockopt(ZMQ_RECONNECT_IVL_MAX, max);
         return *this;
     }
 
     zsocket&
-    zsocket::backlog(int backlog_)
+    zsocket::backlog(int backlog)
     {
-        _M_setsockopt(ZMQ_BACKLOG, backlog_);
+        _M_setsockopt(ZMQ_BACKLOG, backlog);
         return *this;
     }
 
     zsocket&
-    zsocket::max_msg_size(int64_t max_size_)
+    zsocket::max_msg_size(int64_t max_size)
     {
 #if ZMQ_VERSION_MAJOR == 3
-        _M_setsockopt(ZMQ_MAXMSGSIZE, max_size_);
+        _M_setsockopt(ZMQ_MAXMSGSIZE, max_size);
 #endif
         return *this;
     }
 
     zsocket&
-    zsocket::hwm(int hwm_)
+    zsocket::hwm(int hwm)
     {
 #if ZMQ_VERSION_MAJOR == 3
-        _M_setsockopt(ZMQ_SNDHWM, hwm_);
-        _M_setsockopt(ZMQ_RCVHWM, hwm_);
+        _M_setsockopt(ZMQ_SNDHWM, hwm);
+        _M_setsockopt(ZMQ_RCVHWM, hwm);
 #elif ZMQ_VERSION_MAJOR == 2
-        uint64v hwm = hwm_;
+        uint64v hwm_ = hwm;
 
-        _M_setsockopt(ZMQ_HWM, hwm);
+        _M_setsockopt(ZMQ_HWM, hwm_);
 #endif
         return *this;
     }
 
     zsocket&
-    zsocket::send_hwm(int hwm_)
+    zsocket::send_hwm(int hwm)
     {
 #if ZMQ_VERSION_MAJOR == 3
         int hwm_type = ZMQ_SNDHWM;
 #elif ZMQ_VERSION_MAJOR == 2
         int hwm_type = ZMQ_HWM;
 #endif
-        uint64v hwm = hwm_;
+        uint64v hwm_ = hwm;
 
-        _M_setsockopt(hwm_type, hwm);
+        _M_setsockopt(hwm_type, hwm_);
         return *this;
     }
 
     zsocket&
-    zsocket::recv_hwm(int hwm_)
+    zsocket::recv_hwm(int hwm)
     {
 #if ZMQ_VERSION_MAJOR == 3
         int hwm_type = ZMQ_RCVHWM;
 #elif ZMQ_VERSION_MAJOR == 2
         int hwm_type = ZMQ_HWM;
 #endif
-        uint64v hwm = hwm_;
+        uint64v hwm_ = hwm;
 
-        _M_setsockopt(hwm_type, hwm);
+        _M_setsockopt(hwm_type, hwm_);
         return *this;
     }
 
     zsocket&
-    zsocket::multicast_hops(int hops_)
+    zsocket::multicast_hops(int hops)
     {
 #if ZMQ_VERSION_MAJOR == 3
-        _M_setsockopt(ZMQ_MULTICAST_HOPS, hops_);
+        _M_setsockopt(ZMQ_MULTICAST_HOPS, hops);
 #endif
         return *this;
     }
 
     zsocket&
-    zsocket::send_timeout(int timeout_)
+    zsocket::send_timeout(int timeout)
     {
-        _M_sendtimeo = timeout_;
+        _M_sendtimeo = timeout;
 
 #if ZMQ_VERSION_MAJOR == 3
         _M_setsockopt(ZMQ_SNDTIMEO, _M_sendtimeo);
@@ -528,9 +528,9 @@ namespace details
     }
 
     zsocket&
-    zsocket::recv_timeout(int timeout_)
+    zsocket::recv_timeout(int timeout)
     {
-        _M_recvtimeo = timeout_;
+        _M_recvtimeo = timeout;
 
 #if ZMQ_VERSION_MAJOR == 3
         _M_setsockopt(ZMQ_RCVTIMEO, _M_recvtimeo);
@@ -539,10 +539,10 @@ namespace details
     }
 
     zsocket&
-    zsocket::ipv4_only(bool ipv4_only_)
+    zsocket::ipv4_only(bool ipv4_only)
     {
 #if ZMQ_VERSION_MAJOR == 3
-        int ipv4 = ipv4_only_;
+        int ipv4 = ipv4_only;
 
         _M_setsockopt(ZMQ_IPV4ONLY, ipv4);
 #endif
@@ -550,22 +550,22 @@ namespace details
     }
 
     zsocket&
-    zsocket::subscribe(const std::string& topic_)
+    zsocket::subscribe(const std::string& topic)
     {
         if (type() != socket_type::SUB)
             raise(feature_not_supported);
 
-        setsockopt(ZMQ_SUBSCRIBE, topic_.c_str(), topic_.size());
+        setsockopt(ZMQ_SUBSCRIBE, topic.c_str(), topic.size());
         return *this;
     }
 
     zsocket&
-    zsocket::unsubscribe(const std::string& topic_)
+    zsocket::unsubscribe(const std::string& topic)
     {
         if (type() != socket_type::SUB)
             raise(feature_not_supported);
 
-        setsockopt(ZMQ_UNSUBSCRIBE, topic_.c_str(), topic_.size());
+        setsockopt(ZMQ_UNSUBSCRIBE, topic.c_str(), topic.size());
         return *this;
     }
 

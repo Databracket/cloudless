@@ -74,10 +74,10 @@ namespace details
         /**
          * A constructor that takes a zcontext and a socket type.
          *
-         * @param context_ a zcontext reference.
-         * @param type_ a socket type from cloudless::socket_type
+         * @param context a zcontext reference.
+         * @param type a socket type from cloudless::socket_type
          */
-        zsocket(zcontext& context_, int type_);
+        zsocket(zcontext& context, int type);
 
         /**
          * A destructor to close the 0MQ socket.
@@ -95,52 +95,52 @@ namespace details
         /**
          * Set 0MQ socket options.
          *
-         * @param option_ a 0MQ socket option. See to 0MQ's documentation.
-         * @param optval_ a pointer to the value of the option to be assigned.
-         * @param optvallen_ the size of the container of the value.
+         * @param option a 0MQ socket option. See to 0MQ's documentation.
+         * @param optval a pointer to the value of the option to be assigned.
+         * @param optvallen the size of the container of the value.
          */
-        void setsockopt(int option_, const void* optval_, size_t optvallen_);
+        void setsockopt(int option, const void* optval, size_t optvallen);
 
         /**
          * Get 0MQ socket options.
          *
-         * @param option_ a 0MQ socket option. See to 0MQ's documentation.
-         * @param optval_ a pointer to a value container to be assigned to.
-         * @param optvallen_ the size of the container of the value.
+         * @param option a 0MQ socket option. See to 0MQ's documentation.
+         * @param optval a pointer to a value container to be assigned to.
+         * @param optvallen the size of the container of the value.
          */
-        void getsockopt(int option_, void* optval_, size_t* optvallen_) const;
+        void getsockopt(int option, void* optval, size_t* optvallen) const;
 
         /**
          * Bind a socket to a specific address.
          *
-         * @param addr_ a 0MQ address. See to 0MQ's documentation.
+         * @param addr a 0MQ address. See to 0MQ's documentation.
          */
-        void bind(const char* addr_);
+        void bind(const char* addr);
 
         /**
          * Connect a socket to a specific address.
          *
-         * @param addr_ a 0MQ address. See to 0MQ's documentation.
+         * @param addr a 0MQ address. See to 0MQ's documentation.
          */
-        void connect(const char* addr_);
+        void connect(const char* addr);
 
         /**
          * Send a message.
          *
-         * @param msg_ a reference to a zmessage instance.
-         * @param flags_ send flags to be passed to 0MQ's interface. See to 0MQ's documentation.
+         * @param msg a reference to a zmessage instance.
+         * @param flags send flags to be passed to 0MQ's interface. See to 0MQ's documentation.
          * @return whether the message was sent successfully.
          */
-        bool sendmsg(zmessage& msg_, int flags_ = 0);
+        bool sendmsg(zmessage& msg, int flags = 0);
 
         /**
          * Receive a message.
          *
-         * @param msg_ a reference to a zmessage instance.
-         * @param flags_ receive flags to be passed to 0MQ's interface. See to 0MQ's documentation.
+         * @param msg a reference to a zmessage instance.
+         * @param flags receive flags to be passed to 0MQ's interface. See to 0MQ's documentation.
          * @return whether the message was received successfully.
          */
-        bool recvmsg(zmessage& msg_, int flags_ = 0);
+        bool recvmsg(zmessage& msg, int flags = 0);
 
         /* GETTERS */
 
@@ -305,138 +305,138 @@ namespace details
         /**
          * Set socket's affinity. See 0MQ's documentation.
          *
-         * @param affinity_ the affinity of this socket.
+         * @param affinity the affinity of this socket.
          */
-        zsocket& affinity(uint64_t affinity_);
+        zsocket& affinity(uint64_t affinity);
 
         /**
          * Set socket's identity. See 0MQ's documentation.
          *
-         * @param identity_ the socket identity in a std::string representation.
+         * @param identity the socket identity in a std::string representation.
          */
-        zsocket& identity(const std::string& identity_);
+        zsocket& identity(const std::string& identity);
 
         /**
          * Set socket's multicast data rate. See 0MQ's documentation.
          *
-         * @param rate_ the socket's multicast data rate in kilobits per second.
+         * @param rate the socket's multicast data rate in kilobits per second.
          */
-        zsocket& rate(int rate_);
+        zsocket& rate(int rate);
 
         /**
          * Set multicast recovery interval. See 0MQ's documentation.
          *
-         * @param ivl_ the socket's multicast recovery interval.
+         * @param ivl the socket's multicast recovery interval.
          */
-        zsocket& recovery_ivl(int ivl_);
+        zsocket& recovery_ivl(int ivl);
 
         /**
          * Set kernel transmit buffer size. See 0MQ's documentation.
          *
-         * @param size_ the transmit buffer size of the kernel.
+         * @param size the transmit buffer size of the kernel.
          */
-        zsocket& send_buffer(int size_);
+        zsocket& send_buffer(int size);
 
         /**
          * Set kernel receive buffer size. See 0MQ's documentation.
          *
-         * @param size_ the receive buffer size of the kernel.
+         * @param size the receive buffer size of the kernel.
          */
-        zsocket& recv_buffer(int size_);
+        zsocket& recv_buffer(int size);
 
         /**
          * Set the linger period for socket shutdown. See 0MQ's documentation.
          *
-         * @param linger_ the linger period in milliseconds. -1 means infinite.
+         * @param linger the linger period in milliseconds. -1 means infinite.
          */
-        zsocket& linger(int linger_);
+        zsocket& linger(int linger);
 
         /**
          * Set reconnection interval. See 0MQ's documentation.
          *
-         * @param ivl_ the reconnection interval in milliseconds.
-         * @param max_ the maximum reconnection interval in milliseconds.
+         * @param ivl the reconnection interval in milliseconds.
+         * @param max the maximum reconnection interval in milliseconds.
          */
-        zsocket& reconnect_ivl(int ivl_, int max_ = 0);
+        zsocket& reconnect_ivl(int ivl, int max = 0);
 
         /**
          * Set the maximum length of the queue of outstanding
          * connections. See 0MQ's documentation.
          *
-         * @param backlog_ the number of connections.
+         * @param backlog the number of connections.
          */
-        zsocket& backlog(int backlog_);
+        zsocket& backlog(int backlog);
 
         /**
          * Set maximum acceptable inbound message size. See 0MQ's documentation.
          *
-         * @param max_size_ maximum acceptable inbound message size in bytes.
+         * @param max_size maximum acceptable inbound message size in bytes.
          * Value of -1 means no limit.
          */
-        zsocket& max_msg_size(int64_t max_size_);
+        zsocket& max_msg_size(int64_t max_size);
 
         /**
          * Set high water mark for both inbound and outbound messages. See 0MQ's documentation.
          *
-         * @param hwm_ high water mark for inbound and outbound messages.
+         * @param hwm high water mark for inbound and outbound messages.
          */
-        zsocket& hwm(int hwm_);
+        zsocket& hwm(int hwm);
 
         /**
          * Set high water mark for outbound messages. See 0MQ's documentation.
          *
-         * @param hwm_ high water mark for outbound messages.
+         * @param hwm high water mark for outbound messages.
          */
-        zsocket& send_hwm(int hwm_);
+        zsocket& send_hwm(int hwm);
 
         /**
          * Set high water mark for inbound messages. See 0MQ's documentation.
          *
-         * @param hwm_ high water mark for inbound messages.
+         * @param hwm high water mark for inbound messages.
          */
-        zsocket& recv_hwm(int hwm_);
+        zsocket& recv_hwm(int hwm);
 
         /**
          * Set maximum network hops for multicast packets. See 0MQ's documentation.
          *
-         * @param hops_ maximum network hops.
+         * @param hops maximum network hops.
          */
-        zsocket& multicast_hops(int hops_);
+        zsocket& multicast_hops(int hops);
 
         /**
          * Set maximum time before a send operation times out. See 0MQ's documentation.
          *
-         * @param timeout_ maximum time before a send operation times out in milliseconds.
+         * @param timeout maximum time before a send operation times out in milliseconds.
          */
-        zsocket& send_timeout(int timeout_);
+        zsocket& send_timeout(int timeout);
 
         /**
          * Set maximum time before a receive operation times out. See 0MQ's documentation.
          *
-         * @param timeout_ maximum time before a receive operation times out in milliseconds.
+         * @param timeout maximum time before a receive operation times out in milliseconds.
          */
-        zsocket& recv_timeout(int timeout_);
+        zsocket& recv_timeout(int timeout);
 
         /**
          * Set this socket to operate only on IPv4. See 0MQ's documentation.
          *
-         * @param ipv4_only_ true or false.
+         * @param ipv4_only true or false.
          */
-        zsocket& ipv4_only(bool ipv4_only_);
+        zsocket& ipv4_only(bool ipv4_only);
 
         /**
          * Subscribe to a topic on a SUB socket. See 0MQ's documentation.
          *
-         * @param topic_ a topic to subscribe to.
+         * @param topic a topic to subscribe to.
          */
-        zsocket& subscribe(const std::string& topic_);
+        zsocket& subscribe(const std::string& topic);
 
         /**
          * Unsubscribe from a topic on a SUB socket. See 0MQ's documentation.
          *
-         * @param topic_ a topic to unsubscribe from.
+         * @param topic a topic to unsubscribe from.
          */
-        zsocket& unsubscribe(const std::string& topic_);
+        zsocket& unsubscribe(const std::string& topic);
 
         /**
          * Expose internal 0MQ's socket pointer.

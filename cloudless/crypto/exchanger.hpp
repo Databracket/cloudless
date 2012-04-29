@@ -89,24 +89,24 @@ namespace crypto
         /**
          * Agree on a shared secret.
          *
-         * @param spub_ the static public key of the other party.
-         * @param epub_ the ephemeral public key of the other party.
+         * @param spub the static public key of the other party.
+         * @param epub the ephemeral public key of the other party.
          * @return whether agreement was successful.
          */
         bool
-        agree(const std::string& spub_, const std::string& epub_)
+        agree(const std::string& spub, const std::string& epub)
         {
-            if (spub_.size() != _M_fhmqv->StaticPublicKeyLength() ||
-                    epub_.size() != _M_fhmqv->EphemeralPublicKeyLength())
+            if (spub.size() != _M_fhmqv->StaticPublicKeyLength() ||
+                    epub.size() != _M_fhmqv->EphemeralPublicKeyLength())
                 raise(size_mismatch);
 
-            CryptoPP::SecByteBlock spub((byte*)spub_.data(), spub_.size());
-            CryptoPP::SecByteBlock epub((byte*)epub_.data(), epub_.size());
+            CryptoPP::SecByteBlock s_pub((byte*)spub.data(), spub.size());
+            CryptoPP::SecByteBlock e_pub((byte*)epub.data(), epub.size());
 
             _M_sharedS.reset(
                     new CryptoPP::SecByteBlock(_M_fhmqv->AgreedValueLength()));
 
-            return _M_fhmqv->Agree(*_M_sharedS, *_M_spriv, *_M_epriv, spub, epub);
+            return _M_fhmqv->Agree(*_M_sharedS, *_M_spriv, *_M_epriv, s_pub, e_pub);
         }
 
         /**
@@ -187,68 +187,68 @@ namespace crypto
         /**
          * Set a static private key.
          *
-         * @param val_ a static private key.
+         * @param val a static private key.
          */
         exchanger<Hash, Client>&
-        static_private(const std::string& val_)
+        static_private(const std::string& val)
         {
-            if (val_.size() != _M_fhmqv->StaticPrivateKeyLength())
+            if (val.size() != _M_fhmqv->StaticPrivateKeyLength())
                 raise(size_mismatch);
 
             _M_spriv.reset(
                     new CryptoPP::SecByteBlock(
-                        (byte*)val_.data(), val_.size()));
+                        (byte*)val.data(), val.size()));
             return *const_cast<exchanger<Hash, Client>*>(this);
         }
 
         /**
          * Set a static public key.
          *
-         * @param val_ a static public key.
+         * @param val a static public key.
          */
         exchanger<Hash, Client>&
-        static_public(const std::string& val_)
+        static_public(const std::string& val)
         {
-            if (val_.size() != _M_fhmqv->StaticPublicKeyLength())
+            if (val.size() != _M_fhmqv->StaticPublicKeyLength())
                 raise(size_mismatch);
 
             _M_spub.reset(
                     new CryptoPP::SecByteBlock(
-                        (byte*)val_.data(), val_.size()));
+                        (byte*)val.data(), val.size()));
             return *const_cast<exchanger<Hash, Client>*>(this);
         }
 
         /**
          * Set an ephemeral private key.
          *
-         * @param val_ an ephemeral private key.
+         * @param val an ephemeral private key.
          */
         exchanger<Hash, Client>&
-        ephemeral_private(const std::string& val_)
+        ephemeral_private(const std::string& val)
         {
-            if (val_.size() != _M_fhmqv->EphemeralPrivateKeyLength())
+            if (val.size() != _M_fhmqv->EphemeralPrivateKeyLength())
                 raise(size_mismatch);
 
             _M_epriv.reset(
                     new CryptoPP::SecByteBlock(
-                        (byte*)val_.data(), val_.size()));
+                        (byte*)val.data(), val.size()));
             return *const_cast<exchanger<Hash, Client>*>(this);
         }
 
         /**
          * Set an ephemeral public key.
          *
-         * @param val_ an ephemeral public key.
+         * @param val an ephemeral public key.
          */
         exchanger<Hash, Client>&
-        ephemeral_public(const std::string& val_)
+        ephemeral_public(const std::string& val)
         {
-            if (val_.size() != _M_fhmqv->EphemeralPublicKeyLength())
+            if (val.size() != _M_fhmqv->EphemeralPublicKeyLength())
                 raise(size_mismatch);
 
             _M_epub.reset(
                     new CryptoPP::SecByteBlock(
-                        (byte*)val_.data(), val_.size()));
+                        (byte*)val.data(), val.size()));
             return *const_cast<exchanger<Hash, Client>*>(this);
         }
 

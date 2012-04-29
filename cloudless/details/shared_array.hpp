@@ -40,8 +40,8 @@ namespace details
     template <typename T>
     struct shared_array_deleter
     {
-        void operator ()(const T* ptr_)
-        { delete[] ptr_; }
+        void operator ()(const T* ptr)
+        { delete[] ptr; }
     };
 
     /**
@@ -57,10 +57,10 @@ namespace details
         /**
          * A constructor that takes a pointer of T.
          *
-         * @param ptr_ a pointer from the expression (new T[size]).
+         * @param ptr a pointer from the expression (new T[size]).
          */
-        explicit shared_array(T* ptr_) :
-            shared_ptr<T>(ptr_, shared_array_deleter<T>()) {}
+        explicit shared_array(T* ptr) :
+            shared_ptr<T>(ptr, shared_array_deleter<T>()) {}
     };
 
 } // namespace details

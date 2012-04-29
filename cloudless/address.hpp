@@ -77,12 +77,12 @@ namespace path
          * A constructor that accepts a protocol, a path or a host,
          * and a port if applicable.
          *
-         * @param protocol_ a protocol which will be used for two sockets to communicate on.
-         * @param path_ a host or a unique string, depending on the protocol.
-         * @param port_ a port number to be used along with the protocol.
+         * @param protocol a protocol which will be used for two sockets to communicate on.
+         * @param path a host or a unique string, depending on the protocol.
+         * @param port a port number to be used along with the protocol.
          */
-        address(const std::string& protocol_, const std::string& path_,
-                short port_ = 0);
+        address(const std::string& protocol, const std::string& path,
+                short port = 0);
 
         operator const std::string&() const;
         operator const char*() const;

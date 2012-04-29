@@ -34,40 +34,40 @@ namespace cloudless
 
     // null_pointer
 
-    null_pointer::null_pointer(const char* file_, int line_) :
-        exception(file_, line_)
+    null_pointer::null_pointer(const char* file, int line) :
+        exception(file, line)
     {
         error += "NULL pointer exception";
     }
 
     // message_empty
 
-    message_empty::message_empty(const char* file_, int line_) :
-        exception(file_, line_)
+    message_empty::message_empty(const char* file, int line) :
+        exception(file, line)
     {
         error += "message is empty";
     }
 
     // poll_empty
 
-    poll_empty::poll_empty(const char* file_, int line_) :
-        exception(file_, line_)
+    poll_empty::poll_empty(const char* file, int line) :
+        exception(file, line)
     {
         error += "poll is empty";
     }
 
     // poll_not_found
 
-    poll_not_found::poll_not_found(const char* file_, int line_) :
-        exception(file_, line_)
+    poll_not_found::poll_not_found(const char* file, int line) :
+        exception(file, line)
     {
         error += "item not found";
     }
 
     // zexception
 
-    zexception::zexception(const char* file_, int line_) :
-        exception(file_, line_),
+    zexception::zexception(const char* file, int line) :
+        exception(file, line),
         _M_errnum(zmq_errno())
     {
         error += zmq_strerror(_M_errnum);
@@ -81,54 +81,54 @@ namespace cloudless
 
     // feature_not_supported
 
-    feature_not_supported::feature_not_supported(const char* file_, int line_) :
-        exception(file_, line_)
+    feature_not_supported::feature_not_supported(const char* file, int line) :
+        exception(file, line)
     {
         error += "this socket type doesn't support this feature";
     }
 
     // function_not_implemented
 
-    function_not_implemented::function_not_implemented(const char* file_, int line_) :
-        exception(file_, line_)
+    function_not_implemented::function_not_implemented(const char* file, int line) :
+        exception(file, line)
     {
         error += "this function is not implemented";
     }
 
     // invalid_format
 
-    invalid_format::invalid_format(const char* file_, int line_) :
-        exception(file_, line_)
+    invalid_format::invalid_format(const char* file, int line) :
+        exception(file, line)
     {
         error += "invalid string format";
     }
 
     // not_fully_parsed
 
-    not_fully_parsed::not_fully_parsed(const char* file_, int line_) :
-        exception(file_, line_)
+    not_fully_parsed::not_fully_parsed(const char* file, int line) :
+        exception(file, line)
     {
         error += "string not fully parsed";
     }
 
     // crypto_exception
 
-    crypto_exception::crypto_exception(const char* file_, int line_) :
-        exception(file_, line_)
+    crypto_exception::crypto_exception(const char* file, int line) :
+        exception(file, line)
     {}
 
     // size_mismatch
 
-    size_mismatch::size_mismatch(const char* file_, int line_) :
-        crypto_exception(file_, line_)
+    size_mismatch::size_mismatch(const char* file, int line) :
+        crypto_exception(file, line)
     {
         error += "size mismatch";
     }
 
     // mac_verification_failed
 
-    mac_verification_failed::mac_verification_failed(const char* file_, int line_) :
-        crypto_exception(file_, line_)
+    mac_verification_failed::mac_verification_failed(const char* file, int line) :
+        crypto_exception(file, line)
     {
         error += "MAC verification failed";
     }

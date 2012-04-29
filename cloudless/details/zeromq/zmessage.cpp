@@ -47,17 +47,17 @@ namespace details
             raise(zexception);
     }
 
-    zmessage::zmessage(size_t size_)
+    zmessage::zmessage(size_t size)
     {
-        int rc = zmq_msg_init_size(this, size_);
+        int rc = zmq_msg_init_size(this, size);
 
         if (rc == -1)
             raise(zexception);
     }
 
-    zmessage::zmessage(const zmessage& msg_)
+    zmessage::zmessage(const zmessage& msg)
     {
-        int rc = zmq_msg_copy(this, (zmq_msg_t*) &msg_);
+        int rc = zmq_msg_copy(this, (zmq_msg_t*) &msg);
 
         if (rc == -1)
             raise(zexception);

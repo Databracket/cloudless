@@ -40,16 +40,16 @@ namespace cloudless
     {}
 
     poller&
-    poller::add_item(pollitem& item_, const std::string& name_) throw()
+    poller::add_item(pollitem& item, const std::string& name) throw()
     {
-        _M_items.push_back(item_);
-        _M_indexes[name_] = _M_ctr++;
+        _M_items.push_back(item);
+        _M_indexes[name] = _M_ctr++;
 
         return *this;
     }
 
     bool
-    poller::poll(long timeout_) const
+    poller::poll(long timeout) const
     {
         if (_M_items.empty())
             raise(poll_empty);
@@ -57,7 +57,7 @@ namespace cloudless
         // Accessing a std::vector like that is safe, as its memory is guaranteed
         // to be contiguous.
         int rc = zmq_poll((zmq_pollitem_t*)&_M_items[0], _M_items.size(),
-                timeout_ < 0 ? timeout_ : timeout_ * ZMQ_POLL_MSEC);
+                timeout < 0 ? timeout : timeout * ZMQ_POLL_MSEC);
 
         // 0MQ error occurred
         if (rc == -1)

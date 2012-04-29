@@ -40,9 +40,9 @@ namespace details
 
     // zcontext
 
-    zcontext::zcontext(int io_threads_)
+    zcontext::zcontext(int io_threads)
     {
-        _M_ptr = zmq_init(io_threads_);
+        _M_ptr = zmq_init(io_threads);
 
         if (_M_ptr == NULL)
             raise(null_pointer);

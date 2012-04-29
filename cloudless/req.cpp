@@ -33,8 +33,8 @@ namespace cloudless
 
     // req
 
-    req::req(context& context_) :
-        socket(context_, socket_type::REQ)
+    req::req(context& context) :
+        socket(context, socket_type::REQ)
     {}
 
 } // namespace cloudless

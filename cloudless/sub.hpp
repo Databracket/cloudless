@@ -48,15 +48,15 @@ namespace cloudless
         /**
          * A constructor that takes a context.
          *
-         * @param context_ a context.
+         * @param context a context.
          */
-        sub(context& context_);
+        sub(context& context);
 
         /**
          * An override of the send() function in the socket interface
          * to disable it as SUB sockets does not send any messages.
          */
-        virtual bool send(message& msg_, bool block_ = true);
+        virtual bool send(message& msg, bool block = true);
     };
 
 } // namespace cloudless

@@ -63,12 +63,12 @@ namespace crypto
         /**
          * A constructor that accepts a key and an IV.
          *
-         * @param key_ a cryptographic key.
-         * @param iv_ an initialization vector.
+         * @param key a cryptographic key.
+         * @param iv an initialization vector.
          */
-        stream(const std::string& key_, const std::string& iv_) :
-            _M_key((byte*)key_.data(), key_.size()),
-            _M_iv((byte*)iv_.data(), iv_.size())
+        stream(const std::string& key, const std::string& iv) :
+            _M_key((byte*)key.data(), key.size()),
+            _M_iv((byte*)iv.data(), iv.size())
         {
             _M_algo.SetKeyWithIV(_M_key.BytePtr(), _M_key.SizeInBytes(),
                     _M_iv.BytePtr());
@@ -77,10 +77,10 @@ namespace crypto
         /**
          * A constructor that accepts only a key for algorithms that don't require IVs.
          *
-         * @param key_ a cryptographic key.
+         * @param key a cryptographic key.
          */
-        stream(const std::string& key_) :
-            _M_key((byte*)key_.data(), key_.size())
+        stream(const std::string& key) :
+            _M_key((byte*)key.data(), key.size())
         {
             _M_algo.SetKey(_M_key.BytePtr(), _M_key.SizeInBytes());
         }
@@ -88,17 +88,17 @@ namespace crypto
         /**
          * Process a block of plaintext or ciphertext; depends on the state specified.
          *
-         * @param value_ a block of plaintext or ciphertext.
+         * @param value a block of plaintext or ciphertext.
          * @return the result of the operation on the state specified.
          */
         std::string
-        process(const std::string& value_)
+        process(const std::string& value)
         {
-            details::shared_array<byte> buffer(new byte[value_.size()]);
+            details::shared_array<byte> buffer(new byte[value.size()]);
 
-            _M_algo.ProcessData(buffer.get(), (byte*)value_.data(), value_.size());
+            _M_algo.ProcessData(buffer.get(), (byte*)value.data(), value.size());
 
-            return std::string((const char*)buffer.get(), value_.size());
+            return std::string((const char*)buffer.get(), value.size());
         }
 
         /**

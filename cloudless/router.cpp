@@ -33,8 +33,8 @@ namespace cloudless
 
     // router
 
-    router::router(context& context_) :
-        socket(context_, socket_type::ROUTER)
+    router::router(context& context) :
+        socket(context, socket_type::ROUTER)
     {}
 
 } // namespace cloudless

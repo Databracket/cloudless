@@ -33,8 +33,8 @@ namespace cloudless
 
     // dealer
 
-    dealer::dealer(context& context_) :
-        socket(context_, socket_type::DEALER)
+    dealer::dealer(context& context) :
+        socket(context, socket_type::DEALER)
     {}
 
 } // namespace cloudless

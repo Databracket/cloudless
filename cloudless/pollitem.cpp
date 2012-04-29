@@ -41,34 +41,34 @@ namespace cloudless
         ((zmq_pollitem_t*)this)->revents = 0;
     }
 
-    pollitem::pollitem(socket_t fd_, short events_) throw()
+    pollitem::pollitem(socket_t fd, short events) throw()
     {
         ((zmq_pollitem_t*)this)->socket = 0;
-        ((zmq_pollitem_t*)this)->fd = fd_;
-        ((zmq_pollitem_t*)this)->events = events_;
+        ((zmq_pollitem_t*)this)->fd = fd;
+        ((zmq_pollitem_t*)this)->events = events;
         ((zmq_pollitem_t*)this)->revents = 0;
     }
 
-    pollitem::pollitem(details::zsocket& socket_, short events_) throw()
+    pollitem::pollitem(details::zsocket& socket, short events) throw()
     {
-        ((zmq_pollitem_t*)this)->socket = socket_;
+        ((zmq_pollitem_t*)this)->socket = socket;
         ((zmq_pollitem_t*)this)->fd = 0;
-        ((zmq_pollitem_t*)this)->events = events_;
+        ((zmq_pollitem_t*)this)->events = events;
         ((zmq_pollitem_t*)this)->revents = 0;
     }
 
     pollitem&
-    pollitem::register_event(short event_) throw()
+    pollitem::register_event(short event) throw()
     {
-        events |= event_;
+        events |= event;
 
         return *this;
     }
 
     pollitem&
-    pollitem::unregister_event(short event_) throw()
+    pollitem::unregister_event(short event) throw()
     {
-        events ^= event_;
+        events ^= event;
 
         return *this;
     }

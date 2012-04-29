@@ -33,15 +33,15 @@
 namespace cloudless
 {
 
-    address::address(const std::string& protocol_, const std::string& path_,
-            short port_) :
-        _M_path(path_), _M_protocol(protocol_), _M_port(port_)
+    address::address(const std::string& protocol, const std::string& path,
+            short port) :
+        _M_path(path), _M_protocol(protocol), _M_port(port)
     {
         std::ostringstream oss;
 
         oss << _M_protocol << "://" << _M_path;
 
-        if (port_)
+        if (port)
             oss << ":" << _M_port;
 
         _M_addr = oss.str();

@@ -46,9 +46,9 @@ namespace cloudless
         /**
          * A constructor that takes a context.
          *
-         * @param context_ a context.
+         * @param context a context.
          */
-        xsub(context& context_);
+        xsub(context& context);
     };
 
 } // namespace cloudless

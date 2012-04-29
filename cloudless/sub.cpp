@@ -34,12 +34,12 @@ namespace cloudless
 
     // sub
 
-    sub::sub(context& context_) :
-        socket(context_, socket_type::SUB)
+    sub::sub(context& context) :
+        socket(context, socket_type::SUB)
     {}
 
     bool
-    sub::send(message& msg_, bool block_)
+    sub::send(message& msg, bool block)
     {
         raise(feature_not_supported);
     }

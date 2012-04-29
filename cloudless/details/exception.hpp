@@ -49,10 +49,10 @@ namespace details
 
     struct LIBCLOUDLESS_EXPORT exception : std::exception
     {
-        exception(const char* file_, int line_) throw()
+        exception(const char* file, int line) throw()
         {
             std::ostringstream oss;
-            oss << file_ << ":" << line_ << " ";
+            oss << file << ":" << line << " ";
 
             error = oss.str();
         }

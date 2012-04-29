@@ -34,8 +34,8 @@ namespace cloudless
 
     // xpub
 
-    xpub::xpub(context& context_) :
-        socket(context_, socket_type::XPUB)
+    xpub::xpub(context& context) :
+        socket(context, socket_type::XPUB)
     {}
 
 } // namespace cloudless
