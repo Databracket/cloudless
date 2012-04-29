@@ -34,6 +34,7 @@
 
 #include <cloudless/details/shared_array.hpp>
 #include <cloudless/address.hpp>
+#include <cloudless/misc.hpp>
 
 #define TC TEST_CASE
 #define S SECTION
@@ -65,5 +66,14 @@ TC ("cloudless/utils", "Testing utility functions.")
         str.reset();
 
         R ( str.get() == NULL );
+    }
+
+    S ("cloudless/misc", "Testing miscellaneous utilities.")
+    {
+        string teststr("\x41\x42\x43\x43\xff");
+
+        R ( cloudless::from_hex(cloudless::to_hex(teststr)) == teststr );
+        R ( cloudless::to_hex(teststr) == "41424343ff" );
+        R ( cloudless::from_string<int>(cloudless::to_string(255)) == 255 );
     }
 }
