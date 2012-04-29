@@ -29,6 +29,10 @@
 #ifndef __CLOUDLESS_DETAILS_EXCEPTION_HPP
 #define __CLOUDLESS_DETAILS_EXCEPTION_HPP
 
+#define raise(__ex) throw __ex(__FILE__, __LINE__)
+
+#include <string>
+#include <sstream>
 #include <exception>
 
 #include <cloudless/details/export.hpp>
@@ -45,7 +49,23 @@ namespace details
 
     struct LIBCLOUDLESS_EXPORT exception : std::exception
     {
-        virtual const char* what() const throw() = 0;
+        exception(const char* file_, int line_) throw()
+        {
+            std::ostringstream oss;
+            oss << file_ << ":" << line_ << " ";
+
+            error = oss.str();
+        }
+
+        virtual ~exception() throw() {}
+
+        virtual const char* what() const throw()
+        {
+            return error.c_str();
+        }
+
+    protected:
+        std::string error;
     };
 
 } // namespace details

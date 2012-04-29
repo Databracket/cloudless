@@ -39,29 +39,27 @@ namespace cloudless
 
     struct LIBCLOUDLESS_EXPORT null_pointer : exception
     {
-        virtual const char* what() const throw();
+        null_pointer(const char* file_, int line_);
     };
 
     struct LIBCLOUDLESS_EXPORT message_empty : exception
     {
-        virtual const char* what() const throw();
+        message_empty(const char* file_, int line_);
     };
 
     struct LIBCLOUDLESS_EXPORT poll_empty : exception
     {
-        virtual const char* what() const throw();
+        poll_empty(const char* file_, int line_);
     };
 
     struct LIBCLOUDLESS_EXPORT poll_not_found : exception
     {
-        virtual const char* what() const throw();
+        poll_not_found(const char* file_, int line_);
     };
 
     struct LIBCLOUDLESS_EXPORT zexception : exception
     {
-        zexception();
-
-        virtual const char* what() const throw();
+        zexception(const char* file_, int line_);
         int error_num() const throw();
 
     private:
@@ -70,27 +68,37 @@ namespace cloudless
 
     struct LIBCLOUDLESS_EXPORT feature_not_supported : exception
     {
-        virtual const char* what() const throw();
+        feature_not_supported(const char* file_, int line_);
     };
 
     struct LIBCLOUDLESS_EXPORT function_not_implemented : exception
     {
-        virtual const char* what() const throw();
+        function_not_implemented(const char* file_, int line_);
+    };
+
+    struct LIBCLOUDLESS_EXPORT invalid_format : exception
+    {
+        invalid_format(const char* file_, int line_);
+    };
+
+    struct LIBCLOUDLESS_EXPORT not_fully_parsed : exception
+    {
+        not_fully_parsed(const char* file_, int line_);
     };
 
     struct LIBCLOUDLESS_EXPORT crypto_exception : exception
     {
-        virtual const char* what() const throw() = 0;
+        crypto_exception(const char* file_, int line_);
     };
 
     struct LIBCLOUDLESS_EXPORT size_mismatch : crypto_exception
     {
-        virtual const char* what() const throw();
+        size_mismatch(const char* file_, int line_);
     };
 
     struct LIBCLOUDLESS_EXPORT mac_verification_failed : crypto_exception
     {
-        virtual const char* what() const throw();
+        mac_verification_failed(const char* file_, int line_);
     };
 
 } // namespace cloudless

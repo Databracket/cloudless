@@ -34,46 +34,43 @@ namespace cloudless
 
     // null_pointer
 
-    const char*
-    null_pointer::what() const throw()
+    null_pointer::null_pointer(const char* file_, int line_) :
+        exception(file_, line_)
     {
-        return "NULL pointer exception";
+        error += "NULL pointer exception";
     }
 
     // message_empty
 
-    const char*
-    message_empty::what() const throw()
+    message_empty::message_empty(const char* file_, int line_) :
+        exception(file_, line_)
     {
-        return "message is empty";
+        error += "message is empty";
     }
 
     // poll_empty
 
-    const char*
-    poll_empty::what() const throw()
+    poll_empty::poll_empty(const char* file_, int line_) :
+        exception(file_, line_)
     {
-        return "poll is empty";
+        error += "poll is empty";
     }
 
     // poll_not_found
 
-    const char*
-    poll_not_found::what() const throw()
+    poll_not_found::poll_not_found(const char* file_, int line_) :
+        exception(file_, line_)
     {
-        return "item not found";
+        error += "item not found";
     }
 
     // zexception
 
-    zexception::zexception() :
+    zexception::zexception(const char* file_, int line_) :
+        exception(file_, line_),
         _M_errnum(zmq_errno())
-    {}
-
-    const char*
-    zexception::what() const throw()
     {
-        return zmq_strerror(_M_errnum);
+        error += zmq_strerror(_M_errnum);
     }
 
     int
@@ -84,34 +81,56 @@ namespace cloudless
 
     // feature_not_supported
 
-    const char*
-    feature_not_supported::what() const throw()
+    feature_not_supported::feature_not_supported(const char* file_, int line_) :
+        exception(file_, line_)
     {
-        return "this socket type doesn't support this feature";
+        error += "this socket type doesn't support this feature";
     }
 
     // function_not_implemented
 
-    const char*
-    function_not_implemented::what() const throw()
+    function_not_implemented::function_not_implemented(const char* file_, int line_) :
+        exception(file_, line_)
     {
-        return "this function is not implemented";
+        error += "this function is not implemented";
     }
+
+    // invalid_format
+
+    invalid_format::invalid_format(const char* file_, int line_) :
+        exception(file_, line_)
+    {
+        error += "invalid string format";
+    }
+
+    // not_fully_parsed
+
+    not_fully_parsed::not_fully_parsed(const char* file_, int line_) :
+        exception(file_, line_)
+    {
+        error += "string not fully parsed";
+    }
+
+    // crypto_exception
+
+    crypto_exception::crypto_exception(const char* file_, int line_) :
+        exception(file_, line_)
+    {}
 
     // size_mismatch
 
-    const char*
-    size_mismatch::what() const throw()
+    size_mismatch::size_mismatch(const char* file_, int line_) :
+        crypto_exception(file_, line_)
     {
-        return "size mismatch";
+        error += "size mismatch";
     }
 
     // mac_verification_failed
 
-    const char*
-    mac_verification_failed::what() const throw()
+    mac_verification_failed::mac_verification_failed(const char* file_, int line_) :
+        crypto_exception(file_, line_)
     {
-        return "MAC verification failed";
+        error += "MAC verification failed";
     }
 
 } // namespace cloudless
