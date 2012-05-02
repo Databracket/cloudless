@@ -100,6 +100,12 @@ namespace details
         boost::this_thread::sleep(boost::posix_time::milliseconds(time));
     }
 
+    shared_ptr<thread>
+    thread::shared_this() const throw()
+    {
+        return shared_from_this();
+    }
+
     thread::native_handle_type
     thread::native_handle() const throw()
     {
@@ -129,7 +135,9 @@ namespace details
         boost::mutex::scoped_lock lck(_M_mutex);
 
         try {
+            prologue(); // Executed once before body()
             while (!_M_stop) { body(); }
+            epilogue(); // Executed once after body()
         } catch (const std::exception& ex) {
             try { on_error(ex); }
             catch (...) { /* We're sorry for your loss. */ }

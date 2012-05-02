@@ -113,6 +113,14 @@ namespace details
         static void sleep(unsigned int time);
 
         /**
+         * Get a shared pointer from this.
+         * This instance MUST have been allocated on heap memory.
+         *
+         * @return a shared pointer from this.
+         */
+        shared_ptr<thread> shared_this() const throw();
+
+        /**
          * Equality comparison between two threads.
          *
          * @param rhs an instance of thread.
@@ -121,6 +129,17 @@ namespace details
         bool operator ==(const thread& rhs) const;
 
     protected:
+
+        /**
+         * A virtual function to be optionally overrided by a child of this class.
+         * This function will be executed only once before entering the body() function.
+         */
+        virtual void prologue()
+        {
+            // No default prologue function configured.
+            // Feel free to override this function to execute
+            // something once before entering body().
+        }
 
         /**
          * A pure virtual function to be overrided by a child of this class.
@@ -135,7 +154,19 @@ namespace details
 
         /**
          * A virtual function to be optionally overrided by a child of this class.
-         * This function will be executed in the event body() throws an exception.
+         * This function will be executed only once after exiting from body().
+         */
+        virtual void epilogue()
+        {
+            // No default epilogue function configured.
+            // Feel free to override this function to execute
+            // something once after exiting from body().
+        }
+
+        /**
+         * A virtual function to be optionally overrided by a child of this class.
+         * This function will be executed in the event prologue(), body(),
+         * or epilogue() throw an exception.
          *
          * @param ex any exception inherited from std::exception or
          * even std::exception itself.
