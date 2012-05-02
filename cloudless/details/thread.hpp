@@ -118,7 +118,7 @@ namespace details
          *
          * @return a shared pointer from this.
          */
-        shared_ptr<thread> shared_this() const throw();
+        shared_ptr<thread> shared_this() throw();
 
         /**
          * Equality comparison between two threads.

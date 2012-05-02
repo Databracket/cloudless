@@ -101,7 +101,7 @@ namespace details
     }
 
     shared_ptr<thread>
-    thread::shared_this() const throw()
+    thread::shared_this() throw()
     {
         return shared_from_this();
     }
