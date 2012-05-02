@@ -26,13 +26,16 @@
  * An abstraction around 0MQ context.
 */
 
+#include <cloudless/details/thread.hpp>
 #include <cloudless/context.hpp>
 
 namespace cloudless
 {
 
+    // context
+
     context::context(int io_threads) :
-        details::zcontext(io_threads)
+        details::zcontext(io_threads == 0 ? details::thread::hardware_concurrency() : io_threads)
     {}
 
 } // namespace cloudless

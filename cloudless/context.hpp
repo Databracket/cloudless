@@ -49,8 +49,11 @@ namespace cloudless
         /**
          * A constructor that takes the number of threads that should
          * handle recieving and sending messages.
+         *
+         * @param io_threads the number of threads to handle I/O. Defaults to the number
+         * of hardware threads available on the system.
          */
-        context(int io_threads = 2);
+        context(int io_threads = 0);
     };
 
 } // namespace cloudless

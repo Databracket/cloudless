@@ -42,7 +42,8 @@ namespace details
 
     zcontext::zcontext(int io_threads)
     {
-        _M_ptr = zmq_init(io_threads);
+        int num_threads = io_threads == 0 ? 2 : io_threads;
+        _M_ptr = zmq_init(num_threads);
 
         if (_M_ptr == NULL)
             raise(null_pointer);
