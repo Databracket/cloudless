@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ PUB sockets.
 */
 
-#ifndef __CLOUDLESS_PUB_HPP
-#define __CLOUDLESS_PUB_HPP
+#ifndef CLOUDLESS_PUB_HPP
+#define CLOUDLESS_PUB_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -59,4 +59,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_PUB_HPP
+#endif // CLOUDLESS_PUB_HPP

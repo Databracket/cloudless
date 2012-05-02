@@ -26,8 +26,8 @@
  * A wrapper around 0MQ low level socket interface.
 */
 
-#ifndef __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
-#define __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
+#ifndef CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
+#define CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
 
 #include <string>
 
@@ -458,4 +458,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
+#endif // CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP

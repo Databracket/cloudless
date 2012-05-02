@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CLOUDLESS_VERSION_HPP
-#define __CLOUDLESS_VERSION_HPP
+#ifndef CLOUDLESS_VERSION_HPP
+#define CLOUDLESS_VERSION_HPP
 
 #define CLOUDLESS_VERSION_MAJOR 0
 #define CLOUDLESS_VERSION_MINOR 1
@@ -59,4 +59,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_VERSION_HPP
+#endif // CLOUDLESS_VERSION_HPP

@@ -26,8 +26,8 @@
  * A wrapper around 0MQ low level messages.
 */
 
-#ifndef __CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
-#define __CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
+#ifndef CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
+#define CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
 
 #include <string>
 #include <utility>
@@ -144,4 +144,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
+#endif // CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP

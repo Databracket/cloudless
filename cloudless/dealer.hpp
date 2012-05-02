@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ DEALER sockets.
 */
 
-#ifndef __CLOUDLESS_DEALER_HPP
-#define __CLOUDLESS_DEALER_HPP
+#ifndef CLOUDLESS_DEALER_HPP
+#define CLOUDLESS_DEALER_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -53,4 +53,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DEALER_HPP
+#endif // CLOUDLESS_DEALER_HPP

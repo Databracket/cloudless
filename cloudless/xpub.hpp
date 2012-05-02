@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ XPUB sockets.
 */
 
-#ifndef __CLOUDLESS_XPUB_HPP
-#define __CLOUDLESS_XPUB_HPP
+#ifndef CLOUDLESS_XPUB_HPP
+#define CLOUDLESS_XPUB_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -53,4 +53,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_XPUB_HPP
+#endif // CLOUDLESS_XPUB_HPP

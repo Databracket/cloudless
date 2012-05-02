@@ -26,8 +26,8 @@
  * A secure random number generation facility.
 */
 
-#ifndef __CLOUDLESS_CRYPTO_RANDOM_HPP
-#define __CLOUDLESS_CRYPTO_RANDOM_HPP
+#ifndef CLOUDLESS_CRYPTO_RANDOM_HPP
+#define CLOUDLESS_CRYPTO_RANDOM_HPP
 
 #include <string>
 
@@ -76,4 +76,4 @@ namespace crypto
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_CRYPTO_RANDOM_HPP
+#endif // CLOUDLESS_CRYPTO_RANDOM_HPP

@@ -26,8 +26,8 @@
  * A parent wrapper around Cloudless exceptions.
 */
 
-#ifndef __CLOUDLESS_DETAILS_EXCEPTION_HPP
-#define __CLOUDLESS_DETAILS_EXCEPTION_HPP
+#ifndef CLOUDLESS_DETAILS_EXCEPTION_HPP
+#define CLOUDLESS_DETAILS_EXCEPTION_HPP
 
 #define raise(__ex) throw __ex(__FILE__, __LINE__)
 
@@ -72,4 +72,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_EXCEPTION_HPP
+#endif // CLOUDLESS_DETAILS_EXCEPTION_HPP

@@ -26,8 +26,8 @@
  * A wrapper around 0MQ low level context.
 */
 
-#ifndef __CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP
-#define __CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP
+#ifndef CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP
+#define CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/noncopyable.hpp>
@@ -71,4 +71,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP
+#endif // CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP

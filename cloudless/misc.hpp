@@ -26,8 +26,8 @@
  * A collection of miscellaneous facilities.
 */
 
-#ifndef __CLOUDLESS_MISC_HPP
-#define __CLOUDLESS_MISC_HPP
+#ifndef CLOUDLESS_MISC_HPP
+#define CLOUDLESS_MISC_HPP
 
 #include <string>
 #include <sstream>
@@ -100,4 +100,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_MISC_HPP
+#endif // CLOUDLESS_MISC_HPP

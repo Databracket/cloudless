@@ -26,8 +26,8 @@
  * A shared_array implementation for heap-allocating exception-safe arrays.
 */
 
-#ifndef __CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
-#define __CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
+#ifndef CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
+#define CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
 
 #include <cloudless/details/shared_ptr.hpp>
 
@@ -67,4 +67,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
+#endif // CLOUDLESS_DETAILS_SHARED_ARRAY_HPP

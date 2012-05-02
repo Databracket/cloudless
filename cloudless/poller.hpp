@@ -26,8 +26,8 @@
  * A polling mechanism based on 0MQ polling abstraction.
 */
 
-#ifndef __CLOUDLESS_POLLER_HPP
-#define __CLOUDLESS_POLLER_HPP
+#ifndef CLOUDLESS_POLLER_HPP
+#define CLOUDLESS_POLLER_HPP
 
 #include <string>
 #include <vector>
@@ -90,4 +90,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_POLLER_HPP
+#endif // CLOUDLESS_POLLER_HPP

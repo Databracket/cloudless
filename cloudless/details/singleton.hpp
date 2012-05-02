@@ -26,8 +26,8 @@
  * A singleton pattern implementation.
 */
 
-#ifndef __CLOUDLESS_DETAILS_SINGLETON_HPP
-#define __CLOUDLESS_DETAILS_SINGLETON_HPP
+#ifndef CLOUDLESS_DETAILS_SINGLETON_HPP
+#define CLOUDLESS_DETAILS_SINGLETON_HPP
 
 #include <cassert>
 
@@ -76,4 +76,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_SINGLETON_HPP
+#endif // CLOUDLESS_DETAILS_SINGLETON_HPP

@@ -26,8 +26,8 @@
  * A Message Digest abstraction.
 */
 
-#ifndef __CLOUDLESS_CRYPTO_HASH_HPP
-#define __CLOUDLESS_CRYPTO_HASH_HPP
+#ifndef CLOUDLESS_CRYPTO_HASH_HPP
+#define CLOUDLESS_CRYPTO_HASH_HPP
 
 #include <string>
 
@@ -126,4 +126,4 @@ namespace crypto
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_CRYPTO_HASH_HPP
+#endif // CLOUDLESS_CRYPTO_HASH_HPP

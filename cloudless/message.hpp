@@ -26,8 +26,8 @@
  * An abstraction of 0MQ messages.
 */
 
-#ifndef __CLOUDLESS_MESSAGE_HPP
-#define __CLOUDLESS_MESSAGE_HPP
+#ifndef CLOUDLESS_MESSAGE_HPP
+#define CLOUDLESS_MESSAGE_HPP
 
 #include <string>
 #include <deque>
@@ -174,4 +174,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_MESSAGE_HPP
+#endif // CLOUDLESS_MESSAGE_HPP

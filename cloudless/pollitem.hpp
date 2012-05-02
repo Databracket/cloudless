@@ -26,8 +26,8 @@
  * A wrapper around 0MQ sockets or system sockets to represent a polling item.
 */
 
-#ifndef __CLOUDLESS_POLLITEM_HPP
-#define __CLOUDLESS_POLLITEM_HPP
+#ifndef CLOUDLESS_POLLITEM_HPP
+#define CLOUDLESS_POLLITEM_HPP
 
 #include <utility>
 
@@ -117,4 +117,4 @@ namespace poll_events
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_POLLITEM_HPP
+#endif // CLOUDLESS_POLLITEM_HPP

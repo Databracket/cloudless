@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ SUB sockets.
 */
 
-#ifndef __CLOUDLESS_SUB_HPP
-#define __CLOUDLESS_SUB_HPP
+#ifndef CLOUDLESS_SUB_HPP
+#define CLOUDLESS_SUB_HPP
 
 #include <string>
 
@@ -61,4 +61,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_SUB_HPP
+#endif // CLOUDLESS_SUB_HPP

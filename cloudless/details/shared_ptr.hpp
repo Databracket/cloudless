@@ -27,8 +27,8 @@
  * to std::shared_ptr transparent.
 */
 
-#ifndef __CLOUDLESS_DETAILS_SHARED_PTR_HPP
-#define __CLOUDLESS_DETAILS_SHARED_PTR_HPP
+#ifndef CLOUDLESS_DETAILS_SHARED_PTR_HPP
+#define CLOUDLESS_DETAILS_SHARED_PTR_HPP
 
 #include <boost/shared_ptr.hpp>
 
@@ -44,4 +44,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_SHARED_PTR_HPP
+#endif // CLOUDLESS_DETAILS_SHARED_PTR_HPP

@@ -26,8 +26,8 @@
  * A helper around the elements 0MQ messages can have.
 */
 
-#ifndef __CLOUDLESS_ELEMENT_HPP
-#define __CLOUDLESS_ELEMENT_HPP
+#ifndef CLOUDLESS_ELEMENT_HPP
+#define CLOUDLESS_ELEMENT_HPP
 
 #include <string>
 #include <utility>
@@ -104,4 +104,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_ELEMENT_HPP
+#endif // CLOUDLESS_ELEMENT_HPP

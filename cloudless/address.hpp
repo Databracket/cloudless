@@ -26,8 +26,8 @@
  * An abstraction of 0MQ socket addresses.
 */
 
-#ifndef __CLOUDLESS_ADDRESS_HPP
-#define __CLOUDLESS_ADDRESS_HPP
+#ifndef CLOUDLESS_ADDRESS_HPP
+#define CLOUDLESS_ADDRESS_HPP
 
 #include <string>
 #include <utility>
@@ -97,4 +97,4 @@ namespace path
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_ADDRESS_HPP
+#endif // CLOUDLESS_ADDRESS_HPP

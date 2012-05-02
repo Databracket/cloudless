@@ -26,8 +26,8 @@
  * An abstraction around 0MQ context.
 */
 
-#ifndef __CLOUDLESS_CONTEXT_HPP
-#define __CLOUDLESS_CONTEXT_HPP
+#ifndef CLOUDLESS_CONTEXT_HPP
+#define CLOUDLESS_CONTEXT_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/singleton.hpp>
@@ -59,4 +59,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_CONTEXT_HPP
+#endif // CLOUDLESS_CONTEXT_HPP

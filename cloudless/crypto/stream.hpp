@@ -26,8 +26,8 @@
  * An abstraction for stream ciphers.
 */
 
-#ifndef __CLOUDLESS_CRYPTO_STREAM_HPP
-#define __CLOUDLESS_CRYPTO_STREAM_HPP
+#ifndef CLOUDLESS_CRYPTO_STREAM_HPP
+#define CLOUDLESS_CRYPTO_STREAM_HPP
 
 #include <string>
 
@@ -135,4 +135,4 @@ namespace crypto
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_CRYPTO_STREAM_HPP
+#endif // CLOUDLESS_CRYPTO_STREAM_HPP

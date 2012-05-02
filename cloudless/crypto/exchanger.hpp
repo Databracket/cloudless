@@ -26,8 +26,8 @@
  * A collection of utilities that helps exchanging a shared secret securely.
 */
 
-#ifndef __CLOUDLESS_CRYPTO_EXCHANGER_HPP
-#define __CLOUDLESS_CRYPTO_EXCHANGER_HPP
+#ifndef CLOUDLESS_CRYPTO_EXCHANGER_HPP
+#define CLOUDLESS_CRYPTO_EXCHANGER_HPP
 
 #include <string>
 
@@ -334,4 +334,4 @@ namespace crypto
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_CRYPTO_EXCHANGER_HPP
+#endif // CLOUDLESS_CRYPTO_EXCHANGER_HPP

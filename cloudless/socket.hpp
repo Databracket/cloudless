@@ -26,8 +26,8 @@
  * A high level abstraction for 0MQ sockets interface.
 */
 
-#ifndef __CLOUDLESS_SOCKET_HPP
-#define __CLOUDLESS_SOCKET_HPP
+#ifndef CLOUDLESS_SOCKET_HPP
+#define CLOUDLESS_SOCKET_HPP
 
 #include <string>
 
@@ -124,4 +124,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_SOCKET_HPP
+#endif // CLOUDLESS_SOCKET_HPP

@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ PAIR sockets.
 */
 
-#ifndef __CLOUDLESS_PAIR_HPP
-#define __CLOUDLESS_PAIR_HPP
+#ifndef CLOUDLESS_PAIR_HPP
+#define CLOUDLESS_PAIR_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -53,4 +53,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_PAIR_HPP
+#endif // CLOUDLESS_PAIR_HPP

@@ -26,8 +26,8 @@
  * An abstract wrapper around Boost::Thread.
 */
 
-#ifndef __CLOUDLESS_DETAILS_THREAD_HPP
-#define __CLOUDLESS_DETAILS_THREAD_HPP
+#ifndef CLOUDLESS_DETAILS_THREAD_HPP
+#define CLOUDLESS_DETAILS_THREAD_HPP
 
 #include <boost/thread/thread.hpp>
 #include <boost/thread/barrier.hpp>
@@ -195,4 +195,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_THREAD_HPP
+#endif // CLOUDLESS_DETAILS_THREAD_HPP

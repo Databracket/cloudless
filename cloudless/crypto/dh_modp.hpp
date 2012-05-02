@@ -26,8 +26,8 @@
  * A collection of MODPs for Deffie Hellman based algorithms.
 */
 
-#ifndef __CLOUDLESS_CRYPTO_DH_MODP_HPP
-#define __CLOUDLESS_CRYPTO_DH_MODP_HPP
+#ifndef CLOUDLESS_CRYPTO_DH_MODP_HPP
+#define CLOUDLESS_CRYPTO_DH_MODP_HPP
 
 // Big Integer
 #include <cryptopp/integer.h>
@@ -117,4 +117,4 @@ namespace crypto
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_CRYPTO_DH_MODP_HPP
+#endif // CLOUDLESS_CRYPTO_DH_MODP_HPP

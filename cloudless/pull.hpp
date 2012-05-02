@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ PULL sockets.
 */
 
-#ifndef __CLOUDLESS_PULL_HPP
-#define __CLOUDLESS_PULL_HPP
+#ifndef CLOUDLESS_PULL_HPP
+#define CLOUDLESS_PULL_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -59,4 +59,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_PULL_HPP
+#endif // CLOUDLESS_PULL_HPP

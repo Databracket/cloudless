@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ REP sockets.
 */
 
-#ifndef __CLOUDLESS_REP_HPP
-#define __CLOUDLESS_REP_HPP
+#ifndef CLOUDLESS_REP_HPP
+#define CLOUDLESS_REP_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -53,4 +53,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_REP_HPP
+#endif // CLOUDLESS_REP_HPP

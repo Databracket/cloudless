@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ ROUTER sockets.
 */
 
-#ifndef __CLOUDLESS_ROUTER_HPP
-#define __CLOUDLESS_ROUTER_HPP
+#ifndef CLOUDLESS_ROUTER_HPP
+#define CLOUDLESS_ROUTER_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -53,4 +53,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_ROUTER_HPP
+#endif // CLOUDLESS_ROUTER_HPP

@@ -26,8 +26,8 @@
  * Exception wrappers.
 */
 
-#ifndef __CLOUDLESS_EXCEPTIONS_HPP
-#define __CLOUDLESS_EXCEPTIONS_HPP
+#ifndef CLOUDLESS_EXCEPTIONS_HPP
+#define CLOUDLESS_EXCEPTIONS_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/exception.hpp>
@@ -103,4 +103,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_EXCEPTIONS_HPP
+#endif // CLOUDLESS_EXCEPTIONS_HPP

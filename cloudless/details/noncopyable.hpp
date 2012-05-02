@@ -26,8 +26,8 @@
  * A helper to prevent children from having the ability to copy.
 */
 
-#ifndef __CLOUDLESS_DETAILS_NONCOPYABLE_HPP
-#define __CLOUDLESS_DETAILS_NONCOPYABLE_HPP
+#ifndef CLOUDLESS_DETAILS_NONCOPYABLE_HPP
+#define CLOUDLESS_DETAILS_NONCOPYABLE_HPP
 
 namespace cloudless
 {
@@ -54,4 +54,4 @@ namespace details
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_DETAILS_NONCOPYABLE_HPP
+#endif // CLOUDLESS_DETAILS_NONCOPYABLE_HPP

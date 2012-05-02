@@ -26,8 +26,8 @@
  * DLL export helper.
 */
 
-#ifndef __CLOUDLESS_DETAILS_EXPORT_HPP
-#define __CLOUDLESS_DETAILS_EXPORT_HPP
+#ifndef CLOUDLESS_DETAILS_EXPORT_HPP
+#define CLOUDLESS_DETAILS_EXPORT_HPP
 
 #include <cloudless/details/platform.hpp>
 
@@ -49,4 +49,4 @@
 #  endif
 #endif
 
-#endif // __CLOUDLESS_DETAILS_EXPORT_HPP
+#endif // CLOUDLESS_DETAILS_EXPORT_HPP

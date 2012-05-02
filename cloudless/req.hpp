@@ -26,8 +26,8 @@
  * A wrapper to represent 0MQ REQ sockets.
 */
 
-#ifndef __CLOUDLESS_REQ_HPP
-#define __CLOUDLESS_REQ_HPP
+#ifndef CLOUDLESS_REQ_HPP
+#define CLOUDLESS_REQ_HPP
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/context.hpp>
@@ -53,4 +53,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // __CLOUDLESS_REQ_HPP
+#endif // CLOUDLESS_REQ_HPP
