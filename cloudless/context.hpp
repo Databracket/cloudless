@@ -30,6 +30,7 @@
 #define __CLOUDLESS_CONTEXT_HPP
 
 #include <cloudless/details/export.hpp>
+#include <cloudless/details/singleton.hpp>
 #include <cloudless/details/zeromq/zcontext.hpp>
 
 namespace cloudless
@@ -43,7 +44,7 @@ namespace cloudless
      * address, they will NOT be able to communicate.
      */
 
-    struct LIBCLOUDLESS_EXPORT context : details::zcontext
+    struct LIBCLOUDLESS_EXPORT context : details::zcontext, details::singleton<context>
     {
 
         /**
