@@ -39,17 +39,22 @@
 #define RNT REQUIRE_NOTHROW
 
 using namespace std;
+using cloudless::details::thread;
+using cloudless::details::shared_ptr;
 
-struct test_thread : cloudless::details::thread
+struct test_thread : thread
 {
-    test_thread() : val(2) {}
+    virtual void prologue()
+    { val = 2; }
 
     virtual void body()
     {
         val *= 5;
-
         stop();
     }
+
+    virtual void epilogue()
+    { val += 3; }
 
 public:
     int val;
@@ -57,18 +62,14 @@ public:
 
 TC ("cloudless/details/thread", "Testing thread interface.")
 {
-    using cloudless::details::thread;
-    using cloudless::details::shared_ptr;
-
     shared_ptr<test_thread> tt(new test_thread());
 
     RNT ( tt.reset(new test_thread()) );
     R ( tt->start(false) == true );
-    R ( tt->val == 10 );
+    R ( tt->val == 13 );
 
     RNT ( tt.reset(new test_thread()) );
     RNT ( tt->start() );
     thread::sleep(10); // Allow val to be updated and sync'ed.
-    R ( tt->val == 10 );
-
+    R ( tt->val == 13 );
 }
