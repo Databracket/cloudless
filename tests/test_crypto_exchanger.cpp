@@ -46,13 +46,13 @@ TC ("cloudless/crypto/dh", "Testing Exchanger interface.")
     using namespace cloudless;
     using namespace crypto;
 
-    exchanger<SHA256, true> client; // Client == true
-    exchanger<SHA256, false>* server = exchanger<SHA256, false>::instance();
+    exchanger<SHA256> client; // client == true
+    exchanger<SHA256> server(false);
 
     RNT ( client.generate_keys() );
-    RNT ( server->generate_keys() );
+    RNT ( server.generate_keys() );
 
-    R ( client.agree(server->static_public(), server->ephemeral_public()) == true );
-    R ( server->agree(client.static_public(), client.ephemeral_public()) == true );
-    R ( client.shared_secret() == server->shared_secret() );
+    R ( client.agree(server.static_public(), server.ephemeral_public()) == true );
+    R ( server.agree(client.static_public(), client.ephemeral_public()) == true );
+    R ( client.shared_secret() == server.shared_secret() );
 }

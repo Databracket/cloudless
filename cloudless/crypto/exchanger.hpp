@@ -39,7 +39,6 @@
 #include <cloudless/crypto/cryptopp/eccrypto.h>
 
 #include <cloudless/details/export.hpp>
-#include <cloudless/details/singleton.hpp>
 #include <cloudless/details/shared_ptr.hpp>
 #include <cloudless/crypto/hash.hpp>
 #include <cloudless/exceptions.hpp>
@@ -58,18 +57,24 @@ namespace crypto
      * A class to help exchange a shared secret securely using FHMQV algorithm.
      *
      * @tparam Hash a hashing algorithm to be used with FHMQV. Defaults to SHA256.
-     * @tparam Client specify if FHMQV should act as a client or a server. Defaults to true.
      */
 
-    template <typename Hash = SHA256, bool Client = true>
-    class LIBCLOUDLESS_EXPORT exchanger : public details::singleton<exchanger<Hash, Client> >
+    template <typename Hash = SHA256>
+    class LIBCLOUDLESS_EXPORT exchanger
     {
     public:
-        exchanger()
+
+        /**
+         * A constructor that takes the role of this instance. (e.g., client, server)
+         *
+         * @param client whether to take the role of a client. Defaults to true.
+         */
+        exchanger(bool client = true) :
+            _M_client(client)
         {
             CryptoPP::OID curve = CryptoPP::ASN1::secp256r1();
 
-            _M_fhmqv.reset(new FHMQV_D(curve, Client));
+            _M_fhmqv.reset(new FHMQV_D(curve, _M_client));
 
             _M_spriv.reset(
                     new CryptoPP::SecByteBlock(
@@ -112,74 +117,74 @@ namespace crypto
         /**
          * Generate a static private key.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         generate_static_private()
         {
             _M_fhmqv->GenerateStaticPrivateKey(_M_rng, _M_spriv->BytePtr());
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
          * Generate a static public key.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         generate_static_public()
         {
             _M_fhmqv->GenerateStaticPublicKey(_M_rng, _M_spriv->BytePtr(),
                     _M_spub->BytePtr());
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
          * Generate a static key pair.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         generate_static_pair()
         {
             _M_fhmqv->GenerateStaticKeyPair(_M_rng, _M_spriv->BytePtr(),
                     _M_spub->BytePtr());
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
          * Generate an ephemeral private key.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         generate_ephemeral_private()
         {
             _M_fhmqv->GenerateEphemeralPrivateKey(_M_rng, _M_epriv->BytePtr());
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
          * Generate an ephemeral public key.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         generate_ephemeral_public()
         {
             _M_fhmqv->GenerateEphemeralPublicKey(_M_rng, _M_epriv->BytePtr(),
                     _M_epub->BytePtr());
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
          * Generate an ephemeral key pair.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         generate_ephemeral_pair()
         {
             _M_fhmqv->GenerateEphemeralKeyPair(_M_rng, _M_epriv->BytePtr(),
                     _M_epub->BytePtr());
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
          * Generate both static and ephemeral key pairs.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         generate_keys()
         {
-            return const_cast<exchanger<Hash, Client>*>(this)->
+            return const_cast<exchanger<Hash>*>(this)->
                 generate_static_pair().
                 generate_ephemeral_pair();
         }
@@ -189,7 +194,7 @@ namespace crypto
          *
          * @param val a static private key.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         static_private(const std::string& val)
         {
             if (val.size() != _M_fhmqv->StaticPrivateKeyLength())
@@ -198,7 +203,7 @@ namespace crypto
             _M_spriv.reset(
                     new CryptoPP::SecByteBlock(
                         (byte*)val.data(), val.size()));
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
@@ -206,7 +211,7 @@ namespace crypto
          *
          * @param val a static public key.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         static_public(const std::string& val)
         {
             if (val.size() != _M_fhmqv->StaticPublicKeyLength())
@@ -215,7 +220,7 @@ namespace crypto
             _M_spub.reset(
                     new CryptoPP::SecByteBlock(
                         (byte*)val.data(), val.size()));
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
@@ -223,7 +228,7 @@ namespace crypto
          *
          * @param val an ephemeral private key.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         ephemeral_private(const std::string& val)
         {
             if (val.size() != _M_fhmqv->EphemeralPrivateKeyLength())
@@ -232,7 +237,7 @@ namespace crypto
             _M_epriv.reset(
                     new CryptoPP::SecByteBlock(
                         (byte*)val.data(), val.size()));
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
@@ -240,7 +245,7 @@ namespace crypto
          *
          * @param val an ephemeral public key.
          */
-        exchanger<Hash, Client>&
+        exchanger<Hash>&
         ephemeral_public(const std::string& val)
         {
             if (val.size() != _M_fhmqv->EphemeralPublicKeyLength())
@@ -249,7 +254,7 @@ namespace crypto
             _M_epub.reset(
                     new CryptoPP::SecByteBlock(
                         (byte*)val.data(), val.size()));
-            return *const_cast<exchanger<Hash, Client>*>(this);
+            return *const_cast<exchanger<Hash>*>(this);
         }
 
         /**
@@ -328,6 +333,7 @@ namespace crypto
         sbb_ptr _M_epub;
         sbb_ptr _M_sharedS;
         CryptoPP::AutoSeededRandomPool _M_rng;
+        bool _M_client;
     };
 
 } // namespace crypto
