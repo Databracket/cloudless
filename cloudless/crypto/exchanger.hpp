@@ -92,6 +92,23 @@ namespace crypto
         }
 
         /**
+         * A copy constructor to allow for copying this instance.
+         * CryptoPP::AutoSeededRandomPool is not allowed to be copied, so we work around that.
+         *
+         * @param other another instance of exchanger that uses the same Hash function.
+         */
+        exchanger(const exchanger<Hash>& other)
+        {
+            _M_fhmqv = other._M_fhmqv;
+            _M_spriv = other._M_spriv;
+            _M_spub = other._M_spub;
+            _M_epriv = other._M_epriv;
+            _M_epub = other._M_epub;
+            _M_sharedS = other._M_sharedS;
+            _M_client = other._M_client;
+        }
+
+        /**
          * Agree on a shared secret.
          *
          * @param spub the static public key of the other party.
@@ -318,6 +335,26 @@ namespace crypto
 
             return std::string((char*)_M_sharedS->BytePtr(),
                     _M_sharedS->SizeInBytes());
+        }
+
+        /**
+         * A copy assignment operator to allow for copying this instance.
+         * CryptoPP::AutoSeededRandomPool is not allowed to be copied, so we work around that.
+         *
+         * @param rhs another instance of exchanger that uses the same Hash function.
+         */
+        exchanger<Hash>&
+        operator =(const exchanger<Hash>& rhs)
+        {
+            _M_fhmqv = rhs._M_fhmqv;
+            _M_spriv = rhs._M_spriv;
+            _M_spub = rhs._M_spub;
+            _M_epriv = rhs._M_epriv;
+            _M_epub = rhs._M_epub;
+            _M_sharedS = rhs._M_sharedS;
+            _M_client = rhs._M_client;
+
+            return *this;
         }
 
     private:
