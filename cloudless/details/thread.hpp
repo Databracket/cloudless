@@ -32,13 +32,13 @@
 #include <boost/thread/thread.hpp>
 #include <boost/thread/barrier.hpp>
 #include <boost/thread/mutex.hpp>
-#include <boost/enable_shared_from_this.hpp>
 
 #include <cloudless/details/export.hpp>
 #include <cloudless/details/exception.hpp>
 #include <cloudless/details/shared_ptr.hpp>
 #include <cloudless/details/shared_array.hpp>
 #include <cloudless/details/noncopyable.hpp>
+#include <cloudless/details/enable_shared_from_this.hpp>
 
 namespace cloudless
 {
@@ -50,7 +50,7 @@ namespace details
      * An abstraction class of Boost::Thread.
      */
 
-    class LIBCLOUDLESS_EXPORT thread : noncopyable, public boost::enable_shared_from_this<thread>
+    class LIBCLOUDLESS_EXPORT thread : noncopyable, public details::enable_shared_from_this<thread>
     {
     public:
         typedef boost::thread::native_handle_type native_handle_type;
