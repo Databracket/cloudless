@@ -38,4 +38,10 @@ namespace cloudless
         details::zcontext(io_threads == 0 ? details::thread::hardware_concurrency() : io_threads)
     {}
 
+    details::shared_ptr<context>
+    context::shared_this() throw()
+    {
+        return shared_from_this();
+    }
+
 } // namespace cloudless
