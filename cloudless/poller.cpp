@@ -27,6 +27,7 @@
 */
 
 #include <cloudless/details/zeromq/zeromq.hpp>
+#include <cloudless/details/singleton.hpp>
 #include <cloudless/exceptions.hpp>
 #include <cloudless/poller.hpp>
 
@@ -63,6 +64,23 @@ namespace cloudless
         // In the current form of poller that piece of information is irrelevant.
         // So we instead just return whether there was any events fired on any pollitem.
         return (rc > 0);
+    }
+
+    const std::string&
+    poller::get_triggered() const
+    {
+        items_indexes::const_iterator it;
+
+        for (it = _M_indexes.begin(); it != _M_indexes.end(); ++it)
+        {
+            if (_M_items[it->second].in()
+                    || _M_items[it->second].out()
+                    || _M_items[it->second].error())
+                return it->first;
+        }
+
+        // Return empty string
+        return *details::singleton<std::string>::instance();
     }
 
     const pollitem&

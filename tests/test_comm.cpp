@@ -67,6 +67,7 @@ TC ("cloudless/poller", "Testing poller interface.")
     RNT ( p.add("test_item", pi) );
     RNT ( p["test_item"] == pi );
     RTA ( p["ghost_item"], cloudless::poll_not_found );
+    R ( p.get_triggered() == "" );
 }
 
 TC ("cloudless/socket", "Testing socket interface.")

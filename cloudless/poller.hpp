@@ -69,6 +69,15 @@ namespace cloudless
         bool poll(long timeout = 300) const;
 
         /**
+         * Get the name associated with the pollitem that has a triggered event.
+         * If an empty string was returned then there is no pollitems with
+         * registered triggered events.
+         *
+         * @return the pollitem's name.
+         */
+        const std::string& get_triggered() const;
+
+        /**
          * Get a pollitem from the container by the name associated with it.
          *
          * @param rhs name string associated with the pollitem.
