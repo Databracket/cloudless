@@ -23,7 +23,7 @@
  *
  * @section DESCRIPTION
  *
- * Unit tests for basic communication facilities.
+ * Unit tests for edges and edgepoints.
 */
 
 #define CATCH_CONFIG_MAIN
