@@ -85,8 +85,8 @@ namespace cloudless
         if (block && !can_send()) {
             poller p;
 
-            p.add_item(poll_item().register_event(poll_events::OUT),
-                    "__send_socket");
+            p.add("__send_socket",
+                    poll_item().register_event(poll_events::OUT));
 
             if (!p.poll(send_timeout()) || !p["__send_socket"].out())
                 return false;
@@ -116,8 +116,8 @@ namespace cloudless
         if (block && !can_recv()) {
             poller p;
 
-            p.add_item(poll_item().register_event(poll_events::IN),
-                    "__recv_socket");
+            p.add("__recv_socket",
+                    poll_item().register_event(poll_events::IN));
 
             if (!p.poll(recv_timeout()) || !p["__recv_socket"].in())
                 return false;

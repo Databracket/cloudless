@@ -52,10 +52,10 @@ namespace cloudless
         /**
          * Add a pollitem to the pool to be monitored.
          *
-         * @param item a pollitem.
          * @param name a std::string of a name to be associated with the pollitem.
+         * @param item a pollitem.
          */
-        poller& add_item(pollitem& item, const std::string& name) throw();
+        poller& add(const std::string& name, const pollitem& item);
 
         /**
          * Poll on all pollitems in the container.
