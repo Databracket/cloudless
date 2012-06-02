@@ -35,10 +35,6 @@ namespace cloudless
 
     // poller
 
-    poller::poller() :
-        _M_ctr()
-    {}
-
     poller&
     poller::add_item(pollitem& item, const std::string& name) throw()
     {

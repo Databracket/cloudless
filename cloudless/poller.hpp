@@ -35,6 +35,7 @@
 
 #include <cloudless/details/noncopyable.hpp>
 #include <cloudless/details/export.hpp>
+#include <cloudless/details/ipod.hpp>
 #include <cloudless/pollitem.hpp>
 
 namespace cloudless
@@ -47,11 +48,6 @@ namespace cloudless
     class LIBCLOUDLESS_EXPORT poller : details::noncopyable
     {
     public:
-
-        /**
-         * A default constructor.
-         */
-        poller();
 
         /**
          * Add a pollitem to the pool to be monitored.
@@ -85,7 +81,7 @@ namespace cloudless
         typedef std::map<std::string, unsigned int> items_indexes;
         items_indexes _M_indexes;
         std::vector<pollitem> _M_items;
-        unsigned int _M_ctr;
+        details::ipod<unsigned int> _M_ctr;
     };
 
 } // namespace cloudless
