@@ -7,10 +7,12 @@ nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/nonconstructiv
 								  details/shared_array.hpp details/zeromq/zcontext.hpp \
 								  details/zeromq/zeromq.hpp details/zeromq/zmessage.hpp \
 								  details/zeromq/zsocket.hpp details/thread.hpp \
+								  details/enable_shared_from_this.hpp \
 								  socket.hpp address.hpp context.hpp element.hpp \
 								  exceptions.hpp message.hpp poller.hpp pollitem.hpp \
 								  version.hpp req.hpp rep.hpp dealer.hpp router.hpp \
-								  push.hpp pull.hpp pub.hpp sub.hpp pair.hpp misc.hpp
+								  push.hpp pull.hpp pub.hpp sub.hpp pair.hpp misc.hpp \
+								  edges.hpp
 
 if ZMQ_3_X
 nobase_cloudlessinclude_HEADERS += xsub.hpp xpub.hpp
@@ -29,7 +31,7 @@ libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cp
 						  address.cpp context.cpp element.cpp exceptions.cpp \
 						  message.cpp pollitem.cpp poller.cpp \
 						  req.cpp rep.cpp dealer.cpp router.cpp push.cpp pull.cpp \
-						  pub.cpp sub.cpp pair.cpp misc.cpp
+						  pub.cpp sub.cpp pair.cpp misc.cpp edges.cpp
 
 if CRYPTO
 libcloudless_la_SOURCES += crypto/dh_modp.cpp

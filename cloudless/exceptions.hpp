@@ -86,6 +86,8 @@ namespace cloudless
         not_fully_parsed(const char* file, int line);
     };
 
+    // crypto
+
     struct LIBCLOUDLESS_EXPORT crypto_exception : exception
     {
         crypto_exception(const char* file, int line);
@@ -99,6 +101,18 @@ namespace cloudless
     struct LIBCLOUDLESS_EXPORT mac_verification_failed : crypto_exception
     {
         mac_verification_failed(const char* file, int line);
+    };
+
+    // edges
+
+    struct LIBCLOUDLESS_EXPORT edgepoint_not_found : exception
+    {
+        edgepoint_not_found(const char* file, int line);
+    };
+
+    struct LIBCLOUDLESS_EXPORT point_not_found : exception
+    {
+        point_not_found(const char* file, int line);
     };
 
 } // namespace cloudless

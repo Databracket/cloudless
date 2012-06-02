@@ -133,4 +133,20 @@ namespace cloudless
         error += "MAC verification failed";
     }
 
+    // edgepoint_not_found
+
+    edgepoint_not_found::edgepoint_not_found(const char* file, int line) :
+        exception(file, line)
+    {
+        error += "edgepoint could not be found";
+    }
+
+    // point_not_found
+
+    point_not_found::point_not_found(const char* file, int line) :
+        exception(file, line)
+    {
+        error += "point could not be found";
+    }
+
 } // namespace cloudless
