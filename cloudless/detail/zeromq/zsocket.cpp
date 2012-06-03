@@ -26,8 +26,8 @@
  * A wrapper around 0MQ low level socket interface.
 */
 
-#include <cloudless/details/zeromq/zeromq.hpp>
-#include <cloudless/details/zeromq/zsocket.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
+#include <cloudless/detail/zeromq/zsocket.hpp>
 #include <cloudless/exceptions.hpp>
 
 #define _M_getsockopt(opt_, optval_) \
@@ -40,7 +40,7 @@
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     // zsocket
@@ -583,6 +583,6 @@ namespace details
         return event;
     }
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless

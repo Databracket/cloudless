@@ -38,8 +38,8 @@
 
 #include <cloudless/crypto/cryptopp/eccrypto.h>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/shared_ptr.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/crypto/hash.hpp>
 #include <cloudless/exceptions.hpp>
 
@@ -359,8 +359,8 @@ namespace crypto
 
     private:
         typedef typename FHMQV<ECP, DL_GroupParameters_EC<ECP>::DefaultCofactorOption, Hash>::Domain FHMQV_D;
-        typedef details::shared_ptr<FHMQV_D> FHMQV_ptr;
-        typedef details::shared_ptr<CryptoPP::SecByteBlock> sbb_ptr;
+        typedef detail::shared_ptr<FHMQV_D> FHMQV_ptr;
+        typedef detail::shared_ptr<CryptoPP::SecByteBlock> sbb_ptr;
 
     private:
         FHMQV_ptr _M_fhmqv;

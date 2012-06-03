@@ -26,13 +26,13 @@
  * A helper to prevent children from having the ability to construct.
 */
 
-#ifndef CLOUDLESS_DETAILS_NONCONSTRUCTIVE_HPP
-#define CLOUDLESS_DETAILS_NONCONSTRUCTIVE_HPP
+#ifndef CLOUDLESS_DETAIL_NONCONSTRUCTIVE_HPP
+#define CLOUDLESS_DETAIL_NONCONSTRUCTIVE_HPP
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     /**
@@ -45,8 +45,8 @@ namespace details
         ~nonconstructive();
     };
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_NONCONSTRUCTIVE_HPP
+#endif // CLOUDLESS_DETAIL_NONCONSTRUCTIVE_HPP

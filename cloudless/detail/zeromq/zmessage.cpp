@@ -28,13 +28,13 @@
 
 #include <cassert>
 
-#include <cloudless/details/zeromq/zmessage.hpp>
+#include <cloudless/detail/zeromq/zmessage.hpp>
 #include <cloudless/exceptions.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     // zmessage
@@ -104,6 +104,6 @@ namespace details
         return (std::string)*this < rhs;
     }
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless

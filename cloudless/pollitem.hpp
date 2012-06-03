@@ -31,9 +31,9 @@
 
 #include <utility>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/zeromq/zeromq.hpp>
-#include <cloudless/details/zeromq/zsocket.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
+#include <cloudless/detail/zeromq/zsocket.hpp>
 
 namespace cloudless
 {
@@ -67,7 +67,7 @@ namespace poll_events
          * @param socket a 0MQ socket.
          * @param events the events that poller should be monitoring. (e.g., IN | OUT)
          */
-        pollitem(details::zsocket& socket, short events = 0) throw();
+        pollitem(detail::zsocket& socket, short events = 0) throw();
 
         /**
          * A constructor that takes a system socket.

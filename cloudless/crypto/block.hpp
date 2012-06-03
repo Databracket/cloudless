@@ -64,8 +64,8 @@
 #include <cryptopp/filters.h>
 #include <cryptopp/cryptlib.h>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/shared_ptr.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/exceptions.hpp>
 
 namespace cloudless
@@ -173,7 +173,7 @@ namespace crypto
 
     private:
         Algo _M_algo;
-        details::shared_ptr<StreamTransformationFilter> _Mp_stf;
+        detail::shared_ptr<StreamTransformationFilter> _Mp_stf;
         SecByteBlock _M_key;
         SecByteBlock _M_iv;
         std::string _M_data;
@@ -361,8 +361,8 @@ namespace crypto
 
     private:
         Algo _M_algo;
-        details::shared_ptr<AuthenticatedEncryptionFilter> _Mp_aef;
-        details::shared_ptr<AuthenticatedDecryptionFilter> _Mp_adf;
+        detail::shared_ptr<AuthenticatedEncryptionFilter> _Mp_aef;
+        detail::shared_ptr<AuthenticatedDecryptionFilter> _Mp_adf;
         SecByteBlock _M_key;
         SecByteBlock _M_iv;
         std::string _M_data;

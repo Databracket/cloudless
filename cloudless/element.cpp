@@ -35,18 +35,18 @@ namespace cloudless
 
     // element
 
-    element::element(details::zmessage* p) :
-        details::shared_ptr<details::zmessage>(p)
+    element::element(detail::zmessage* p) :
+        detail::shared_ptr<detail::zmessage>(p)
     {}
 
     element::element(const std::string& data) :
-        details::shared_ptr<details::zmessage>(new element_type(data.size()))
+        detail::shared_ptr<detail::zmessage>(new element_type(data.size()))
     {
         memcpy(get()->data(), data.data(), data.size());
     }
 
     element::element(const void* p, size_t size) :
-        details::shared_ptr<details::zmessage>(new element_type(size))
+        detail::shared_ptr<detail::zmessage>(new element_type(size))
     {
         memcpy(get()->data(), p, size);
     }

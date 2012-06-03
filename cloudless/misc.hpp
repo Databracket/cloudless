@@ -32,7 +32,7 @@
 #include <string>
 #include <sstream>
 
-#include <cloudless/details/export.hpp>
+#include <cloudless/detail/export.hpp>
 #include <cloudless/exceptions.hpp>
 
 namespace cloudless

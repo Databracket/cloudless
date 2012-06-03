@@ -26,8 +26,8 @@
  * A polling mechanism based on 0MQ polling abstraction.
 */
 
-#include <cloudless/details/zeromq/zeromq.hpp>
-#include <cloudless/details/singleton.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
+#include <cloudless/detail/singleton.hpp>
 #include <cloudless/exceptions.hpp>
 #include <cloudless/poller.hpp>
 
@@ -80,7 +80,7 @@ namespace cloudless
         }
 
         // Return empty string
-        return *details::singleton<std::string>::instance();
+        return *detail::singleton<std::string>::instance();
     }
 
     const pollitem&

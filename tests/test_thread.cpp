@@ -30,8 +30,8 @@
 
 #include "catch.hpp"
 
-#include <cloudless/details/shared_ptr.hpp>
-#include <cloudless/details/thread.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
+#include <cloudless/detail/thread.hpp>
 
 #define TC TEST_CASE
 #define S SECTION
@@ -39,8 +39,8 @@
 #define RNT REQUIRE_NOTHROW
 
 using namespace std;
-using cloudless::details::thread;
-using cloudless::details::shared_ptr;
+using cloudless::detail::thread;
+using cloudless::detail::shared_ptr;
 
 struct test_thread : thread
 {
@@ -60,7 +60,7 @@ public:
     int val;
 };
 
-TC ("cloudless/details/thread", "Testing thread interface.")
+TC ("cloudless/detail/thread", "Testing thread interface.")
 {
     shared_ptr<test_thread> tt(new test_thread());
 

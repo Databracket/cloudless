@@ -37,7 +37,7 @@
 #include <cryptopp/whrlpool.h>
 #include <cryptopp/ripemd.h>
 
-#include <cloudless/details/export.hpp>
+#include <cloudless/detail/export.hpp>
 
 namespace cloudless
 {

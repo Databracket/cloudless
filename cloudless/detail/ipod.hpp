@@ -26,15 +26,15 @@
  * A wrapper around POD to auto-initialize upon declaration in class.
 */
 
-#ifndef CLOUDLESS_DETAILS_IPOD_HPP
-#define CLOUDLESS_DETAILS_IPOD_HPP
+#ifndef CLOUDLESS_DETAIL_IPOD_HPP
+#define CLOUDLESS_DETAIL_IPOD_HPP
 
-#include <cloudless/details/export.hpp>
+#include <cloudless/detail/export.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     /**
@@ -122,8 +122,8 @@ namespace details
         Tp _M_value;
     };
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_IPOD_HPP
+#endif // CLOUDLESS_DETAIL_IPOD_HPP

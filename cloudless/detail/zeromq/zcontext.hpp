@@ -23,35 +23,52 @@
  *
  * @section DESCRIPTION
  *
- * A helper to prevent children from having the ability to copy.
+ * A wrapper around 0MQ low level context.
 */
 
-#ifndef CLOUDLESS_DETAILS_NONCOPYABLE_HPP
-#define CLOUDLESS_DETAILS_NONCOPYABLE_HPP
+#ifndef CLOUDLESS_DETAIL_ZEROMQ_ZCONTEXT_HPP
+#define CLOUDLESS_DETAIL_ZEROMQ_ZCONTEXT_HPP
+
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/noncopyable.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     /**
-     * A helper to prevent children from having the ability to copy.
+     * A wrapper around 0MQ low level context.
      */
 
-    class noncopyable
+    struct LIBCLOUDLESS_EXPORT zcontext : noncopyable
     {
-    protected:
-        noncopyable() {}
-        ~noncopyable() {}
+
+        /**
+         * A constrcutor that takes the number of I/O threads
+         * to handle sending and receiving messages.
+         *
+         * @param io_threads the number of threads to handle I/O.
+         */
+        zcontext(int io_threads);
+
+        /**
+         * A destructor to free the allocated context by 0MQ.
+         */
+        virtual ~zcontext();
+
+        /**
+         * Expose internal 0MQ context by casting this structure to a void pointer.
+         */
+        operator void*() const throw();
 
     private:
-        noncopyable(const noncopyable&);
-        const noncopyable& operator =(const noncopyable&);
+        void* _M_ptr;
     };
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_NONCOPYABLE_HPP
+#endif // CLOUDLESS_DETAIL_ZEROMQ_ZCONTEXT_HPP

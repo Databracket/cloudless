@@ -23,48 +23,57 @@
  *
  * @section DESCRIPTION
  *
- * A shared_array implementation for heap-allocating exception-safe arrays.
+ * A singleton pattern implementation.
 */
 
-#ifndef CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
-#define CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
+#ifndef CLOUDLESS_DETAIL_SINGLETON_HPP
+#define CLOUDLESS_DETAIL_SINGLETON_HPP
 
-#include <cloudless/details/shared_ptr.hpp>
+#include <cassert>
+
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
-    template <typename T>
-    struct shared_array_deleter
-    {
-        void operator ()(const T* ptr)
-        { delete[] ptr; }
-    };
-
     /**
-     * An implementation for heap-allocating exception-safe arrays.
+     * A singleton pattern implementation that can be inherited.
      *
-     * @tparam T type of array.
+     * @tparam T the type of which a singleton instance will be created for.
      */
 
     template <typename T>
-    struct shared_array : shared_ptr<T>
+    class LIBCLOUDLESS_EXPORT singleton
     {
+    public:
 
         /**
-         * A constructor that takes a pointer of T.
+         * A static function to return a newly created instance of type T,
+         * or return the one already created if it exists.
          *
-         * @param ptr a pointer from the expression (new T[size]).
+         * @return a pointer of type T.
          */
-        explicit shared_array(T* ptr) :
-            shared_ptr<T>(ptr, shared_array_deleter<T>()) {}
+        static T* instance()
+        {
+            if (!_M_instance)
+                _M_instance = shared_ptr<T>(new T);
+
+            assert(_M_instance.get() != NULL);
+            return _M_instance.get();
+        }
+
+    private:
+        static shared_ptr<T> _M_instance;
     };
 
-} // namespace details
+    template <typename T> shared_ptr<T> singleton<T>::_M_instance;
+
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_SHARED_ARRAY_HPP
+#endif // CLOUDLESS_DETAIL_SINGLETON_HPP

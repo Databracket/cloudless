@@ -11,7 +11,7 @@ AC_INIT([cloudless],[m4_esyscmd([./version.sh])],[dev@cloudless.io])
 
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR(m4)
-AM_CONFIG_HEADER(cloudless/details/platform.hpp)
+AM_CONFIG_HEADER(cloudless/detail/platform.hpp)
 AM_INIT_AUTOMAKE(tar-ustar dist-zip dist-bzip2 subdir-objects nostdinc foreign)
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 

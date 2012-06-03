@@ -49,7 +49,7 @@ namespace cloudless
         ((zmq_pollitem_t*)this)->revents = 0;
     }
 
-    pollitem::pollitem(details::zsocket& socket, short events) throw()
+    pollitem::pollitem(detail::zsocket& socket, short events) throw()
     {
         ((zmq_pollitem_t*)this)->socket = socket;
         ((zmq_pollitem_t*)this)->fd = 0;

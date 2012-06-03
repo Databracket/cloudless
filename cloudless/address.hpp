@@ -32,7 +32,7 @@
 #include <string>
 #include <utility>
 
-#include <cloudless/details/export.hpp>
+#include <cloudless/detail/export.hpp>
 
 namespace cloudless
 {

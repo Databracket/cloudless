@@ -32,8 +32,8 @@
 // Big Integer
 #include <cryptopp/integer.h>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/nonconstructive.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/nonconstructive.hpp>
 
 namespace cloudless
 {
@@ -46,7 +46,7 @@ namespace crypto
      * 1536-bit MODP Group
      * ID: 5
      */
-    struct LIBCLOUDLESS_EXPORT MODP_5 : details::nonconstructive
+    struct LIBCLOUDLESS_EXPORT MODP_5 : detail::nonconstructive
     {
         static const CryptoPP::Integer p;
         static const CryptoPP::Integer q;
@@ -58,7 +58,7 @@ namespace crypto
      * 2048-bit MODP Group
      * ID: 14
      */
-    struct LIBCLOUDLESS_EXPORT MODP_14 : details::nonconstructive
+    struct LIBCLOUDLESS_EXPORT MODP_14 : detail::nonconstructive
     {
         static const CryptoPP::Integer p;
         static const CryptoPP::Integer q;
@@ -70,7 +70,7 @@ namespace crypto
      * 3072-bit MODP Group
      * ID: 15
      */
-    struct LIBCLOUDLESS_EXPORT MODP_15 : details::nonconstructive
+    struct LIBCLOUDLESS_EXPORT MODP_15 : detail::nonconstructive
     {
         static const CryptoPP::Integer p;
         static const CryptoPP::Integer q;
@@ -82,7 +82,7 @@ namespace crypto
      * 4096-bit MODP Group
      * ID: 16
      */
-    struct LIBCLOUDLESS_EXPORT MODP_16 : details::nonconstructive
+    struct LIBCLOUDLESS_EXPORT MODP_16 : detail::nonconstructive
     {
         static const CryptoPP::Integer p;
         static const CryptoPP::Integer q;
@@ -94,7 +94,7 @@ namespace crypto
      * 6144-bit MODP Group
      * ID: 17
      */
-    struct LIBCLOUDLESS_EXPORT MODP_17 : details::nonconstructive
+    struct LIBCLOUDLESS_EXPORT MODP_17 : detail::nonconstructive
     {
         static const CryptoPP::Integer p;
         static const CryptoPP::Integer q;
@@ -106,7 +106,7 @@ namespace crypto
      * 8192-bit MODP Group
      * ID: 18
      */
-    struct LIBCLOUDLESS_EXPORT MODP_18 : details::nonconstructive
+    struct LIBCLOUDLESS_EXPORT MODP_18 : detail::nonconstructive
     {
         static const CryptoPP::Integer p;
         static const CryptoPP::Integer q;

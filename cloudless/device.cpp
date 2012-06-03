@@ -26,7 +26,7 @@
  * An event-driven communication device.
 */
 
-#include <cloudless/details/shared_ptr.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/device.hpp>
 #include <cloudless/pollitem.hpp>
 
@@ -36,7 +36,7 @@ namespace cloudless
     // device
 
     device::device(const edges& edges) :
-        details::thread(), _M_edges(edges)
+        detail::thread(), _M_edges(edges)
     {}
 
     edges&
@@ -63,10 +63,10 @@ namespace cloudless
                 // Check if a 0MQ context is specified, if not use a global one
                 if (!point_it->second.pcontext)
                     point_it->second.pcontext =
-                        details::shared_ptr<context>(context::instance());
+                        detail::shared_ptr<context>(context::instance());
 
                 // Initialize a 0MQ socket for each point
-                point_it->second.psocket = details::shared_ptr<socket>(
+                point_it->second.psocket = detail::shared_ptr<socket>(
                         new socket(*point_it->second.pcontext,
                             point_it->second.socket_type));
 

@@ -28,12 +28,12 @@
 
 #include <boost/bind.hpp>
 
-#include <cloudless/details/thread.hpp>
+#include <cloudless/detail/thread.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     // thread
@@ -146,6 +146,6 @@ namespace details
         _M_wait();
     }
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless

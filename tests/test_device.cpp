@@ -32,9 +32,9 @@
 
 #include <string>
 
-#include <cloudless/details/shared_ptr.hpp>
-#include <cloudless/details/thread.hpp>
-#include <cloudless/details/ipod.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
+#include <cloudless/detail/thread.hpp>
+#include <cloudless/detail/ipod.hpp>
 #include <cloudless/device.hpp>
 #include <cloudless/socket.hpp>
 #include <cloudless/context.hpp>
@@ -47,9 +47,9 @@
 
 using namespace std;
 
-using cloudless::details::shared_ptr;
-using cloudless::details::thread;
-using cloudless::details::ipod;
+using cloudless::detail::shared_ptr;
+using cloudless::detail::thread;
+using cloudless::detail::ipod;
 using cloudless::device;
 using cloudless::edges;
 using cloudless::edgepoint;

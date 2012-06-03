@@ -33,9 +33,9 @@
 #include <vector>
 #include <map>
 
-#include <cloudless/details/noncopyable.hpp>
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/ipod.hpp>
+#include <cloudless/detail/noncopyable.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/ipod.hpp>
 #include <cloudless/pollitem.hpp>
 
 namespace cloudless
@@ -45,7 +45,7 @@ namespace cloudless
      * A container for pollitems that polls over all of them.
      */
 
-    class LIBCLOUDLESS_EXPORT poller : details::noncopyable
+    class LIBCLOUDLESS_EXPORT poller : detail::noncopyable
     {
     public:
 
@@ -90,7 +90,7 @@ namespace cloudless
         typedef std::map<std::string, unsigned int> items_indexes;
         items_indexes _M_indexes;
         std::vector<pollitem> _M_items;
-        details::ipod<unsigned int> _M_ctr;
+        detail::ipod<unsigned int> _M_ctr;
     };
 
 } // namespace cloudless

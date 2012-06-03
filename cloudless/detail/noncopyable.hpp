@@ -23,53 +23,35 @@
  *
  * @section DESCRIPTION
  *
- * A parent wrapper around Cloudless exceptions.
+ * A helper to prevent children from having the ability to copy.
 */
 
-#ifndef CLOUDLESS_DETAILS_EXCEPTION_HPP
-#define CLOUDLESS_DETAILS_EXCEPTION_HPP
-
-#define raise(__ex) throw __ex(__FILE__, __LINE__)
-
-#include <string>
-#include <sstream>
-#include <exception>
-
-#include <cloudless/details/export.hpp>
+#ifndef CLOUDLESS_DETAIL_NONCOPYABLE_HPP
+#define CLOUDLESS_DETAIL_NONCOPYABLE_HPP
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     /**
-     * A wrapper exception around all Cloudless exceptions.
+     * A helper to prevent children from having the ability to copy.
      */
 
-    struct LIBCLOUDLESS_EXPORT exception : std::exception
+    class noncopyable
     {
-        exception(const char* file, int line) throw()
-        {
-            std::ostringstream oss;
-            oss << file << ":" << line << " ";
-
-            error = oss.str();
-        }
-
-        virtual ~exception() throw() {}
-
-        virtual const char* what() const throw()
-        {
-            return error.c_str();
-        }
-
     protected:
-        std::string error;
+        noncopyable() {}
+        ~noncopyable() {}
+
+    private:
+        noncopyable(const noncopyable&);
+        const noncopyable& operator =(const noncopyable&);
     };
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_EXCEPTION_HPP
+#endif // CLOUDLESS_DETAIL_NONCOPYABLE_HPP

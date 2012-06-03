@@ -31,9 +31,9 @@
 
 #include <string>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/zeromq/zsocket.hpp>
-#include <cloudless/details/shared_ptr.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/zeromq/zsocket.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/message.hpp>
 #include <cloudless/address.hpp>
@@ -47,7 +47,7 @@ namespace cloudless
      * low level interface.
      */
 
-    struct LIBCLOUDLESS_EXPORT socket : details::zsocket
+    struct LIBCLOUDLESS_EXPORT socket : detail::zsocket
     {
 
         /**
@@ -119,7 +119,7 @@ namespace cloudless
         pollitem& poll_item() throw();
 
     private:
-        details::shared_ptr<pollitem> _M_ip;
+        detail::shared_ptr<pollitem> _M_ip;
     };
 
 } // namespace cloudless

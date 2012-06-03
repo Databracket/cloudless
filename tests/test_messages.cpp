@@ -33,7 +33,7 @@
 #include <string>
 #include <cstring>
 
-#include <cloudless/details/zeromq/zmessage.hpp>
+#include <cloudless/detail/zeromq/zmessage.hpp>
 #include <cloudless/element.hpp>
 #include <cloudless/message.hpp>
 
@@ -43,12 +43,12 @@
 
 using namespace std;
 
-TC ("cloudless/details/zmessage", "Testing zmessage interface.")
+TC ("cloudless/detail/zmessage", "Testing zmessage interface.")
 {
     string test_buffer = "test buffer";
 
-    cloudless::details::zmessage zmsg(test_buffer.size());
-    cloudless::details::zmessage zmsg_cpy;
+    cloudless::detail::zmessage zmsg(test_buffer.size());
+    cloudless::detail::zmessage zmsg_cpy;
 
     memcpy(zmsg.data(), test_buffer.c_str(), test_buffer.size());
 

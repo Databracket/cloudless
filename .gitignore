@@ -31,8 +31,8 @@ autom4te.cache
 .*~
 
 # config file output & artifacts
-cloudless/details/platform.hpp*
-cloudless/details/stamp-h1
+cloudless/detail/platform.hpp*
+cloudless/detail/stamp-h1
 
 # pkgconfig configure output
 libcloudless.pc

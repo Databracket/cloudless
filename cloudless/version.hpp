@@ -39,8 +39,8 @@
     CLOUDLESS_MAKE_VERSION(CLOUDLESS_VERSION_MAJOR, CLOUDLESS_VERSION_MINOR, \
             CLOUDLESS_VERSION_PATCH)
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/zeromq/zeromq.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
 
 namespace cloudless
 {

@@ -32,9 +32,9 @@
 #include <string>
 #include <map>
 
-#include <cloudless/details/shared_ptr.hpp>
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/ipod.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/ipod.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/socket.hpp>
 
@@ -131,17 +131,17 @@ namespace cloudless
             /**
              * A 0MG socket type value (e.g., cloudless::socket_type::XREQ)
              */
-            details::ipod<int> socket_type;
+            detail::ipod<int> socket_type;
 
             /**
              * A shared_ptr of a 0MQ context.
              */
-            details::shared_ptr<context> pcontext;
+            detail::shared_ptr<context> pcontext;
 
             /**
              * A shared_ptr of a 0MQ socket.
              */
-            details::shared_ptr<socket> psocket;
+            detail::shared_ptr<socket> psocket;
         };
 
         /**

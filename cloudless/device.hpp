@@ -31,8 +31,8 @@
 
 #include <string>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/thread.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/thread.hpp>
 #include <cloudless/poller.hpp>
 #include <cloudless/edges.hpp>
 
@@ -41,7 +41,7 @@ namespace cloudless
 
     // device
 
-    class LIBCLOUDLESS_EXPORT device : public details::thread
+    class LIBCLOUDLESS_EXPORT device : public detail::thread
     {
     public:
         device(const edges& edges);

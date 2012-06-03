@@ -23,30 +23,25 @@
  *
  * @section DESCRIPTION
  *
- * DLL export helper.
+ * A wrapper around boost::shared_ptr to make the transition
+ * to std::shared_ptr transparent.
 */
 
-#ifndef CLOUDLESS_DETAILS_EXPORT_HPP
-#define CLOUDLESS_DETAILS_EXPORT_HPP
+#ifndef CLOUDLESS_DETAIL_SHARED_PTR_HPP
+#define CLOUDLESS_DETAIL_SHARED_PTR_HPP
 
-#include <cloudless/details/platform.hpp>
+#include <boost/shared_ptr.hpp>
 
-#ifdef LIBCLOUDLESS_STATIC_LIB
-#  define LIBCLOUDLESS_EXPORT
-#else
-#  ifdef _WIN32
-#    ifdef _MSC_VER
-#      define LIBCLOUDLESS_EXPORT __declspec(dllexport)
-#    else
-#      ifdef DLL_EXPORT
-#        define LIBCLOUDLESS_EXPORT __declspec(dllexport)
-#      else
-#        define LIBCLOUDLESS_EXPORT
-#      endif
-#    endif
-#  else
-#    define LIBCLOUDLESS_EXPORT __attribute__ ((visibility("default")))
-#  endif
-#endif
+namespace cloudless
+{
 
-#endif // CLOUDLESS_DETAILS_EXPORT_HPP
+namespace detail
+{
+
+    using boost::shared_ptr;
+
+} // namespace detail
+
+} // namespace cloudless
+
+#endif // CLOUDLESS_DETAIL_SHARED_PTR_HPP

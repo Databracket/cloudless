@@ -32,9 +32,9 @@
 #include <string>
 #include <utility>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/shared_ptr.hpp>
-#include <cloudless/details/zeromq/zmessage.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
+#include <cloudless/detail/zeromq/zmessage.hpp>
 
 namespace cloudless
 {
@@ -45,7 +45,7 @@ namespace cloudless
      * A structure that wraps an element inside a the message container.
      */
 
-    struct LIBCLOUDLESS_EXPORT element : details::shared_ptr<details::zmessage>
+    struct LIBCLOUDLESS_EXPORT element : detail::shared_ptr<detail::zmessage>
     {
 
         /**
@@ -54,7 +54,7 @@ namespace cloudless
          *
          * @param p a pointer to a 0MQ message.
          */
-        element(details::zmessage* p = new details::zmessage);
+        element(detail::zmessage* p = new detail::zmessage);
 
         /**
          * A constructor that takes a constant reference to a std::string.

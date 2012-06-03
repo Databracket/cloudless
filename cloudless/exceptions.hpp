@@ -29,13 +29,13 @@
 #ifndef CLOUDLESS_EXCEPTIONS_HPP
 #define CLOUDLESS_EXCEPTIONS_HPP
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/exception.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/exception.hpp>
 
 namespace cloudless
 {
 
-    using details::exception;
+    using detail::exception;
 
     struct LIBCLOUDLESS_EXPORT null_pointer : exception
     {

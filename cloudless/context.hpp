@@ -29,11 +29,11 @@
 #ifndef CLOUDLESS_CONTEXT_HPP
 #define CLOUDLESS_CONTEXT_HPP
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/singleton.hpp>
-#include <cloudless/details/shared_ptr.hpp>
-#include <cloudless/details/enable_shared_from_this.hpp>
-#include <cloudless/details/zeromq/zcontext.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/singleton.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
+#include <cloudless/detail/enable_shared_from_this.hpp>
+#include <cloudless/detail/zeromq/zcontext.hpp>
 
 namespace cloudless
 {
@@ -46,7 +46,7 @@ namespace cloudless
      * address, they will NOT be able to communicate.
      */
 
-    struct LIBCLOUDLESS_EXPORT context : details::zcontext, details::singleton<context>, details::enable_shared_from_this<context>
+    struct LIBCLOUDLESS_EXPORT context : detail::zcontext, detail::singleton<context>, detail::enable_shared_from_this<context>
     {
 
         /**
@@ -58,7 +58,7 @@ namespace cloudless
          */
         context(int io_threads = 0);
 
-        details::shared_ptr<context> shared_this() throw();
+        detail::shared_ptr<context> shared_this() throw();
     };
 
 } // namespace cloudless

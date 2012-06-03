@@ -26,19 +26,19 @@
  * A wrapper around 0MQ low level messages.
 */
 
-#ifndef CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
-#define CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
+#ifndef CLOUDLESS_DETAIL_ZEROMQ_ZMESSAGE_HPP
+#define CLOUDLESS_DETAIL_ZEROMQ_ZMESSAGE_HPP
 
 #include <string>
 #include <utility>
 
-#include <cloudless/details/zeromq/zeromq.hpp>
-#include <cloudless/details/export.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
+#include <cloudless/detail/export.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     using namespace std::rel_ops;
@@ -140,8 +140,8 @@ namespace details
 
     };
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_ZEROMQ_ZMESSAGE_HPP
+#endif // CLOUDLESS_DETAIL_ZEROMQ_ZMESSAGE_HPP

@@ -26,7 +26,7 @@
  * Exception wrappers.
 */
 
-#include <cloudless/details/zeromq/zeromq.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
 #include <cloudless/exceptions.hpp>
 
 namespace cloudless

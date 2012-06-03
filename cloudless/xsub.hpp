@@ -29,7 +29,7 @@
 #ifndef CLOUDLESS_XSUB_HPP
 #define CLOUDLESS_XSUB_HPP
 
-#include <cloudless/details/export.hpp>
+#include <cloudless/detail/export.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/socket.hpp>
 

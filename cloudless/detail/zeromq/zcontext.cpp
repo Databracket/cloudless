@@ -28,14 +28,14 @@
 
 #include <cassert>
 
-#include <cloudless/details/zeromq/zeromq.hpp>
-#include <cloudless/details/zeromq/zcontext.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
+#include <cloudless/detail/zeromq/zcontext.hpp>
 #include <cloudless/exceptions.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     // zcontext
@@ -60,6 +60,6 @@ namespace details
         return _M_ptr;
     }
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless

@@ -26,7 +26,7 @@
  * A high level abstraction for 0MQ sockets interface.
 */
 
-#include <cloudless/details/zeromq/zeromq.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
 #include <cloudless/socket.hpp>
 #include <cloudless/poller.hpp>
 #include <cloudless/exceptions.hpp>
@@ -37,15 +37,15 @@ namespace cloudless
     // socket
 
     socket::socket(context& context, int type) :
-        details::zsocket(context, type)
+        detail::zsocket(context, type)
     {
-        _M_ip = details::shared_ptr<pollitem>(new pollitem(*this));
+        _M_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
     }
 
     socket&
     socket::bind(const std::string& addr)
     {
-        details::zsocket::bind(addr.c_str());
+        detail::zsocket::bind(addr.c_str());
 
         return *this;
     }
@@ -53,7 +53,7 @@ namespace cloudless
     socket&
     socket::bind(const address& addr)
     {
-        details::zsocket::bind((const char*) addr);
+        detail::zsocket::bind((const char*) addr);
 
         return *this;
     }
@@ -61,7 +61,7 @@ namespace cloudless
     socket&
     socket::connect(const std::string& addr)
     {
-        details::zsocket::connect(addr.c_str());
+        detail::zsocket::connect(addr.c_str());
 
         return *this;
     }
@@ -69,7 +69,7 @@ namespace cloudless
     socket&
     socket::connect(const address& addr)
     {
-        details::zsocket::connect((const char*) addr);
+        detail::zsocket::connect((const char*) addr);
 
         return *this;
     }

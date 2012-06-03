@@ -33,9 +33,9 @@
 
 #include <cryptopp/osrng.h>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/noncopyable.hpp>
-#include <cloudless/details/shared_array.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/noncopyable.hpp>
+#include <cloudless/detail/shared_array.hpp>
 
 namespace cloudless
 {
@@ -52,7 +52,7 @@ namespace crypto
      */
 
     template <int Size>
-    class LIBCLOUDLESS_EXPORT random : details::noncopyable
+    class LIBCLOUDLESS_EXPORT random : detail::noncopyable
     {
     public:
 
@@ -65,7 +65,7 @@ namespace crypto
         generate()
         {
             AutoSeededRandomPool asrp;
-            details::shared_array<byte> rndblck(new byte[Size]);
+            detail::shared_array<byte> rndblck(new byte[Size]);
 
             asrp.GenerateBlock(rndblck.get(), Size);
             return std::string((const char*)rndblck.get(), Size);

@@ -26,7 +26,7 @@
  * An abstraction around 0MQ context.
 */
 
-#include <cloudless/details/thread.hpp>
+#include <cloudless/detail/thread.hpp>
 #include <cloudless/context.hpp>
 
 namespace cloudless
@@ -35,10 +35,10 @@ namespace cloudless
     // context
 
     context::context(int io_threads) :
-        details::zcontext(io_threads == 0 ? details::thread::hardware_concurrency() : io_threads)
+        detail::zcontext(io_threads == 0 ? detail::thread::hardware_concurrency() : io_threads)
     {}
 
-    details::shared_ptr<context>
+    detail::shared_ptr<context>
     context::shared_this() throw()
     {
         return shared_from_this();

@@ -32,7 +32,7 @@
 
 #include <cstring>
 
-#include <cloudless/details/shared_array.hpp>
+#include <cloudless/detail/shared_array.hpp>
 #include <cloudless/address.hpp>
 #include <cloudless/misc.hpp>
 
@@ -56,9 +56,9 @@ TC ("cloudless/utils", "Testing utility functions.")
         R ( (const string&)addr1 == "udp://*" );
     }
 
-    S ("cloudless/details/shared_array", "Testing shared_array interface.")
+    S ("cloudless/detail/shared_array", "Testing shared_array interface.")
     {
-        cloudless::details::shared_array<char> str(new char[100]);
+        cloudless::detail::shared_array<char> str(new char[100]);
 
         for (int i = 0; i < 100; ++i)
             str.get()[i] = (char)i;

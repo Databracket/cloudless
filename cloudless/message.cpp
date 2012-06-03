@@ -26,7 +26,7 @@
  * An abstraction of 0MQ messages.
 */
 
-#include <cloudless/details/zeromq/zmessage.hpp>
+#include <cloudless/detail/zeromq/zmessage.hpp>
 #include <cloudless/message.hpp>
 
 namespace cloudless
@@ -56,7 +56,7 @@ namespace cloudless
             return _M_elements.back();
 
         if (_M_element.get() == NULL)
-            _M_element.reset(new details::zmessage);
+            _M_element.reset(new detail::zmessage);
 
         return _M_element;
     }
@@ -98,7 +98,7 @@ namespace cloudless
             return _M_elements.front();
 
         if (_M_element.get() == NULL)
-            _M_element.reset(new details::zmessage);
+            _M_element.reset(new detail::zmessage);
 
         return _M_element;
     }

@@ -23,52 +23,53 @@
  *
  * @section DESCRIPTION
  *
- * A wrapper around 0MQ low level context.
+ * A parent wrapper around Cloudless exceptions.
 */
 
-#ifndef CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP
-#define CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP
+#ifndef CLOUDLESS_DETAIL_EXCEPTION_HPP
+#define CLOUDLESS_DETAIL_EXCEPTION_HPP
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/noncopyable.hpp>
+#define raise(__ex) throw __ex(__FILE__, __LINE__)
+
+#include <string>
+#include <sstream>
+#include <exception>
+
+#include <cloudless/detail/export.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     /**
-     * A wrapper around 0MQ low level context.
+     * A wrapper exception around all Cloudless exceptions.
      */
 
-    struct LIBCLOUDLESS_EXPORT zcontext : noncopyable
+    struct LIBCLOUDLESS_EXPORT exception : std::exception
     {
+        exception(const char* file, int line) throw()
+        {
+            std::ostringstream oss;
+            oss << file << ":" << line << " ";
 
-        /**
-         * A constrcutor that takes the number of I/O threads
-         * to handle sending and receiving messages.
-         *
-         * @param io_threads the number of threads to handle I/O.
-         */
-        zcontext(int io_threads);
+            error = oss.str();
+        }
 
-        /**
-         * A destructor to free the allocated context by 0MQ.
-         */
-        virtual ~zcontext();
+        virtual ~exception() throw() {}
 
-        /**
-         * Expose internal 0MQ context by casting this structure to a void pointer.
-         */
-        operator void*() const throw();
+        virtual const char* what() const throw()
+        {
+            return error.c_str();
+        }
 
-    private:
-        void* _M_ptr;
+    protected:
+        std::string error;
     };
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_ZEROMQ_ZCONTEXT_HPP
+#endif // CLOUDLESS_DETAIL_EXCEPTION_HPP

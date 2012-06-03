@@ -26,31 +26,31 @@
  * An abstract wrapper around Boost::Thread.
 */
 
-#ifndef CLOUDLESS_DETAILS_THREAD_HPP
-#define CLOUDLESS_DETAILS_THREAD_HPP
+#ifndef CLOUDLESS_DETAIL_THREAD_HPP
+#define CLOUDLESS_DETAIL_THREAD_HPP
 
 #include <boost/thread/thread.hpp>
 #include <boost/thread/barrier.hpp>
 #include <boost/thread/mutex.hpp>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/exception.hpp>
-#include <cloudless/details/shared_ptr.hpp>
-#include <cloudless/details/shared_array.hpp>
-#include <cloudless/details/noncopyable.hpp>
-#include <cloudless/details/enable_shared_from_this.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/exception.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
+#include <cloudless/detail/shared_array.hpp>
+#include <cloudless/detail/noncopyable.hpp>
+#include <cloudless/detail/enable_shared_from_this.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
     /**
      * An abstraction class of Boost::Thread.
      */
 
-    class LIBCLOUDLESS_EXPORT thread : noncopyable, public details::enable_shared_from_this<thread>
+    class LIBCLOUDLESS_EXPORT thread : noncopyable, public detail::enable_shared_from_this<thread>
     {
     public:
         typedef boost::thread::native_handle_type native_handle_type;
@@ -191,8 +191,8 @@ namespace details
 
     };
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_THREAD_HPP
+#endif // CLOUDLESS_DETAIL_THREAD_HPP

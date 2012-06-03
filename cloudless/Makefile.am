@@ -1,13 +1,13 @@
 lib_LTLIBRARIES = libcloudless.la
 
 cloudlessincludedir = $(includedir)/cloudless
-nobase_cloudlessinclude_HEADERS = details/noncopyable.hpp details/nonconstructive.hpp \
-								  details/export.hpp details/exception.hpp \
-								  details/singleton.hpp details/shared_ptr.hpp \
-								  details/shared_array.hpp details/zeromq/zcontext.hpp \
-								  details/zeromq/zeromq.hpp details/zeromq/zmessage.hpp \
-								  details/zeromq/zsocket.hpp details/thread.hpp \
-								  details/enable_shared_from_this.hpp \
+nobase_cloudlessinclude_HEADERS = detail/noncopyable.hpp detail/nonconstructive.hpp \
+								  detail/export.hpp detail/exception.hpp \
+								  detail/singleton.hpp detail/shared_ptr.hpp \
+								  detail/shared_array.hpp detail/zeromq/zcontext.hpp \
+								  detail/zeromq/zeromq.hpp detail/zeromq/zmessage.hpp \
+								  detail/zeromq/zsocket.hpp detail/thread.hpp \
+								  detail/enable_shared_from_this.hpp \
 								  socket.hpp address.hpp context.hpp element.hpp \
 								  exceptions.hpp message.hpp poller.hpp pollitem.hpp \
 								  version.hpp req.hpp rep.hpp dealer.hpp router.hpp \
@@ -24,10 +24,10 @@ nobase_cloudlessinclude_HEADERS += crypto/block.hpp crypto/stream.hpp crypto/has
 								   crypto/cryptopp/eccrypto.h crypto/cryptopp/fhmqv.h
 endif
 
-nobase_nodist_cloudlessinclude_HEADERS = details/platform.hpp
+nobase_nodist_cloudlessinclude_HEADERS = detail/platform.hpp
 
-libcloudless_la_SOURCES = details/zeromq/zcontext.cpp details/zeromq/zmessage.cpp \
-						  details/zeromq/zsocket.cpp details/thread.cpp socket.cpp \
+libcloudless_la_SOURCES = detail/zeromq/zcontext.cpp detail/zeromq/zmessage.cpp \
+						  detail/zeromq/zsocket.cpp detail/thread.cpp socket.cpp \
 						  address.cpp context.cpp element.cpp exceptions.cpp \
 						  message.cpp pollitem.cpp poller.cpp \
 						  req.cpp rep.cpp dealer.cpp router.cpp push.cpp pull.cpp \
@@ -50,4 +50,4 @@ endif
 libcloudless_la_CXXFLAGS = -I'$(top_srcdir)' -I'$(top_builddir)' @LIBCLOUDLESS_EXTRA_CXXFLAGS@
 
 dist-hook:
-	-rm $(distdir)/details/platform.hpp
+	-rm $(distdir)/detail/platform.hpp

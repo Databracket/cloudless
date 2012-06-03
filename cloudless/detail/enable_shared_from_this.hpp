@@ -23,25 +23,25 @@
  *
  * @section DESCRIPTION
  *
- * A wrapper around boost::shared_ptr to make the transition
- * to std::shared_ptr transparent.
+ * A wrapper around boost::enable_shared_from_this to make the transition
+ * to std::enable_shared_from_this transparent.
 */
 
-#ifndef CLOUDLESS_DETAILS_SHARED_PTR_HPP
-#define CLOUDLESS_DETAILS_SHARED_PTR_HPP
+#ifndef CLOUDLESS_DETAIL_ENABLE_SHARED_FROM_THIS_HPP
+#define CLOUDLESS_DETAIL_ENABLE_SHARED_FROM_THIS_HPP
 
-#include <boost/shared_ptr.hpp>
+#include <boost/enable_shared_from_this.hpp>
 
 namespace cloudless
 {
 
-namespace details
+namespace detail
 {
 
-    using boost::shared_ptr;
+    using boost::enable_shared_from_this;
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_SHARED_PTR_HPP
+#endif // CLOUDLESS_DETAIL_ENABLE_SHARED_FROM_THIS_HPP

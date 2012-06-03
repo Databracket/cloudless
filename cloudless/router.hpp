@@ -29,7 +29,7 @@
 #ifndef CLOUDLESS_ROUTER_HPP
 #define CLOUDLESS_ROUTER_HPP
 
-#include <cloudless/details/export.hpp>
+#include <cloudless/detail/export.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/socket.hpp>
 

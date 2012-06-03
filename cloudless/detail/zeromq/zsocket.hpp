@@ -26,15 +26,15 @@
  * A wrapper around 0MQ low level socket interface.
 */
 
-#ifndef CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
-#define CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
+#ifndef CLOUDLESS_DETAIL_ZEROMQ_ZSOCKET_HPP
+#define CLOUDLESS_DETAIL_ZEROMQ_ZSOCKET_HPP
 
 #include <string>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/noncopyable.hpp>
-#include <cloudless/details/zeromq/zcontext.hpp>
-#include <cloudless/details/zeromq/zmessage.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/noncopyable.hpp>
+#include <cloudless/detail/zeromq/zcontext.hpp>
+#include <cloudless/detail/zeromq/zmessage.hpp>
 
 namespace cloudless
 {
@@ -61,7 +61,7 @@ namespace socket_type
 
 } // namespace socket_type
 
-namespace details
+namespace detail
 {
 
     /**
@@ -454,8 +454,8 @@ namespace details
         int _M_sendtimeo;
     };
 
-} // namespace details
+} // namespace detail
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_ZEROMQ_ZSOCKET_HPP
+#endif // CLOUDLESS_DETAIL_ZEROMQ_ZSOCKET_HPP

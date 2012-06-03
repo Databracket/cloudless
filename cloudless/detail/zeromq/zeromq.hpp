@@ -26,8 +26,8 @@
  * Helpers to wrap the differences between 0MQ 2.1.x and 3.1.x.
 */
 
-#ifndef CLOUDLESS_DETAILS_ZEROMQ_ZEROMQ_HPP
-#define CLOUDLESS_DETAILS_ZEROMQ_ZEROMQ_HPP
+#ifndef CLOUDLESS_DETAIL_ZEROMQ_ZEROMQ_HPP
+#define CLOUDLESS_DETAIL_ZEROMQ_ZEROMQ_HPP
 
 #include <zmq.h>
 #include <stdint.h>
@@ -61,4 +61,4 @@ namespace cloudless
 
 } // namespace cloudless
 
-#endif // CLOUDLESS_DETAILS_ZEROMQ_ZEROMQ_HPP
+#endif // CLOUDLESS_DETAIL_ZEROMQ_ZEROMQ_HPP

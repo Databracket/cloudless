@@ -37,8 +37,8 @@
 #include <cryptopp/salsa.h>
 #include <cryptopp/seal.h>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/shared_array.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_array.hpp>
 
 namespace cloudless
 {
@@ -94,7 +94,7 @@ namespace crypto
         std::string
         process(const std::string& value)
         {
-            details::shared_array<byte> buffer(new byte[value.size()]);
+            detail::shared_array<byte> buffer(new byte[value.size()]);
 
             _M_algo.ProcessData(buffer.get(), (byte*)value.data(), value.size());
 

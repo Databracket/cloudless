@@ -32,8 +32,8 @@
 #include <string>
 #include <deque>
 
-#include <cloudless/details/export.hpp>
-#include <cloudless/details/zeromq/zeromq.hpp>
+#include <cloudless/detail/export.hpp>
+#include <cloudless/detail/zeromq/zeromq.hpp>
 #include <cloudless/element.hpp>
 
 namespace cloudless

@@ -23,25 +23,30 @@
  *
  * @section DESCRIPTION
  *
- * A wrapper around boost::enable_shared_from_this to make the transition
- * to std::enable_shared_from_this transparent.
+ * DLL export helper.
 */
 
-#ifndef CLOUDLESS_DETAILS_ENABLE_SHARED_FROM_THIS_HPP
-#define CLOUDLESS_DETAILS_ENABLE_SHARED_FROM_THIS_HPP
+#ifndef CLOUDLESS_DETAIL_EXPORT_HPP
+#define CLOUDLESS_DETAIL_EXPORT_HPP
 
-#include <boost/enable_shared_from_this.hpp>
+#include <cloudless/detail/platform.hpp>
 
-namespace cloudless
-{
+#ifdef LIBCLOUDLESS_STATIC_LIB
+#  define LIBCLOUDLESS_EXPORT
+#else
+#  ifdef _WIN32
+#    ifdef _MSC_VER
+#      define LIBCLOUDLESS_EXPORT __declspec(dllexport)
+#    else
+#      ifdef DLL_EXPORT
+#        define LIBCLOUDLESS_EXPORT __declspec(dllexport)
+#      else
+#        define LIBCLOUDLESS_EXPORT
+#      endif
+#    endif
+#  else
+#    define LIBCLOUDLESS_EXPORT __attribute__ ((visibility("default")))
+#  endif
+#endif
 
-namespace details
-{
-
-    using boost::enable_shared_from_this;
-
-} // namespace details
-
-} // namespace cloudless
-
-#endif // CLOUDLESS_DETAILS_ENABLE_SHARED_FROM_THIS_HPP
+#endif // CLOUDLESS_DETAIL_EXPORT_HPP
