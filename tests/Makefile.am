@@ -1,6 +1,8 @@
 INCLUDES = -I$(top_builddir)
 LDADD = $(top_builddir)/cloudless/libcloudless.la
 
+EXTRA_DIST = catch.hpp
+
 noinst_PROGRAMS = test_messages test_utils test_context test_comm test_pair \
 				  test_req_rep test_push_pull test_pub_sub test_dealer_router \
 				  test_thread test_edges test_device
