@@ -7,7 +7,7 @@ nobase_cloudlessinclude_HEADERS = detail/noncopyable.hpp detail/nonconstructive.
 								  detail/shared_array.hpp detail/zeromq/zcontext.hpp \
 								  detail/zeromq/zeromq.hpp detail/zeromq/zmessage.hpp \
 								  detail/zeromq/zsocket.hpp detail/thread.hpp \
-								  detail/enable_shared_from_this.hpp \
+								  detail/enable_shared_from_this.hpp detail/ipod.hpp \
 								  socket.hpp address.hpp context.hpp element.hpp \
 								  exceptions.hpp message.hpp poller.hpp pollitem.hpp \
 								  version.hpp req.hpp rep.hpp dealer.hpp router.hpp \
