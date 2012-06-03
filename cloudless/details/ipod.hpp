@@ -65,6 +65,16 @@ namespace details
         }
 
         /**
+         * An assignment operator.
+         */
+        ipod<Tp>&
+        operator =(const Tp& rhs)
+        {
+            _M_value = rhs;
+            return *this;
+        }
+
+        /**
          * A prefix increment operator.
          */
         ipod<Tp>&
