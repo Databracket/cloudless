@@ -3,7 +3,7 @@ LDADD = $(top_builddir)/cloudless/libcloudless.la
 
 noinst_PROGRAMS = test_messages test_utils test_context test_comm test_pair \
 				  test_req_rep test_push_pull test_pub_sub test_dealer_router \
-				  test_thread test_edges
+				  test_thread test_edges test_device
 
 if CRYPTO
 noinst_PROGRAMS += test_crypto_block test_crypto_stream test_crypto_hash test_crypto_exchanger
@@ -24,6 +24,7 @@ test_pub_sub_SOURCES = test_pub_sub.cpp
 test_dealer_router_SOURCES = test_dealer_router.cpp
 test_thread_SOURCES = test_thread.cpp
 test_edges_SOURCES = test_edges.cpp
+test_device_SOURCES = test_device.cpp
 
 if CRYPTO
 test_crypto_block_SOURCES = test_crypto_block.cpp
