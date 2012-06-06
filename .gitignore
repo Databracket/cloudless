@@ -21,8 +21,6 @@ autom4te.cache
 *.lo
 *.loT
 *.la
-*.html
-*.pdf
 *.ps
 .libs
 .deps
@@ -43,11 +41,7 @@ cloudless-*.tar.gz
 cloudless-*.zip
 
 # documentation build output
-doc/*.1
-doc/*.3
-doc/*.7
-doc/*.html
-doc/*.xml
+doc/
 
 # tests build output
 tests/test_[a-z]*
