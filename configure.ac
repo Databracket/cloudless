@@ -229,6 +229,18 @@ AM_CONDITIONAL(ON_MINGW, test "x$libcloudless_on_mingw32" = "xyes")
 # Checks for library functions.
 AC_CHECK_FUNCS(memset memcpy)
 
+# Documentation checks.
+DX_HTML_FEATURE(ON)
+DX_PDF_FEATURE(ON)
+DX_DOT_FEATURE(ON)
+DX_CHM_FEATURE(OFF)
+DX_CHI_FEATURE(OFF)
+DX_MAN_FEATURE(OFF)
+DX_RTF_FEATURE(OFF)
+DX_XML_FEATURE(OFF)
+DX_PS_FEATURE(OFF)
+DX_INIT_DOXYGEN(Cloudless, doxygen.cfg, doc)
+
 # Checks for libraries.
 BOOST_REQUIRE([1.46.1])
 BOOST_SMART_PTR

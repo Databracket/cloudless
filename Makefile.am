@@ -7,7 +7,10 @@ DIST_SUBDIRS = cloudless tests
 pkgconfigdir = @pkgconfigdir@
 pkgconfig_DATA = libcloudless.pc
 
-EXTRA_DIST = bootstrap version.sh AUTHORS
+include doxygen.am
+
+EXTRA_DIST = bootstrap version.sh versionfilter.sh AUTHORS $(DX_CONFIG)
+MOSTLYCLEANFILES = $(DX_CLEANFILES)
 MAINTAINERCLEANFILES = \
 	$(srcdir)/aclocal.m4 \
 	$(srcdir)/autom4te.cache \
