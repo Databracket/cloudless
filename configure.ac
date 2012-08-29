@@ -50,10 +50,6 @@ AC_SUBST([LIBTOOL_DEPS])
 # Generate configured libtool
 LT_OUTPUT
 
-AC_ARG_VAR([XMLTO], [Path to xmlto command])
-AC_PATH_PROG([XMLTO], [xmlto])
-AC_ARG_VAR([ASCIIDOC], [Path to asciidoc command])
-AC_PATH_PROG([ASCIIDOC], [asciidoc])
 LIBCLOUDLESS_CONFIG_LIBTOOL
 
 # Check whether to build with debug symbols
@@ -182,9 +178,6 @@ case "${host_cpu}" in
     *)
     ;;
 esac
-
-# Check whether to build docs / install man pages
-LIBCLOUDLESS_CHECK_DOC_BUILD
 
 # Checks for header files.
 AC_HEADER_STDC
