@@ -47,8 +47,8 @@ main()
 
 if test x"$libzmq_found" = xyes; then
 
-# check if libzmq is of version 2.1.x
-libzmq_v2_1_x=no
+# check if libzmq is of version 2.x
+libzmq_v2_x=no
 
 CXX_LIBTOOL_RUN_IFELSE([
 AC_LANG_SOURCE([[
@@ -60,13 +60,13 @@ main()
   int major, minor, patch;
 
   zmq_version(&major, &minor, &patch);
-  return (major == 2 && minor == 1 && patch > 0) ? 0 : 1;
+  return (major == 2 && minor >= 1 && patch >= 0) ? 0 : 1;
 }
 ]])],
-[libzmq_v2_1_x=yes])
+[libzmq_v2_x=yes])
 
-# check if libzmq is of version 3.1.x
-libzmq_v3_1_x=no
+# check if libzmq is of version 3.x
+libzmq_v3_x=no
 
 CXX_LIBTOOL_RUN_IFELSE([
 AC_LANG_SOURCE([[
@@ -78,12 +78,12 @@ main()
   int major, minor, patch;
 
   zmq_version(&major, &minor, &patch);
-  return (major == 3 && minor == 1 && patch >= 0) ? 0 : 1;
+  return (major == 3 && minor >= 1 && patch >= 0) ? 0 : 1;
 }
 ]])],
-[libzmq_v3_1_x=yes])
+[libzmq_v3_x=yes])
 
-if test x"$libzmq_v2_1_x" = xno -a x"$libzmq_v3_1_x" = xno; then
+if test x"$libzmq_v2_x" = xno -a x"$libzmq_v3_x" = xno; then
   AC_MSG_RESULT([no])
   AC_MSG_ERROR([version of libzmq is not supported])
 fi
@@ -100,14 +100,14 @@ if test x"$libzmq_found" = xno; then
 fi
 
 if test x"$libzmq_found" = xyes; then
-  if test x"$libzmq_v2_1_x" = xyes; then
-    AC_MSG_RESULT([v2.1.x])
-  elif test x"$libzmq_v3_1_x" = xyes; then
-    AC_MSG_RESULT([v3.1.x])
+  if test x"$libzmq_v2_x" = xyes; then
+    AC_MSG_RESULT([v2.x])
+  elif test x"$libzmq_v3_x" = xyes; then
+    AC_MSG_RESULT([v3.x])
   fi
 
-  AM_CONDITIONAL([ZMQ_2_X], [test x"$libzmq_v2_1_x" = xyes])
-  AM_CONDITIONAL([ZMQ_3_X], [test x"$libzmq_v3_1_x" = xyes])
+  AM_CONDITIONAL([ZMQ_2_X], [test x"$libzmq_v2_x" = xyes])
+  AM_CONDITIONAL([ZMQ_3_X], [test x"$libzmq_v3_x" = xyes])
 
   $1
 else
