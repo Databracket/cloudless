@@ -76,7 +76,7 @@ TC ("cloudless/socket/xpub-xsub", "Testing XPUB/XSUB socket.")
     R ( p1.send(msg) == true );
 
     R ( s2.recv(msg) == true );
-    R ( msg.pop_head()->toString() == "testXPUB-XSUB" );
+    R ( msg.pop_head() == "testXPUB-XSUB" );
     R ( msg.size() == 0 );
 
     RNT ( p2.close() );
