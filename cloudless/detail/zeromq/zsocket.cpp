@@ -121,7 +121,7 @@ namespace detail
         int rc = zmq_sendmsg(_Mp_ptr, msg, flags);
 
 #if ZMQ_VERSION_MAJOR == 3
-        if (rc > 0) // 0MQ 3.x returns the number of bytes sent
+        if (rc >= 0) // 0MQ 3.x returns the number of bytes sent
             return true;
 #elif ZMQ_VERSION_MAJOR == 2
         if (rc == 0)
@@ -140,7 +140,7 @@ namespace detail
         int rc = zmq_recvmsg(_Mp_ptr, msg, flags);
 
 #if ZMQ_VERSION_MAJOR == 3
-        if (rc > 0) // 0MQ 3.x returns the number of bytes received
+        if (rc >= 0) // 0MQ 3.x returns the number of bytes received
             return true;
 #elif ZMQ_VERSION_MAJOR == 2
         if (rc == 0)
