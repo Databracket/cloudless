@@ -1,68 +1,193 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Cloudless by Databracket</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Cloudless : An event-driven communication framework" />
 
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Cloudless</title>
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/Databracket/cloudless">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/Databracket/cloudless/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/Databracket/cloudless/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Databracket/cloudless">View on GitHub</a>
 
-      <section>
-        <div id="title">
-          <h1>Cloudless</h1>
-          <p>An open source communication framework</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/Databracket">Databracket</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
-        </div>
+          <h1 id="project_title">Cloudless</h1>
+          <h2 id="project_tagline">An event-driven communication framework</h2>
 
-        <h3>Welcome to Cloudless.</h3>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Databracket/cloudless/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Databracket/cloudless/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-<p>Cloudless is an open-source communications framework.</p>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Welcome to Cloudless</h2>
 
-<pre><code>$ git clone git://github.com/Databracket/cloudless.git
-</code></pre>
+<p>Cloudless is an event-driven communication framework built on-top of <a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> to provide fast, reliable, easy-to-use library to address most application needs for communication over in-process, inter-process, or over the wire transports.</p>
 
-<h3>Feature 1</h3>
+<p>Using BSD sockets directly is such a waste of time for any modern application as almost always there will be a need to implement a few communication paradigms on-top of it, and that's where <a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> solves the problem, but not quite entirely.</p>
 
-<p>Description</p>
+<p><a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> provides the most elegant way to communicate between any two parts of an application by providing a succinct API and utilizing a decentralized asynchronous message queues. Not only that, <a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> also provides communication patterns where one could easily define the routing construct of messages between any two parts in a system.</p>
 
-<h3>Feature 2</h3>
+<p>Cloudless comes in as a transparent abstraction layer on-top of <a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> to provide an ever-expanding set of communication devices and ultimately allow for constructing virtual networks with high level routing and abstract node descriptors.</p>
 
-<h3>Mailing Lists</h3>
+<h2>Getting Started</h2>
+
+<p>You can start by downloading the latest version from the <a href="https://github.com/Databracket/cloudless/downloads/" title="Cloudless Downloads Section">downloads section</a>, follow the instructions in the <code>README</code> file to install Cloudless and then have fun with the following examples. You are also encouraged to look at the unit-tests in the project distribution for examples.</p>
+
+<p>Complete API documentation can be generated by running <code>make doc</code> at the command line. Or you can examine the header files.</p>
+
+<h3>Example 1</h3>
+
+<div class="highlight"><pre><span class="cp">#include &lt;cloudless/context.hpp&gt; </span><span class="c1">// A wrapper for 0MQ contexts.</span>
+<span class="cp">#include &lt;cloudless/message.hpp&gt; </span><span class="c1">// An abstraction for 0MQ messages.</span>
+<span class="cp">#include &lt;cloudless/address.hpp&gt; </span><span class="c1">// An abstraction for 0MQ address format.</span>
+<span class="cp">#include &lt;cloudless/pair.hpp&gt; </span><span class="c1">// A 0MQ PAIR socket.</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cloudless</span><span class="o">::</span><span class="n">context</span> <span class="n">ctx</span><span class="p">;</span>
+    <span class="n">cloudless</span><span class="o">::</span><span class="n">address</span> <span class="n">addr</span><span class="p">(</span><span class="n">cloudless</span><span class="o">::</span><span class="n">protocol</span><span class="o">::</span><span class="n">INPROC</span><span class="p">,</span> <span class="s">"nightclub"</span><span class="p">);</span>
+
+    <span class="c1">// Equivalent to socket(ctx, socket_type::PAIR)</span>
+    <span class="n">cloudless</span><span class="o">::</span><span class="n">pair</span> <span class="n">alice</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+    <span class="n">alice</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">);</span>
+
+    <span class="n">cloudless</span><span class="o">::</span><span class="n">pair</span> <span class="n">bob</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+    <span class="n">bob</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">);</span>
+
+    <span class="n">cloudless</span><span class="o">::</span><span class="n">message</span> <span class="n">msg</span><span class="p">(</span><span class="s">"Hi Alice!"</span><span class="p">);</span>
+    <span class="n">bob</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+
+    <span class="n">alice</span><span class="p">.</span><span class="n">recv</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">pop_head</span><span class="p">()</span> <span class="o">==</span> <span class="s">"Hi Alice!"</span><span class="p">)</span>
+        <span class="n">alice</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">push_head</span><span class="p">(</span><span class="s">"Hey Bob!"</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">push_tail</span><span class="p">(</span><span class="s">"Let's have a drink"</span><span class="p">));</span>
+
+    <span class="c1">// Once the socket object is out of</span>
+    <span class="c1">// scope close() is called.</span>
+    <span class="n">bob</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="n">alice</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>Example 2</h3>
+
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="cp">#include &lt;cloudless/context.hpp&gt;</span>
+<span class="cp">#include &lt;cloudless/socket.hpp&gt;</span>
+<span class="cp">#include &lt;cloudless/message.hpp&gt;</span>
+<span class="cp">#include &lt;cloudless/edges.hpp&gt;</span>
+<span class="cp">#include &lt;cloudless/device.hpp&gt;</span>
+
+<span class="k">struct</span> <span class="n">echo</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cloudless</span><span class="o">::</span><span class="n">device</span>
+<span class="p">{</span>
+    <span class="n">echo</span><span class="p">(</span><span class="k">const</span> <span class="n">cloudless</span><span class="o">::</span><span class="n">edges</span><span class="o">&amp;</span> <span class="n">edges</span><span class="p">)</span> <span class="o">:</span>
+        <span class="n">cloudless</span><span class="o">::</span><span class="n">device</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+    <span class="p">{}</span>
+
+    <span class="c1">// This function is called only once upon device start.</span>
+    <span class="kt">void</span> <span class="n">on_init</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">get_edges</span><span class="p">()[</span><span class="s">"loopback"</span><span class="p">][</span><span class="s">"echo"</span><span class="p">].</span><span class="n">psocket</span><span class="o">-&gt;</span><span class="n">bind</span><span class="p">(</span><span class="s">"inproc://echo"</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Device echo started."</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This function is called for every message</span>
+    <span class="c1">// that becomes available on the socket.</span>
+    <span class="kt">void</span> <span class="n">on_recv</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">edge_id</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">edgepoint_id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cloudless</span><span class="o">::</span><span class="n">edgepoint</span><span class="o">::</span><span class="n">point</span><span class="o">&amp;</span> <span class="n">point</span> <span class="o">=</span> <span class="n">get_edges</span><span class="p">()[</span><span class="n">edge_id</span><span class="p">][</span><span class="n">edgepoint_id</span><span class="p">];</span>
+
+        <span class="n">cloudless</span><span class="o">::</span><span class="n">message</span> <span class="n">msg</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">point</span><span class="p">.</span><span class="n">psocket</span><span class="o">-&gt;</span><span class="n">recv</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Received a message: "</span>
+                <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">*</span><span class="n">msg</span><span class="p">.</span><span class="n">head</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="n">point</span><span class="p">.</span><span class="n">psocket</span><span class="o">-&gt;</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This function is called only once upon device shutdown.</span>
+    <span class="kt">void</span> <span class="n">on_shutdown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">get_edges</span><span class="p">()[</span><span class="s">"loopback"</span><span class="p">][</span><span class="s">"echo"</span><span class="p">].</span><span class="n">psocket</span><span class="o">-&gt;</span><span class="n">close</span><span class="p">();</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Device echo is shutdown."</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cloudless</span><span class="o">::</span><span class="n">edgepoint</span> <span class="n">loopback</span><span class="p">;</span>
+
+    <span class="c1">// We only specify the socket type here,</span>
+    <span class="c1">// it will be initialized in the device. The point will assume</span>
+    <span class="c1">// the usage of the default global 0MQ context.</span>
+    <span class="n">loopback</span><span class="o">::</span><span class="n">point</span> <span class="n">echo_point</span> <span class="o">=</span> <span class="p">{</span> <span class="n">cloudless</span><span class="o">::</span><span class="n">socket_type</span><span class="o">::</span><span class="n">PAIR</span> <span class="p">};</span>
+    <span class="n">loopback</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"echo"</span><span class="p">,</span> <span class="n">echo_point</span><span class="p">);</span>
+
+    <span class="n">cloudless</span><span class="o">::</span><span class="n">edges</span> <span class="n">eds</span><span class="p">;</span>
+    <span class="n">eds</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"loopback"</span><span class="p">,</span> <span class="n">loopback</span><span class="p">);</span>
+
+    <span class="n">echo</span> <span class="n">echo_device</span><span class="p">(</span><span class="n">eds</span><span class="p">);</span>
+    <span class="n">echo_device</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+
+    <span class="c1">// It is a must to use the same 0MQ context</span>
+    <span class="c1">// between INPROC sockets and therefore we use the</span>
+    <span class="c1">// default global 0MQ context instead of creating a new one. </span>
+    <span class="n">socket</span> <span class="n">echo_socket</span><span class="p">(</span><span class="o">*</span><span class="n">cloudless</span><span class="o">::</span><span class="n">context</span><span class="o">::</span><span class="n">instance</span><span class="p">(),</span> <span class="n">cloudless</span><span class="o">::</span><span class="n">socket_type</span><span class="o">::</span><span class="n">PAIR</span><span class="p">);</span>
+    <span class="n">echo_socket</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">"inproc://echo"</span><span class="p">);</span>
+
+    <span class="n">cloudless</span><span class="o">::</span><span class="n">message</span> <span class="n">msg</span><span class="p">(</span><span class="s">"Echo!"</span><span class="p">);</span>
+    <span class="n">echo_socket</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+    <span class="n">echo_socket</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+
+    <span class="c1">// This is an asynchronous call.</span>
+    <span class="c1">// The destructor will block until the thread actually stops.</span>
+    <span class="n">echo_device</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>How to Contribute</h2>
+
+<p>There are endless ways to contribute to Cloudless. Though we encourage you to bring your thoughts to the development mailing list first to make sure that no one else is working on what you intend to work on.</p>
+
+<p>You can contribute to the <a href="https://github.com/Databracket/cloudless/wiki/" title="Cloudless Wiki Section">Wiki Pages</a> section by writing usage documentation examples. You can also contribute code by making a fork and submit pull requests on the <code>development</code> branch. Note that you should not code against the <code>master</code> branch as it is only used for releases and hot-fixes.</p>
+
+<h2>Mailing Lists</h2>
 
 <ul>
-<li>Dev: <a href="http://groups.google.com/group/cloudless-dev?hl=en">http://groups.google.com/group/cloudless-dev?hl=en</a>
+<li>Development: <a href="http://groups.google.com/group/cloudless-dev?hl=en">http://groups.google.com/group/cloudless-dev?hl=en</a>
 </li>
-<li>Bugs: <a href="http://groups.google.com/group/cloudless-bugs?hl=en">http://groups.google.com/group/cloudless-bugs?hl=en</a>
+<li>Announcements: <a href="http://groups.google.com/group/cloudless-announce?hl=en">http://groups.google.com/group/cloudless-announce?hl=en</a>
 </li>
 </ul>
       </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Cloudless maintained by <a href="https://github.com/Databracket">Databracket</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
