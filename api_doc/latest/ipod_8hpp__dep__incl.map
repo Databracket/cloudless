@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$poller_8hpp.html" title="cloudless/poller.hpp" alt="" coords="172,83,308,112"/>
-<area shape="rect" id="node13" href="$edges_8hpp.html" title="cloudless/edges.hpp" alt="" coords="335,83,476,112"/>
-<area shape="rect" id="node5" href="$device_8hpp.html" title="cloudless/device.hpp" alt="" coords="333,160,477,189"/>
-<area shape="rect" id="node9" href="$poller_8cpp.html" title="cloudless/poller.cpp" alt="" coords="5,160,141,189"/>
-<area shape="rect" id="node11" href="$socket_8cpp.html" title="cloudless/socket.cpp" alt="" coords="165,160,309,189"/>
-<area shape="rect" id="node7" href="$device_8cpp.html" title="cloudless/device.cpp" alt="" coords="333,237,477,267"/>
-<area shape="rect" id="node16" href="$edges_8cpp.html" title="cloudless/edges.cpp" alt="" coords="501,160,643,189"/>
-</map>

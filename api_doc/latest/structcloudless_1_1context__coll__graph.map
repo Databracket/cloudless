@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node2" href="$structcloudless_1_1detail_1_1zcontext.html" title="A wrapper around 0MQ low level context." alt="" coords="301,5,475,35"/>
-<area shape="rect" id="node4" href="$classcloudless_1_1detail_1_1noncopyable.html" title="A helper to prevent children from having the ability to copy." alt="" coords="5,5,203,35"/>
-<area shape="rect" id="node6" href="$classcloudless_1_1detail_1_1singleton.html" title="cloudless::detail::singleton\&lt; context \&gt;" alt="" coords="267,59,509,88"/>
-</map>

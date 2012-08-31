@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$structcloudless_1_1detail_1_1zsocket.html#a7ec956070a6068065c6d96e427f5052c" title="Set socket&#39;s identity." alt="" coords="311,5,529,35"/>
-<area shape="rect" id="node5" href="$structcloudless_1_1detail_1_1zsocket.html#add1c8ad8fd43048ea7bcf5f67e9837f8" title="Subscribe to a topic on a SUB socket." alt="" coords="303,59,537,88"/>
-<area shape="rect" id="node7" href="$structcloudless_1_1detail_1_1zsocket.html#a46f59900c652e39214abb0fcab9dafd6" title="Unsubscribe from a topic on a SUB socket." alt="" coords="296,112,544,141"/>
-</map>
