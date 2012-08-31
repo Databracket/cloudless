@@ -18,6 +18,7 @@ MAINTAINERCLEANFILES = \
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
 test: check
+doc: doxygen-doc
 
 libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status libtool
