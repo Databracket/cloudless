@@ -1,0 +1,48 @@
+# build system artifacts
+Makefile
+Makefile.in
+configure
+libtool
+config
+config.lt
+m4/libtool.m4
+m4/ltoptions.m4
+m4/ltsugar.m4
+m4/ltversion.m4
+m4/lt~obsolete.m4
+config.status
+config.log
+aclocal.m4
+autom4te.cache
+*.o
+*.gcno
+*.class
+*.ncb
+*.lo
+*.loT
+*.la
+*.ps
+.libs
+.deps
+.dirstamp
+*~
+.*~
+
+# config file output & artifacts
+cloudless/detail/platform.hpp*
+cloudless/detail/stamp-h1
+
+# pkgconfig configure output
+libcloudless.pc
+
+# make dist output
+cloudless-*.tar.bz2
+cloudless-*.tar.gz
+cloudless-*.zip
+
+# documentation build output
+doc/
+
+# tests build output
+tests/test_[a-z]*
+!tests/test_[a-z]*.cpp

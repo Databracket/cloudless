@@ -1,0 +1,54 @@
+Introduction
+============
+
+Cloudless is an event-driven communication framework built on-top of 0MQ
+to provide fast, reliable, easy-to-use library to address most application
+needs for communication over in-process or inter-process transports.
+
+Building and Installation
+=========================
+
+See the INSTALL file included with the distribution.
+
+Dependencies
+============
+
+Boost library is required, specifically the threading library, smart_ptr, and bind.
+0MQ library is required, either 3.x or 2.x versions are supported.
+Crypto++ library is required, preferably version v5.6.1.
+Doxygen is optional but it is required if you desire documentation to be generated.
+
+Configure Options
+=================
+
+`--enable-debug` use this option to enable debugging information.
+
+`--disable-doxygen-doc` disable the generation of any Doxygen documentation.
+	This option also removes the Doxygen requirement.
+
+`--disable-doxygen-dot` disable the generation of any Doxygen graphics.
+`--disable-doxygen-html` don't generate Doxygen HTML documentation.
+`--disable-doxygen-pdf` don't generate Doxygen PDF documentation.
+
+`--disable-crypto` don't compile cryptographic facilities.
+	This option also removes the Crypto++ library requirement.
+
+Resources
+=========
+
+Extensive documentation is available with the distribution. Refer to
+the "doc" directory after you have generated the Doxygen documentation.
+
+Website: http://cloudless.io/
+
+Development mailing list: cloudless-dev@googlegroups.com
+Announcements mailing list: cloudless-announce@googlegroups.com
+
+Git repository: http://github.com/Databracket/cloudless
+
+Copying
+=======
+
+Free use of this software is granted under the terms of the GNU Lesser General
+Public License (LGPL). For details see the files `COPYING` and `COPYING.LESSER`
+included with the Cloudless distribution.
