@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/Databracket/cloudless">View on GitHub</a>
 
           <h1 id="project_title">Cloudless</h1>
-          <h2 id="project_tagline">An event-driven communication framework</h2>
+          <h2 id="project_tagline">A scaling library for <a href="http://www.zeromq.org/" title="0MQ Website">zeromq</a></h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/Databracket/cloudless/zipball/master">Download this project as a .zip file</a>
@@ -31,11 +31,14 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h2>Welcome to Cloudless</h2>
+<h2>What can I do with Cloudless?</h2>
+<p>You can easily implement event-driven communication without worrying about threading. Cloudless provides devices for zeromq that make it trivial to utilize zeromq's built-in communication patterns in a threaded environment.</p>
 
 <p>Cloudless is an event-driven communication framework built on-top of <a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> to provide fast, reliable, easy-to-use library to address most application needs for communication over in-process, inter-process, or over the wire transports.</p>
 
-<p>Using BSD sockets directly is such a waste of time for any modern application as almost always there will be a need to implement a few communication paradigms on-top of it, and that's where <a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> solves the problem, but not quite entirely.</p>
+<h2>Why Cloudless?</h2>
+
+<p>Using BSD sockets directly is a chore in any modern application as there will almost ways be a need to implement a few communication paradigms on top of them. That's where <a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> comes in, but it doesn't entirely solve the problem.</p>
 
 <p><a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> provides the most elegant way to communicate between any two parts of an application by providing a succinct API and utilizing a decentralized asynchronous message queues. Not only that, <a href="http://www.zeromq.org/" title="0MQ Website">0MQ</a> also provides communication patterns where one could easily define the routing construct of messages between any two parts in a system.</p>
 
