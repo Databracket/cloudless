@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/Databracket/cloudless">View on GitHub</a>
 
           <h1 id="project_title">Cloudless</h1>
-          <h2 id="project_tagline">A scaling library for <a href="http://www.zeromq.org/" title="0MQ Website">zeromq</a></h2>
+          <h2 id="project_tagline">A scaling library for <a href="http://www.zeromq.org/" title="0MQ Website">ZeroMQ</a></h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/Databracket/cloudless/zipball/master">Download this project as a .zip file</a>
@@ -157,8 +157,8 @@
     <span class="n">echo_socket</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
     <span class="n">echo_socket</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
 
-    <span class="c1">// This is an asynchronous call.</span>
-    <span class="c1">// The destructor will block until the thread actually stops.</span>
+    <span class="c1">// This is an asynchronous request to stop the device's thread.</span>
+    <span class="c1">// The device's destructor however will block until the thread actually stops.</span>
     <span class="n">echo_device</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
 
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
