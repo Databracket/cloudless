@@ -54,15 +54,15 @@ namespace detail
          * A static function to return a newly created instance of type T,
          * or return the one already created if it exists.
          *
-         * @return a pointer of type T.
+         * @return a shared pointer of type T.
          */
-        static T* instance()
+        static shared_ptr<T> instance()
         {
             if (!_M_instance)
                 _M_instance = shared_ptr<T>(new T);
 
             assert(_M_instance.get() != NULL);
-            return _M_instance.get();
+            return _M_instance;
         }
 
     private:
