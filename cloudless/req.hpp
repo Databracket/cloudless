@@ -29,6 +29,7 @@
 #define CLOUDLESS_REQ_HPP
 
 #include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/socket.hpp>
 
@@ -48,6 +49,13 @@ namespace cloudless
          * @param context a context.
          */
         req(context& context);
+
+        /**
+         * A constructor that takes a context.
+         *
+         * @param context a shared pointer to a context.
+         */
+        req(detail::shared_ptr<context>& context);
     };
 
 } // namespace cloudless

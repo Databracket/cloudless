@@ -36,4 +36,8 @@ namespace cloudless
         socket(context, socket_type::PAIR)
     {}
 
+    pair::pair(detail::shared_ptr<context>& context) :
+        socket(context, socket_type::PAIR)
+    {}
+
 } // namespace cloudless

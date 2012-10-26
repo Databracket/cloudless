@@ -58,6 +58,14 @@ namespace cloudless
         socket(context& context, int type);
 
         /**
+         * A constructor that takes a context and a socket type.
+         *
+         * @param context a shared pointer of a context.
+         * @param type a socket type.
+         */
+        socket(detail::shared_ptr<context>& context, int type);
+
+        /**
          * Bind this socket to a specific address given via
          * a std::string.
          *

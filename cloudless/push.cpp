@@ -37,6 +37,10 @@ namespace cloudless
         socket(context, socket_type::PUSH)
     {}
 
+    push::push(detail::shared_ptr<context>& context) :
+        socket(context, socket_type::PUSH)
+    {}
+
     bool
     push::recv(message& msg, bool block)
     {

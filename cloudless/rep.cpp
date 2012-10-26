@@ -36,4 +36,8 @@ namespace cloudless
         socket(context, socket_type::REP)
     {}
 
+    rep::rep(detail::shared_ptr<context>& context) :
+        socket(context, socket_type::REP)
+    {}
+
 } // namespace cloudless

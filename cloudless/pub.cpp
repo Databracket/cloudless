@@ -37,6 +37,10 @@ namespace cloudless
         socket(context, socket_type::PUB)
     {}
 
+    pub::pub(detail::shared_ptr<context>& context) :
+        socket(context, socket_type::PUB)
+    {}
+
     bool
     pub::recv(message& msg, bool block)
     {

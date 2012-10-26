@@ -37,6 +37,10 @@ namespace cloudless
         socket(context, socket_type::PULL)
     {}
 
+    pull::pull(detail::shared_ptr<context>& context) :
+        socket(context, socket_type::PULL)
+    {}
+
     bool
     pull::send(message& msg, bool block)
     {
