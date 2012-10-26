@@ -85,7 +85,7 @@ namespace cloudless
             poller p;
 
             p.add("__send_socket",
-                    poll_item().register_event(poll_events::OUT));
+                    poll_item().register_event(poll_events::OUT_EVENT));
 
             if (!p.poll(send_timeout()) || !p["__send_socket"].out())
                 return false;
@@ -116,7 +116,7 @@ namespace cloudless
             poller p;
 
             p.add("__recv_socket",
-                    poll_item().register_event(poll_events::IN));
+                    poll_item().register_event(poll_events::IN_EVENT));
 
             if (!p.poll(recv_timeout()) || !p["__recv_socket"].in())
                 return false;

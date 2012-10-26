@@ -47,14 +47,14 @@ TC ("cloudless/pollitem", "Testing pollitem interface.")
 {
     cloudless::pollitem pi;
 
-    RNT ( pi.register_event(cloudless::poll_events::IN) );
-    RNT ( pi.unregister_event(cloudless::poll_events::IN) );
+    RNT ( pi.register_event(cloudless::poll_events::IN_EVENT) );
+    RNT ( pi.unregister_event(cloudless::poll_events::IN_EVENT) );
     R ( pi.in() == false );
-    RNT ( pi.register_event(cloudless::poll_events::OUT) );
-    RNT ( pi.unregister_event(cloudless::poll_events::OUT) );
+    RNT ( pi.register_event(cloudless::poll_events::OUT_EVENT) );
+    RNT ( pi.unregister_event(cloudless::poll_events::OUT_EVENT) );
     R ( pi.out() == false );
-    RNT ( pi.register_event(cloudless::poll_events::ERROR) );
-    RNT ( pi.unregister_event(cloudless::poll_events::ERROR) );
+    RNT ( pi.register_event(cloudless::poll_events::ERROR_EVENT) );
+    RNT ( pi.unregister_event(cloudless::poll_events::ERROR_EVENT) );
     R ( pi.error() == false );
 }
 
