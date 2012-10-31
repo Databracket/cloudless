@@ -44,7 +44,7 @@ namespace cloudless
     {
     public:
         device(const edges& edges);
-        virtual ~device() {}
+        virtual ~device();
 
     protected:
 

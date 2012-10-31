@@ -38,6 +38,11 @@ namespace cloudless
         detail::thread(), _M_edges(edges)
     {}
 
+    device::~device()
+    {
+        wait();
+    }
+
     edges&
     device::get_edges() const
     {
