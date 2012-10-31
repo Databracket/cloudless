@@ -29,6 +29,8 @@
 
 #include "catch.hpp"
 
+#include <exception>
+
 #include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/detail/thread.hpp>
 
@@ -44,19 +46,31 @@ using cloudless::detail::shared_ptr;
 struct test_thread : thread
 {
     virtual void prologue()
-    { val = 2; }
+    {
+        val = 2;
+        did_throw = false;
+    }
 
     virtual void body()
     {
         val *= 5;
         stop();
+
+        if (is_detached())
+            throw exception();
     }
 
     virtual void epilogue()
     { val += 3; }
 
+    virtual void on_error(const exception& ex)
+    {
+        did_throw = true;
+    }
+
 public:
     int val;
+    bool did_throw;
 };
 
 TC ("cloudless/detail/thread", "Testing thread interface.")
@@ -66,9 +80,11 @@ TC ("cloudless/detail/thread", "Testing thread interface.")
     RNT ( tt.reset(new test_thread()) );
     R ( tt->start(false) == true );
     R ( tt->val == 13 );
+    R ( tt->did_throw == false );
 
     RNT ( tt.reset(new test_thread()) );
     RNT ( tt->start() );
     thread::sleep(10); // Allow val to be updated and sync'ed.
-    R ( tt->val == 13 );
+    R ( tt->val == 10 );
+    R ( tt->did_throw == true );
 }
