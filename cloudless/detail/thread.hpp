@@ -82,6 +82,14 @@ namespace detail
         void stop() throw();
 
         /**
+         * Return whether this thread is detached. This function will return
+         * false on timed joins.
+         *
+         * @return whether this thread was detached.
+         */
+        bool is_detached() throw();
+
+        /**
          * Get this thread's ID.
          *
          * @return thread's id.

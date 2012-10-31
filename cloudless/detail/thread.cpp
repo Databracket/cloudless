@@ -81,6 +81,12 @@ namespace detail
         _M_stop = true;
     }
 
+    bool
+    thread::is_detached() throw()
+    {
+        return _M_detached;
+    }
+
     thread::id
     thread::get_id() const throw()
     {
