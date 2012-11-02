@@ -38,13 +38,13 @@ namespace cloudless
     socket::socket(context& context, int type) :
         detail::zsocket(context, type)
     {
-        _M_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
+        _Mp_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
     }
 
     socket::socket(detail::shared_ptr<context>& context, int type) :
         detail::zsocket(*context, type)
     {
-        _M_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
+        _Mp_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
     }
 
     socket&
@@ -145,7 +145,7 @@ namespace cloudless
     pollitem&
     socket::poll_item() throw()
     {
-        return *_M_ip;
+        return *_Mp_ip;
     }
 
 } // namespace cloudless

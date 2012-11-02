@@ -126,7 +126,7 @@ namespace cloudless
         pollitem& poll_item() throw();
 
     private:
-        detail::shared_ptr<pollitem> _M_ip;
+        detail::shared_ptr<pollitem> _Mp_ip;
     };
 
 } // namespace cloudless

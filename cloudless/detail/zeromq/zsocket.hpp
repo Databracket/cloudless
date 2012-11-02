@@ -448,7 +448,7 @@ namespace detail
         int _M_get_events() const;
 
     private:
-        void* _Mp_ptr;
+        void* _Mp_socket;
         int _M_recvtimeo;
         int _M_sendtimeo;
     };
