@@ -35,6 +35,12 @@ namespace cloudless
 
     // socket
 
+    socket::socket(int type) :
+        detail::zsocket(*context::instance(), type)
+    {
+        _Mp_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
+    }
+
     socket::socket(context& context, int type) :
         detail::zsocket(context, type)
     {

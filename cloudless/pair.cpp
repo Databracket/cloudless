@@ -32,6 +32,10 @@ namespace cloudless
 
     // pair
 
+    pair::pair() :
+        socket(socket_type::PAIR)
+    {}
+
     pair::pair(context& context) :
         socket(context, socket_type::PAIR)
     {}

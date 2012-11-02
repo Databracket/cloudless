@@ -44,6 +44,11 @@ namespace cloudless
     {
 
         /**
+         * Default constructor. Uses the global context.
+         */
+        pub();
+
+        /**
          * A constructor that takes a context.
          *
          * @param context a context.

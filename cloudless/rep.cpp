@@ -32,6 +32,10 @@ namespace cloudless
 
     // rep
 
+    rep::rep() :
+        socket(socket_type::REP)
+    {}
+
     rep::rep(context& context) :
         socket(context, socket_type::REP)
     {}

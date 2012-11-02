@@ -33,6 +33,10 @@ namespace cloudless
 
     // xsub
 
+    xsub::xsub() :
+        socket(socket_type::XSUB)
+    {}
+
     xsub::xsub(context& context) :
         socket(context, socket_type::XSUB)
     {}

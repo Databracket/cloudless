@@ -33,6 +33,10 @@ namespace cloudless
 
     // pub
 
+    pub::pub() :
+        socket(socket_type::PUB)
+    {}
+
     pub::pub(context& context) :
         socket(context, socket_type::PUB)
     {}

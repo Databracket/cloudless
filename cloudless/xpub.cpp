@@ -33,6 +33,10 @@ namespace cloudless
 
     // xpub
 
+    xpub::xpub() :
+        socket(socket_type::XPUB)
+    {}
+
     xpub::xpub(context& context) :
         socket(context, socket_type::XPUB)
     {}

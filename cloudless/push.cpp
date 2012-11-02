@@ -33,6 +33,10 @@ namespace cloudless
 
     // push
 
+    push::push() :
+        socket(socket_type::PUSH)
+    {}
+
     push::push(context& context) :
         socket(context, socket_type::PUSH)
     {}
