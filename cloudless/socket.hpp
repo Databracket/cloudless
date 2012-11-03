@@ -70,7 +70,7 @@ namespace cloudless
          * @param context a shared pointer of a context.
          * @param type a socket type.
          */
-        socket(detail::shared_ptr<context>& context, int type);
+        socket(detail::shared_ptr<context> context, int type);
 
         /**
          * Bind this socket to a specific address given via

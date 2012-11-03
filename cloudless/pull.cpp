@@ -41,7 +41,7 @@ namespace cloudless
         socket(context, socket_type::PULL)
     {}
 
-    pull::pull(detail::shared_ptr<context>& context) :
+    pull::pull(detail::shared_ptr<context> context) :
         socket(context, socket_type::PULL)
     {}
 

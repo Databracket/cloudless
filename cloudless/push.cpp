@@ -41,7 +41,7 @@ namespace cloudless
         socket(context, socket_type::PUSH)
     {}
 
-    push::push(detail::shared_ptr<context>& context) :
+    push::push(detail::shared_ptr<context> context) :
         socket(context, socket_type::PUSH)
     {}
 

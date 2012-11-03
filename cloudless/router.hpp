@@ -60,7 +60,7 @@ namespace cloudless
          *
          * @param context a shared pointer of a context.
          */
-        router(detail::shared_ptr<context>& context);
+        router(detail::shared_ptr<context> context);
     };
 
 } // namespace cloudless

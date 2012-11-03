@@ -60,7 +60,7 @@ namespace cloudless
          *
          * @param context a shared pointer of a context.
          */
-        xpub(detail::shared_ptr<context>& context);
+        xpub(detail::shared_ptr<context> context);
     };
 
 } // namespace cloudless

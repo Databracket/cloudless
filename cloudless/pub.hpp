@@ -60,7 +60,7 @@ namespace cloudless
          *
          * @param context a shared pointer to a context.
          */
-        pub(detail::shared_ptr<context>& context);
+        pub(detail::shared_ptr<context> context);
 
         /**
          * An override of the recv() function in the socket interface

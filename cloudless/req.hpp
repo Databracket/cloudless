@@ -60,7 +60,7 @@ namespace cloudless
          *
          * @param context a shared pointer to a context.
          */
-        req(detail::shared_ptr<context>& context);
+        req(detail::shared_ptr<context> context);
     };
 
 } // namespace cloudless

@@ -40,7 +40,7 @@ namespace cloudless
         socket(context, socket_type::ROUTER)
     {}
 
-    router::router(detail::shared_ptr<context>& context) :
+    router::router(detail::shared_ptr<context> context) :
         socket(context, socket_type::ROUTER)
     {}
 

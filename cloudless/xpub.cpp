@@ -41,7 +41,7 @@ namespace cloudless
         socket(context, socket_type::XPUB)
     {}
 
-    xpub::xpub(detail::shared_ptr<context>& context) :
+    xpub::xpub(detail::shared_ptr<context> context) :
         socket(context, socket_type::XPUB)
     {}
 

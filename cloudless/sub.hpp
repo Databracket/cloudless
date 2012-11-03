@@ -62,7 +62,7 @@ namespace cloudless
          *
          * @param context a shared pointer of a context.
          */
-        sub(detail::shared_ptr<context>& context);
+        sub(detail::shared_ptr<context> context);
 
         /**
          * An override of the send() function in the socket interface

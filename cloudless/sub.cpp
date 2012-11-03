@@ -41,7 +41,7 @@ namespace cloudless
         socket(context, socket_type::SUB)
     {}
 
-    sub::sub(detail::shared_ptr<context>& context) :
+    sub::sub(detail::shared_ptr<context> context) :
         socket(context, socket_type::SUB)
     {}
 
