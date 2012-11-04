@@ -71,6 +71,16 @@ namespace cloudless
         element(const void* p, size_t size);
 
         /**
+         * Cast the underlying message of this element to std::string.
+         *
+         * @return std::string of the data inside the underlying message.
+         */
+        inline operator std::string() const
+        {
+            return (std::string)*get();
+        }
+
+        /**
          * Equality comparison against a generic type and the underlying
          * zmessage.
          *
