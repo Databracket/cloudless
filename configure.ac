@@ -262,5 +262,6 @@ AC_CONFIG_FILES([
 		libcloudless.pc \
 		Makefile \
 		cloudless/Makefile \
-		tests/Makefile])
+		tests/Makefile \
+		examples/Makefile])
 AC_OUTPUT

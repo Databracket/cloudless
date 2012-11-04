@@ -1,8 +1,8 @@
 ACLOCAL_AMFLAGS = -I m4
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 
-SUBDIRS = cloudless tests
-DIST_SUBDIRS = cloudless tests
+SUBDIRS = cloudless tests examples
+DIST_SUBDIRS = cloudless tests examples
 
 pkgconfigdir = @pkgconfigdir@
 pkgconfig_DATA = libcloudless.pc

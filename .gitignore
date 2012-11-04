@@ -46,3 +46,8 @@ doc/
 # tests build output
 tests/test_[a-z]*
 !tests/test_[a-z]*.cpp
+
+# examples build output
+examples/*
+!examples/*.cpp
+!examples/Makefile.am
