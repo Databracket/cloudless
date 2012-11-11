@@ -75,19 +75,19 @@ namespace cloudless
     bool
     pollitem::in() const throw()
     {
-        return (revents & poll_events::IN);
+        return (revents & poll_events::IN_EVENT);
     }
 
     bool
     pollitem::out() const throw()
     {
-        return (revents & poll_events::OUT);
+        return (revents & poll_events::OUT_EVENT);
     }
 
     bool
     pollitem::error() const throw()
     {
-        return (revents & poll_events::ERROR);
+        return (revents & poll_events::ERROR_EVENT);
     }
 
     bool

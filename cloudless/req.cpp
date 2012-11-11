@@ -32,7 +32,15 @@ namespace cloudless
 
     // req
 
+    req::req() :
+        socket(socket_type::REQ)
+    {}
+
     req::req(context& context) :
+        socket(context, socket_type::REQ)
+    {}
+
+    req::req(detail::shared_ptr<context> context) :
         socket(context, socket_type::REQ)
     {}
 

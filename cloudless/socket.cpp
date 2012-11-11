@@ -35,10 +35,22 @@ namespace cloudless
 
     // socket
 
+    socket::socket(int type) :
+        detail::zsocket(*context::instance(), type)
+    {
+        _Mp_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
+    }
+
     socket::socket(context& context, int type) :
         detail::zsocket(context, type)
     {
-        _M_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
+        _Mp_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
+    }
+
+    socket::socket(detail::shared_ptr<context> context, int type) :
+        detail::zsocket(*context, type)
+    {
+        _Mp_ip = detail::shared_ptr<pollitem>(new pollitem(*this));
     }
 
     socket&
@@ -85,7 +97,7 @@ namespace cloudless
             poller p;
 
             p.add("__send_socket",
-                    poll_item().register_event(poll_events::OUT));
+                    poll_item().register_event(poll_events::OUT_EVENT));
 
             if (!p.poll(send_timeout()) || !p["__send_socket"].out())
                 return false;
@@ -116,7 +128,7 @@ namespace cloudless
             poller p;
 
             p.add("__recv_socket",
-                    poll_item().register_event(poll_events::IN));
+                    poll_item().register_event(poll_events::IN_EVENT));
 
             if (!p.poll(recv_timeout()) || !p["__recv_socket"].in())
                 return false;
@@ -139,7 +151,7 @@ namespace cloudless
     pollitem&
     socket::poll_item() throw()
     {
-        return *_M_ip;
+        return *_Mp_ip;
     }
 
 } // namespace cloudless

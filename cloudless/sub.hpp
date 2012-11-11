@@ -31,6 +31,7 @@
 #include <string>
 
 #include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/socket.hpp>
 
@@ -45,11 +46,23 @@ namespace cloudless
     {
 
         /**
+         * Default constructor. Uses the global context.
+         */
+        sub();
+
+        /**
          * A constructor that takes a context.
          *
          * @param context a context.
          */
         sub(context& context);
+
+        /**
+         * A constructor that takes a context.
+         *
+         * @param context a shared pointer of a context.
+         */
+        sub(detail::shared_ptr<context> context);
 
         /**
          * An override of the send() function in the socket interface

@@ -29,6 +29,7 @@
 #define CLOUDLESS_PAIR_HPP
 
 #include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/socket.hpp>
 
@@ -43,11 +44,23 @@ namespace cloudless
     {
 
         /**
+         * Default constructor. Uses the global context.
+         */
+        pair();
+
+        /**
          * A constructor that takes a context.
          *
          * @param context a context.
          */
         pair(context& context);
+
+        /**
+         * A constructor that takes a context.
+         *
+         * @param context a shared pointer of a context.
+         */
+        pair(detail::shared_ptr<context> context);
     };
 
 } // namespace cloudless

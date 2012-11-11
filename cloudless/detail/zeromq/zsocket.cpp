@@ -47,41 +47,41 @@ namespace detail
     zsocket::zsocket(zcontext& context, int type) :
         _M_recvtimeo(-1), _M_sendtimeo(-1)
     {
-        _Mp_ptr = zmq_socket(context, type);
+        _Mp_socket = zmq_socket(context, type);
 
-        if (_Mp_ptr == NULL)
+        if (_Mp_socket == NULL)
             raise(zexception);
     }
 
     zsocket::~zsocket()
     {
-        if (_Mp_ptr == NULL)
+        if (_Mp_socket == NULL)
             return;
 
-        zmq_close(_Mp_ptr);
+        zmq_close(_Mp_socket);
 
-        _Mp_ptr = NULL;
+        _Mp_socket = NULL;
     }
 
     void
     zsocket::close()
     {
-        if (_Mp_ptr == NULL)
+        if (_Mp_socket == NULL)
             return;
 
-        int rc = zmq_close(_Mp_ptr);
+        int rc = zmq_close(_Mp_socket);
 
         if (rc == -1)
             raise(zexception);
 
-        _Mp_ptr = NULL;
+        _Mp_socket = NULL;
     }
 
     void
     zsocket::setsockopt(int option, const void* optval,
             size_t optvallen)
     {
-        int rc = zmq_setsockopt(_Mp_ptr, option, optval, optvallen);
+        int rc = zmq_setsockopt(_Mp_socket, option, optval, optvallen);
 
         if (rc == -1)
             raise(zexception);
@@ -91,7 +91,7 @@ namespace detail
     zsocket::getsockopt(int option, void* optval,
             size_t* optvallen) const
     {
-        int rc = zmq_getsockopt(_Mp_ptr, option, optval, optvallen);
+        int rc = zmq_getsockopt(_Mp_socket, option, optval, optvallen);
 
         if (rc == -1)
             raise(zexception);
@@ -100,7 +100,7 @@ namespace detail
     void
     zsocket::bind(const char* addr)
     {
-        int rc = zmq_bind(_Mp_ptr, addr);
+        int rc = zmq_bind(_Mp_socket, addr);
 
         if (rc == -1)
             raise(zexception);
@@ -109,7 +109,7 @@ namespace detail
     void
     zsocket::connect(const char* addr)
     {
-        int rc = zmq_connect(_Mp_ptr, addr);
+        int rc = zmq_connect(_Mp_socket, addr);
 
         if (rc == -1)
             raise(zexception);
@@ -118,7 +118,7 @@ namespace detail
     bool
     zsocket::sendmsg(zmessage& msg, int flags)
     {
-        int rc = zmq_sendmsg(_Mp_ptr, msg, flags);
+        int rc = zmq_sendmsg(_Mp_socket, msg, flags);
 
 #if ZMQ_VERSION_MAJOR == 3
         if (rc >= 0) // 0MQ 3.x returns the number of bytes sent
@@ -137,7 +137,7 @@ namespace detail
     bool
     zsocket::recvmsg(zmessage& msg, int flags)
     {
-        int rc = zmq_recvmsg(_Mp_ptr, msg, flags);
+        int rc = zmq_recvmsg(_Mp_socket, msg, flags);
 
 #if ZMQ_VERSION_MAJOR == 3
         if (rc >= 0) // 0MQ 3.x returns the number of bytes received
@@ -570,7 +570,7 @@ namespace detail
 
     zsocket::operator void*() const throw()
     {
-        return _Mp_ptr;
+        return _Mp_socket;
     }
 
     int

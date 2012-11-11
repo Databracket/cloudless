@@ -43,6 +43,6 @@ TC ("cloudless/context", "Testing context interface.")
     RNT ( cloudless::context c );
 
     cloudless::context c;
-    R ( (void*)c != NULL );
+    R ( (void*)c != (void*)NULL );
     RNT ( cloudless::context::instance()->shared_from_this() );
 }

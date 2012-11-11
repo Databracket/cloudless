@@ -32,7 +32,15 @@ namespace cloudless
 
     // dealer
 
+    dealer::dealer() :
+        socket(socket_type::DEALER)
+    {}
+
     dealer::dealer(context& context) :
+        socket(context, socket_type::DEALER)
+    {}
+
+    dealer::dealer(detail::shared_ptr<context> context) :
         socket(context, socket_type::DEALER)
     {}
 

@@ -38,9 +38,7 @@ namespace detail
     // thread
 
     thread::thread() :
-        _M_barrier(2),
-        _M_stop(false),
-        _M_detached(false)
+        _M_stop(false)
     {}
 
     thread::~thread()
@@ -49,7 +47,9 @@ namespace detail
         // otherwise nasty things shall ensue.
         stop();
 
-        _M_wait();
+        // Wait for threads to terminate before allowing this instance
+        // to be destroyed.
+        wait();
     }
 
     bool
@@ -79,6 +79,12 @@ namespace detail
     thread::stop() throw()
     {
         _M_stop = true;
+    }
+
+    bool
+    thread::is_detached() throw()
+    {
+        return _M_detached;
     }
 
     thread::id
@@ -118,13 +124,16 @@ namespace detail
     }
 
     void
-    thread::_M_wait()
+    thread::wait()
     {
-        // Here we make sure that the thread will not deadlock on itself
-        // by waiting on a barrier that will never be reached by the parent
-        // thread, in the case that it was joined.
+        // Here we make sure that the object holding information
+        // about the thread will not destruct unless the thread
+        // fully terminates.
         if (_M_detached)
-            _M_barrier.wait();
+        {
+            _M_waiter.lock();
+            _M_waiter.unlock();
+        }
     }
 
     void
@@ -132,6 +141,10 @@ namespace detail
     {
         // This mutex is only used as a memory fence
         boost::mutex::scoped_lock lck(_M_mutex);
+
+        // Lock _M_waiter so that objects cannot destruct
+        // until this thread finishes.
+        _M_waiter.lock();
 
         try {
             prologue(); // Executed once before body()
@@ -142,7 +155,8 @@ namespace detail
             catch (...) { /* We're sorry for your loss. */ }
         } catch (...) { /* Not much to be done ... */ }
 
-        _M_wait();
+        // Now it is safe to allow objects to destruct fully.
+        _M_waiter.unlock();
     }
 
 } // namespace detail

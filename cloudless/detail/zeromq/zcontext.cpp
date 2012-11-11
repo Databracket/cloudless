@@ -41,22 +41,23 @@ namespace detail
 
     zcontext::zcontext(int io_threads)
     {
+        // Assume a default of 2 threads if # of CPUs is not available.
         int num_threads = io_threads == 0 ? 2 : io_threads;
-        _M_ptr = zmq_init(num_threads);
+        _Mp_ctx = zmq_init(num_threads);
 
-        if (_M_ptr == NULL)
+        if (_Mp_ctx == NULL)
             raise(null_pointer);
     }
 
     zcontext::~zcontext()
     {
-        int rc = zmq_term(_M_ptr);
+        int rc = zmq_term(_Mp_ctx);
         assert(rc == 0);
     }
 
     zcontext::operator void*() const throw()
     {
-        return _M_ptr;
+        return _Mp_ctx;
     }
 
 } // namespace detail

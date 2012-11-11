@@ -29,6 +29,7 @@
 #define CLOUDLESS_PUSH_HPP
 
 #include <cloudless/detail/export.hpp>
+#include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/context.hpp>
 #include <cloudless/socket.hpp>
 
@@ -43,11 +44,23 @@ namespace cloudless
     {
 
         /**
+         * Default constructor. Uses the global context.
+         */
+        push();
+
+        /**
          * A constructor that takes a context.
          *
          * @param context a context.
          */
         push(context& context);
+
+        /**
+         * A constructor that takes a context.
+         *
+         * @param context a shared pointer to a context.
+         */
+        push(detail::shared_ptr<context> context);
 
         /**
          * An override of the recv() function in the socket interface

@@ -38,6 +38,11 @@ namespace cloudless
         detail::thread(), _M_edges(edges)
     {}
 
+    device::~device()
+    {
+        wait();
+    }
+
     edges&
     device::get_edges() const
     {
@@ -72,7 +77,7 @@ namespace cloudless
                 // Add pollitem for each socket to a poller
                 _M_poller.add(edges_it->first + point_it->first,
                         point_it->second.psocket->poll_item()
-                            .register_event(poll_events::IN)
+                            .register_event(poll_events::IN_EVENT)
                             );
             }
         }

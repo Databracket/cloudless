@@ -25,7 +25,7 @@ AC_SUBST(PACKAGE_VERSION)
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
 #
 # libcloudless -version-info current:revision:age
-LTVER="1:0:0"
+LTVER="2:0:0"
 AC_SUBST(LTVER)
 
 # Take a copy of original flags
@@ -262,5 +262,6 @@ AC_CONFIG_FILES([
 		libcloudless.pc \
 		Makefile \
 		cloudless/Makefile \
-		tests/Makefile])
+		tests/Makefile \
+		examples/Makefile])
 AC_OUTPUT

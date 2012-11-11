@@ -33,7 +33,15 @@ namespace cloudless
 
     // sub
 
+    sub::sub() :
+        socket(socket_type::SUB)
+    {}
+
     sub::sub(context& context) :
+        socket(context, socket_type::SUB)
+    {}
+
+    sub::sub(detail::shared_ptr<context> context) :
         socket(context, socket_type::SUB)
     {}
 

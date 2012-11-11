@@ -50,12 +50,27 @@ namespace cloudless
     {
 
         /**
+         * A constructor that takes a socket type. and uses the global context.
+         *
+         * @param type a socket type.
+         */
+        socket(int type);
+
+        /**
          * A constructor that takes a context and a socket type.
          *
          * @param context a context.
          * @param type a socket type.
          */
         socket(context& context, int type);
+
+        /**
+         * A constructor that takes a context and a socket type.
+         *
+         * @param context a shared pointer of a context.
+         * @param type a socket type.
+         */
+        socket(detail::shared_ptr<context> context, int type);
 
         /**
          * Bind this socket to a specific address given via
@@ -118,7 +133,7 @@ namespace cloudless
         pollitem& poll_item() throw();
 
     private:
-        detail::shared_ptr<pollitem> _M_ip;
+        detail::shared_ptr<pollitem> _Mp_ip;
     };
 
 } // namespace cloudless

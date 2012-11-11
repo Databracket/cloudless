@@ -54,22 +54,22 @@ namespace detail
          * A static function to return a newly created instance of type T,
          * or return the one already created if it exists.
          *
-         * @return a pointer of type T.
+         * @return a shared pointer of type T.
          */
-        static T* instance()
+        static shared_ptr<T> instance()
         {
-            if (!_M_instance)
-                _M_instance = shared_ptr<T>(new T);
+            if (!_Sp_instance)
+                _Sp_instance = shared_ptr<T>(new T);
 
-            assert(_M_instance.get() != NULL);
-            return _M_instance.get();
+            assert(_Sp_instance.get() != NULL);
+            return _Sp_instance;
         }
 
     private:
-        static shared_ptr<T> _M_instance;
+        static shared_ptr<T> _Sp_instance;
     };
 
-    template <typename T> shared_ptr<T> singleton<T>::_M_instance;
+    template <typename T> shared_ptr<T> singleton<T>::_Sp_instance;
 
 } // namespace detail
 

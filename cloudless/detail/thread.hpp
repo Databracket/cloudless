@@ -29,11 +29,11 @@
 #define CLOUDLESS_DETAIL_THREAD_HPP
 
 #include <boost/thread/thread.hpp>
-#include <boost/thread/barrier.hpp>
 #include <boost/thread/mutex.hpp>
 
 #include <cloudless/detail/export.hpp>
 #include <cloudless/detail/exception.hpp>
+#include <cloudless/detail/ipod.hpp>
 #include <cloudless/detail/shared_ptr.hpp>
 #include <cloudless/detail/shared_array.hpp>
 #include <cloudless/detail/noncopyable.hpp>
@@ -82,6 +82,14 @@ namespace detail
         void stop() throw();
 
         /**
+         * Return whether this thread is detached. This function will return
+         * false on timed joins.
+         *
+         * @return whether this thread was detached.
+         */
+        bool is_detached() throw();
+
+        /**
          * Get this thread's ID.
          *
          * @return thread's id.
@@ -128,6 +136,12 @@ namespace detail
         bool operator ==(const thread& rhs) const;
 
     protected:
+
+        /**
+         * A function used to wait for the thread to terminate before
+         * any objects fully destruct.
+         */
+        void wait();
 
         /**
          * A virtual function to be optionally overrided by a child of this class.
@@ -180,12 +194,11 @@ namespace detail
     private:
         shared_ptr<boost::thread> _Mp_thread;
         boost::mutex _M_mutex;
-        boost::barrier _M_barrier;
+        boost::mutex _M_waiter;
+        ipod<bool> _M_detached;
         volatile bool _M_stop;
-        volatile bool _M_detached;
 
     private:
-        void _M_wait();
         void _M_run();
 
     };

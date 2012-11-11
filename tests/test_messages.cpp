@@ -74,6 +74,11 @@ TC ("cloudless/element", "Testing element interface.")
         cloudless::element e(test_buffer.c_str(), test_buffer.size());
         R ( e == test_buffer );
     }
+
+    {
+        cloudless::element e(test_buffer);
+        R ( (string)e == test_buffer );
+    }
 }
 
 TC ("cloudless/message", "Testing message interface.")

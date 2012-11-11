@@ -64,7 +64,7 @@ TC ("cloudless/utils", "Testing utility functions.")
 
         str.reset();
 
-        R ( str.get() == NULL );
+        R ( str.get() == (char*)NULL );
     }
 
     S ("cloudless/misc", "Testing miscellaneous utilities.")

@@ -63,7 +63,7 @@ namespace detail
         operator void*() const throw();
 
     private:
-        void* _M_ptr;
+        void* _Mp_ctx;
     };
 
 } // namespace detail
