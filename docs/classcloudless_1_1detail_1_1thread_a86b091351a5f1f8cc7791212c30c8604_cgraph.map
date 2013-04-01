@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classcloudless_1_1detail_1_1thread.html#a49caccc74d3347f60af16b59f69b31aa" title="Send a request to a detached thread to stop." alt="" coords="268,5,460,35"/>
+<area shape="rect" id="node5" href="$classcloudless_1_1detail_1_1thread.html#a63ed13ca5b46f31d516af9503b54249d" title="A function used to wait for the thread to terminate before any objects fully destruct." alt="" coords="268,59,460,88"/>
+</map>

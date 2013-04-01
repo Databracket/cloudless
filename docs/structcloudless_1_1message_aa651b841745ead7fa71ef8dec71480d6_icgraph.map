@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$structcloudless_1_1message.html#a55608f626fcd39243ca2a529369a7f95" title="A constructor that takes a std::string." alt="" coords="255,5,452,35"/>
+<area shape="rect" id="node5" href="$structcloudless_1_1message.html#a9e22fcbedde8d239f25f72c4a2d652f9" title="Push a std::string at the bottom of the stack." alt="" coords="255,59,452,88"/>
+<area shape="rect" id="node7" href="$structcloudless_1_1socket.html#adeac51c23a45fe409fd56cfb011d3be4" title="Receive a message through this socket." alt="" coords="275,112,432,141"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classcloudless_1_1poller.html#ac0ea4caad84cc43c9bf1e7d27103940f" title="Add a pollitem to the pool to be monitored." alt="" coords="269,5,413,35"/>
+<area shape="rect" id="node5" href="$structcloudless_1_1detail_1_1zsocket.html#a03a4600714e7d84230472f1d798ef840" title="Check if a message can be sent without blocking." alt="" coords="224,59,459,88"/>
+<area shape="rect" id="node7" href="$classcloudless_1_1poller.html#a00747edcaa5a22525711b86ada99fc35" title="Poll on all pollitems in the container." alt="" coords="269,112,413,141"/>
+<area shape="rect" id="node9" href="$structcloudless_1_1socket.html#a1ced33cdf644b59a0ff1e377c0b1e20b" title="Get a pollitem that represents this socket." alt="" coords="249,165,433,195"/>
+<area shape="rect" id="node11" href="$structcloudless_1_1detail_1_1zsocket.html#a5190cf97a533d0a7a6334826d0e1829c" title="Get maximum time before a send operation times out." alt="" coords="213,219,469,248"/>
+<area shape="rect" id="node13" href="$structcloudless_1_1detail_1_1zsocket.html#a3139bae666f63e4b6a726df9731daab0" title="Send a message." alt="" coords="227,272,456,301"/>
+<area shape="rect" id="node15" href="$structcloudless_1_1message.html#ad62d71563cc9a46a88d89eb1e266eb76" title="Get the size of the messages container." alt="" coords="256,325,427,355"/>
+</map>
